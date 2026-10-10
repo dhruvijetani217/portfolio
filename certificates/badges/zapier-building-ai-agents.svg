@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" width="720" height="440">
+  <defs>
+    <linearGradient id="bg-zapier-building-ai-agents" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140E0A"/>
+      <stop offset="100%" stop-color="#26150D"/>
+    </linearGradient>
+    <radialGradient id="glow-zapier-building-ai-agents" cx="85%" cy="15%" r="65%">
+      <stop offset="0%" stop-color="#FF4F00" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#FF4F00" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid-zapier-building-ai-agents" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="440" rx="20" fill="url(#bg-zapier-building-ai-agents)"/>
+  <rect width="720" height="440" rx="20" fill="url(#glow-zapier-building-ai-agents)"/>
+  <rect width="720" height="440" rx="20" fill="url(#grid-zapier-building-ai-agents)"/>
+  <rect width="720" height="440" rx="20" fill="none" stroke="#542614" stroke-width="2"/>
+
+  <!-- Header line -->
+  <g transform="translate(44, 40)">
+    <g transform="translate(0, 6) scale(1.05)">
+<rect x="0" y="16" width="12" height="4" rx="1" fill="#FF4F00"/>
+<text x="16" y="20" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="800" fill="#FF4F00" letter-spacing="-0.5">zapier</text>
+<path d="M88 4v16M80 12h16M82 6l12 12M82 18l12-12" stroke="#FF4F00" stroke-width="2.6" stroke-linecap="round"/>
+</g>
+    <!-- Verified Badge -->
+    <g transform="translate(506, 0)">
+      <rect width="126" height="28" rx="14" fill="rgba(255, 79, 0, 0.15)" stroke="#FF4F00" stroke-width="1.2"/>
+      <circle cx="16" cy="14" r="4.5" fill="#FF4F00"/>
+      <text x="28" y="18" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#FF4F00" letter-spacing="0.6">VERIFIED</text>
+    </g>
+  </g>
+
+  <!-- Issuer -->
+  <text x="44" y="148" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#FF4F00" letter-spacing="2">ZAPIER ACADEMY</text>
+
+  <!-- Title -->
+  <text x="44" y="200" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Building AI Agents</text>
+
+  <!-- Tagline -->
+  <text x="44" y="236" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="500" fill="#A4B8B2">Autonomous Agents &amp; Dynamic Actions</text>
+
+  <!-- Divider -->
+  <line x1="44" y1="286" x2="676" y2="286" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+
+  <!-- Bottom Details - strictly NO DATE -->
+  <g transform="translate(44, 335)">
+    <text x="0" y="0" font-family="ui-monospace, monospace" font-size="10" font-weight="600" fill="#6E827D" letter-spacing="1">CREDENTIAL</text>
+    <text x="0" y="22" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" fill="#FFFFFF">Professional Certificate</text>
+  </g>
+
+  <g transform="translate(280, 335)">
+    <text x="0" y="0" font-family="ui-monospace, monospace" font-size="10" font-weight="600" fill="#6E827D" letter-spacing="1">RECIPIENT</text>
+    <text x="0" y="22" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" fill="#FFFFFF">Dhruvi Jetani</text>
+  </g>
+
+  <g transform="translate(510, 335)">
+    <text x="0" y="0" font-family="ui-monospace, monospace" font-size="10" font-weight="600" fill="#6E827D" letter-spacing="1">AUTHENTICATION</text>
+    <text x="0" y="22" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="#FF4F00">ID: 45C56C6B</text>
+  </g>
+
+  <!-- Corner watermark circle -->
+  <circle cx="660" cy="66" r="38" fill="none" stroke="#FF4F00" stroke-opacity="0.12" stroke-width="1.5" stroke-dasharray="4 4"/>
+</svg>
