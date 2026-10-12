@@ -3,360 +3,1712 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}
-/* cert-chip in hero */
-.chip-btn.cert-chip{background:var(--saffron-soft);color:var(--saffron);border-color:var(--saffron);font-weight:600}
-.chip-btn.cert-chip:hover{background:var(--saffron);color:#fff}
+<title>Dhruvi Jetani — Software &amp; AI Engineer | Team Leader</title>
+<meta name="description" content="Dhruvi Jetani — Software Engineer, AI Engineer and Team Leader at RemoteDevs Infotech. Building enterprise systems, autonomous AI agents, computer vision, and real-time platforms.">
 
-/* cert-stats top highlight */
-.cert-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
-@media(max-width:850px){.cert-stats{grid-template-columns:1fr}}
-.cert-stat-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s ease,transform .15s ease}
-.cert-stat-item:hover{border-color:var(--teal);transform:translateY(-2px)}
-.cert-stat-badge{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;display:inline-block;align-self:flex-start;padding:3px 8px;border-radius:6px}
-.cert-stat-badge.openai{background:rgba(16,163,127,.12);color:#10A37F;border:1px solid rgba(16,163,127,.3)}
-.cert-stat-badge.anthropic{background:rgba(217,119,6,.12);color:#D97706;border:1px solid rgba(217,119,6,.3)}
-.cert-stat-badge.zapier{background:rgba(255,79,0,.12);color:#FF5E1E;border:1px solid rgba(255,79,0,.3)}
-.cert-stat-item strong{font-size:16px;color:var(--ink);font-family:var(--f-display);line-height:1.2}
-.cert-stat-item small{color:var(--muted);font-size:13px;line-height:1.4}
-
-/* filters for certs */
-#cf-all:checked~.filters label[for="cf-all"],
-#cf-ai:checked~.filters label[for="cf-ai"],
-#cf-mcp:checked~.filters label[for="cf-mcp"],
-#cf-sec:checked~.filters label[for="cf-sec"],
-#cf-auto:checked~.filters label[for="cf-auto"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-
-#cf-all:focus-visible~.filters label[for="cf-all"],
-#cf-ai:focus-visible~.filters label[for="cf-ai"],
-#cf-mcp:focus-visible~.filters label[for="cf-mcp"],
-#cf-sec:focus-visible~.filters label[for="cf-sec"],
-#cf-auto:focus-visible~.filters label[for="cf-auto"]{outline:2px solid var(--saffron);outline-offset:3px}
-
-#cf-ai:checked~.cert-grid .cert-card:not([data-cat~="ai"]),
-#cf-mcp:checked~.cert-grid .cert-card:not([data-cat~="mcp"]),
-#cf-sec:checked~.cert-grid .cert-card:not([data-cat~="sec"]),
-#cf-auto:checked~.cert-grid .cert-card:not([data-cat~="auto"]){display:none}
-
-/* cert-grid and cards */
-.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
-@media (max-width:980px){.cert-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:620px){.cert-grid{grid-template-columns:1fr}}
-
-.cert-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
-.cert-card:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 14px 30px -12px rgba(0,0,0,.15)}
-.cert-card.spotlight{border-color:color-mix(in srgb, var(--saffron) 45%, var(--line));background:color-mix(in srgb, var(--surface) 94%, var(--saffron-soft) 6%)}
-
-.cert-media{position:relative;width:100%;aspect-ratio:16/10;background:color-mix(in srgb,var(--ink) 4%,var(--surface));overflow:hidden;border-bottom:1px solid var(--line);cursor:pointer;display:block}
-.cert-media img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .3s ease}
-.cert-card:hover .cert-media img{transform:scale(1.02)}
-.cert-overlay{position:absolute;inset:0;background:rgba(12,21,19,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s ease;backdrop-filter:blur(3px)}
-.cert-card:hover .cert-overlay,.cert-media:focus-visible .cert-overlay{opacity:1}
-.cert-overlay span{font-family:var(--f-mono);font-size:12px;font-weight:600;color:#fff;background:var(--teal);padding:7px 16px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(0,0,0,.25)}
-
-.cert-body{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
-.cert-body .top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.cert-issuer{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:5px}
-.issuer-openai{background:rgba(16,163,127,.12);color:#10A37F;border:1px solid rgba(16,163,127,.3)}
-.issuer-anthropic{background:rgba(217,119,6,.12);color:#D97706;border:1px solid rgba(217,119,6,.3)}
-.issuer-zapier{background:rgba(255,79,0,.12);color:#FF5E1E;border:1px solid rgba(255,79,0,.3)}
-.cert-badge-ver{font-family:var(--f-mono);font-size:11px;color:var(--teal);background:var(--teal-soft);padding:3px 7px;border-radius:4px;font-weight:500}
-
-.cert-body h3{font-size:19px;font-weight:700;line-height:1.2;margin:0}
-.cert-meta{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
-.cert-meta span{display:inline-flex;align-items:center;gap:4px}
-.cert-desc{font-size:14px;color:var(--muted);line-height:1.55;margin:0}
-
-.cert-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:6px}
-.cert-tags span{font-family:var(--f-mono);font-size:11px;padding:2px 7px;border:1px solid var(--line);border-radius:4px;color:var(--muted)}
-
-.cert-actions{display:flex;align-items:center;gap:8px;padding-top:12px;border-top:1px solid var(--line);margin-top:4px}
-.cert-btn{font-family:var(--f-mono);font-size:12px;padding:7px 14px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:5px;transition:all .15s ease;width:100%}
-.cert-btn.primary{background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
-.cert-btn.primary:hover{opacity:.9}
-.cert-btn.ghost{background:transparent;color:var(--teal);border:1px solid var(--line)}
-.cert-btn.ghost:hover{border-color:var(--teal);background:var(--teal-soft)}
-
-.cert-more{margin-top:28px;background:var(--console);color:var(--console-fg);border-radius:14px;padding:24px 28px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;border:1px solid rgba(255,255,255,.08)}
-@media (max-width:700px){.cert-more{grid-template-columns:1fr;gap:14px;padding:20px}}
-.cert-more-icon{width:46px;height:46px;border-radius:12px;background:rgba(243,180,81,.16);color:#F3B451;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700}
-.cert-more h4{margin:0 0 4px;font-family:var(--f-display);font-size:18px;font-weight:600;color:#fff}
-.cert-more p{margin:0;font-size:14px;color:var(--console-dim);line-height:1.55}
-
-/* cert-modal */
-.cert-modal-backdrop{position:fixed;inset:0;z-index:999;background:rgba(8,16,14,.82);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s ease}
-.cert-modal-backdrop.open{opacity:1;pointer-events:auto}
-.cert-modal-box{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;max-width:760px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative;display:flex;flex-direction:column;transform:scale(.96);transition:transform .2s ease}
-.cert-modal-backdrop.open .cert-modal-box{transform:scale(1)}
-.cert-modal-head{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--surface);position:sticky;top:0;z-index:2}
-.cert-modal-head h3{font-size:18px;margin:0;font-weight:700}
-.cert-modal-close{background:none;border:none;font-size:24px;color:var(--muted);cursor:pointer;padding:4px 8px;line-height:1;border-radius:6px}
-.cert-modal-close:hover{color:var(--ink);background:var(--line)}
-.cert-modal-img-wrap{background:#08100e;padding:16px;display:flex;align-items:center;justify-content:center}
-.cert-modal-img-wrap img{max-width:100%;max-height:55vh;height:auto;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
-.cert-modal-info{padding:20px 24px;display:grid;gap:14px}
-.cert-modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px;background:color-mix(in srgb,var(--ink) 4%,var(--surface));border-radius:10px;font-family:var(--f-mono);font-size:12px}
-@media(max-width:600px){.cert-modal-grid{grid-template-columns:1fr}}
-.cert-modal-grid b{display:block;color:var(--muted);font-weight:400;margin-bottom:2px;font-size:11px;text-transform:uppercase}
-.cert-modal-foot{display:flex;justify-content:flex-end;gap:12px;padding:16px 24px;border-top:1px solid var(--line)}
-
-</style>
-<title>Dhruvi Jetani</title>
-<meta name="description" content="Dhruvi Jetani — Software Engineer, AI Engineer and Team Leader at RemoteDevs Infotech.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
 <style>
-/* Layout: single 1120px column; hero = name + live agent console; work as a filterable index; skills as a dense matrix */
-:root{
-  --bg:#EDF1EF; --surface:#F8FAF9; --ink:#10201D; --muted:#4D5F5A; --line:#CCD8D3;
-  --saffron:#C9730A; --saffron-soft:#F6E2C2; --teal:#0F7464; --teal-soft:#D3EAE4;
-  --console:#0F1C1A; --console-fg:#D6E6E0; --console-dim:#7C948D;
-  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --f-body:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+/* ========================================================
+   NETVELOPERS HIGH-PERFORMANCE UNIFIED GREEN DARK THEME
+   ======================================================== */
+:root {
+  --bg: #08090d;
+  --bg-2: #0e1017;
+  --surface: #12141c;
+  --surface-2: #161924;
+  --surface-3: #1c2130;
+  --line: #1c2130;
+  --line-2: #272e42;
+  --line-glow: rgba(114, 207, 109, 0.35);
+  
+  --fg: #ffffff;
+  --fg-2: #a5b4cb;
+  --fg-3: #64748b;
+  --fg-muted: #475569;
+  
+  /* Unified Netvelopers Electric Green Palette */
+  --accent: #72cf6d;
+  --accent-bright: #39ff14;
+  --accent-soft: rgba(114, 207, 109, 0.1);
+  --accent-border: rgba(114, 207, 109, 0.3);
+  --accent-glow: rgba(114, 207, 109, 0.25);
+  
+  --console: #05060a;
+  --console-fg: #e2e8f0;
+  --console-dim: #64748b;
+  
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --f-display: 'Bricolage Grotesque', var(--sans);
+  --f-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0C1513; --surface:#131F1C; --ink:#E3ECE8; --muted:#9AB0A9; --line:#24352F;
-  --saffron:#F0A53A; --saffron-soft:#3A2A12; --teal:#4FC3AE; --teal-soft:#123430;
-  --console:#08100E; --console-fg:#D6E6E0; --console-dim:#6F8780; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0C1513; --surface:#131F1C; --ink:#E3ECE8; --muted:#9AB0A9; --line:#24352F;
-  --saffron:#F0A53A; --saffron-soft:#3A2A12; --teal:#4FC3AE; --teal-soft:#123430;
-  --console:#08100E; --console-fg:#D6E6E0; --console-dim:#6F8780; color-scheme:dark}
 
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;padding-inline:16px;padding-block:0}
-.wrap{max-width:1120px;margin:0 auto}
-a{color:var(--teal);text-underline-offset:3px}
-a:focus-visible,button:focus-visible{outline:2px solid var(--saffron);outline-offset:3px;border-radius:4px}
-h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.08}
-p{margin:0}
-.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-
-/* nav */
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.mark{font-family:var(--f-display);font-weight:800;font-size:18px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
-.mark span{color:var(--saffron)}
-nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
-nav ul a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
-nav ul a:hover{color:var(--ink)}
-
-/* hero */
-.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;padding-block:64px 48px}
-.hero>*{min-width:0}
-.hero h1{font-size:clamp(48px,8vw,96px);font-weight:800;letter-spacing:-.035em}
-.hero h1 em{font-style:normal;color:var(--saffron)}
-.role{margin-top:18px;font-family:var(--f-display);font-size:clamp(20px,2.4vw,26px);font-weight:600;color:var(--ink)}
-.role b{color:var(--teal);font-weight:600}
-.pitch{margin-top:16px;max-width:56ch;color:var(--muted);font-size:17px}
-.contact-row{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
-.chip-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:13px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none}
-.chip-btn:hover{border-color:var(--teal)}
-.chip-btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.copied{color:var(--teal);font-family:var(--f-mono);font-size:12px;min-height:18px;margin-top:6px}
-
-.console{background:var(--console);color:var(--console-fg);border-radius:14px;font-family:var(--f-mono);font-size:13px;line-height:1.75;overflow:hidden;box-shadow:0 24px 60px -30px rgba(0,0,0,.45)}
-.console-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.08);color:var(--console-dim);font-size:12px}
-.live{display:inline-flex;align-items:center;gap:6px;color:#7FE0C6}
-.live i{width:7px;height:7px;border-radius:50%;background:#3FD3A8;animation:pulse 1.6s ease-in-out infinite}
-.console pre{margin:0;padding:16px;white-space:pre-wrap;word-break:break-word;font:inherit}
-.c-dim{color:var(--console-dim)} .c-ok{color:#5EE0B5} .c-acc{color:#F3B451} .c-key{color:#9CC7FF}
-.cursor{display:inline-block;width:8px;height:15px;background:#F3B451;vertical-align:-2px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-@keyframes pulse{50%{opacity:.35}}
-
-.facts{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.fact{padding:20px 16px 20px 0;display:flex;flex-direction:column;gap:2px}
-.fact+.fact{padding-left:20px;border-left:1px solid var(--line)}
-.fact b{font-family:var(--f-display);font-size:34px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.fact span{font-size:13px;color:var(--muted)}
-
-section{padding-block:72px 8px}
-section,#contact,#top{scroll-margin-top:72px}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-button,label,a{-webkit-tap-highlight-color:transparent}
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
-.sec-head h2{font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.03em;margin-top:6px}
-.sec-head p{max-width:46ch;color:var(--muted)}
-
-/* disciplines */
-.core{margin-top:28px;display:grid;gap:12px}
-.core ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.core li{background:var(--saffron-soft);border:1.5px solid var(--saffron);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
-.core li b{font-family:var(--f-display);font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--saffron)}
-.core li span{font-size:13px;color:var(--ink);opacity:.8}
-@media (max-width:900px){.core ul{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:600px){.core ul{grid-template-columns:1fr 1fr}.core li:first-child{grid-column:1/-1}}
-.disc{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
-.disc>div{padding:22px 20px 24px 0;border-bottom:1px solid var(--line);min-width:0}
-.disc>div:not(:nth-child(3n+1)){padding-left:20px;border-left:1px solid var(--line)}
-.disc h3{font-size:20px;font-weight:600;margin-bottom:8px;display:flex;flex-wrap:wrap;column-gap:10px;row-gap:4px;align-items:baseline}
-.disc h3 small{white-space:nowrap;font-family:var(--f-mono);font-size:11px;color:var(--saffron);font-weight:500;letter-spacing:.08em}
-.disc p{color:var(--muted);font-size:15px}
-
-/* experience */
-.job{display:grid;grid-template-columns:260px 1fr;gap:40px;padding-block:28px;border-top:1px solid var(--line)}
-.job>*{min-width:0}
-.job .when{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
-.job h3{font-size:24px;font-weight:600;margin-top:6px}
-.job .org{color:var(--teal);font-weight:600;margin-top:4px}
-.badge{display:inline-block;margin-top:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:var(--saffron-soft);color:var(--saffron)}
-.job ul{margin:0;padding-left:18px;display:grid;gap:8px}
-.job li::marker{color:var(--saffron)}
-.client{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.client div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
-.client h4{margin:0 0 6px;font-family:var(--f-display);font-size:16px;font-weight:600}
-.client p{font-size:14px;color:var(--muted)}
-
-/* featured */
-.feat{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.card .top{display:flex;justify-content:space-between;align-items:start;gap:12px}
-.card h3{font-size:28px;font-weight:800;letter-spacing:-.02em}
-.card .kind{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);padding:4px 8px;border-radius:6px;white-space:nowrap}
-.card .lede{color:var(--muted)}
-.card ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:15px}
-.card li::marker{color:var(--saffron)}
-.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
-.stack span{font-family:var(--f-mono);font-size:11.5px;padding:3px 8px;border:1px solid var(--line);border-radius:5px;color:var(--muted)}
-.stack span.hl{border-color:var(--saffron);color:var(--saffron);background:var(--saffron-soft);font-weight:500}
-.metric{font-family:var(--f-mono);font-size:12px;color:var(--saffron)}
-
-/* index */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.fr{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
-.filters label{font-family:var(--f-mono);font-size:12.5px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;user-select:none;transition:background .15s,color .15s,border-color .15s}
-.filters label b{font-weight:500;opacity:.6;margin-left:4px}
-.filters label:hover{border-color:var(--teal);color:var(--ink)}
-#f-all:checked~.filters label[for="f-all"],#f-ai:checked~.filters label[for="f-ai"],#f-vision:checked~.filters label[for="f-vision"],#f-apps:checked~.filters label[for="f-apps"],#f-tools:checked~.filters label[for="f-tools"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-#f-all:focus-visible~.filters label[for="f-all"],#f-ai:focus-visible~.filters label[for="f-ai"],#f-vision:focus-visible~.filters label[for="f-vision"],#f-apps:focus-visible~.filters label[for="f-apps"],#f-tools:focus-visible~.filters label[for="f-tools"]{outline:2px solid var(--saffron);outline-offset:3px}
-#f-ai:checked~.index .row:not([data-cat="ai"]),#f-vision:checked~.index .row:not([data-cat="vision"]),#f-apps:checked~.index .row:not([data-cat="apps"]),#f-tools:checked~.index .row:not([data-cat="tools"]){display:none}
-.index{border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:240px 1fr 220px;gap:24px;padding-block:18px;border-bottom:1px solid var(--line);align-items:start}
-.row>*{min-width:0}
-.row h3{font-size:19px;font-weight:600}
-.row .tag{font-family:var(--f-mono);font-size:11px;color:var(--saffron);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
-.row p{color:var(--muted);font-size:15px}
-.row .tech{font-family:var(--f-mono);font-size:12px;color:var(--muted);line-height:1.6}
-
-/* ai daily */
-.daily{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.daily>*{min-width:0}
-.flow{background:var(--console);color:var(--console-fg);border-radius:14px;padding:22px;font-family:var(--f-mono);font-size:13px}
-.flow ol{margin:0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:s}
-.flow li{display:grid;grid-template-columns:28px 1fr;gap:10px;counter-increment:s}
-.flow li::before{content:counter(s,decimal-leading-zero);color:#F3B451}
-.flow b{color:#fff;font-weight:500}
-.flow span{color:var(--console-dim);display:block}
-.tools{display:grid;gap:14px}
-.tools div{border-bottom:1px solid var(--line);padding-bottom:14px}
-.tools h4{margin:0 0 4px;font-family:var(--f-display);font-size:17px;font-weight:600}
-.tools p{font-size:15px;color:var(--muted)}
-
-/* skills */
-.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 32px}
-.skills>div{min-width:0}
-.skills h4{margin:0 0 10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:500}
-.pills{display:flex;flex-wrap:wrap;gap:6px}
-.pills span{font-size:14px;padding:4px 10px;border-radius:6px;background:var(--surface);border:1px solid var(--line)}
-.pills span.hl{background:var(--saffron-soft);border-color:var(--saffron);color:var(--saffron);font-weight:600}
-.py{color:var(--saffron);font-weight:600}
-
-/* bottom */
-.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.edu>div{border-top:2px solid var(--ink);padding-top:14px;min-width:0}
-.edu h4{margin:0 0 6px;font-family:var(--f-display);font-size:19px;font-weight:600}
-.edu p{color:var(--muted);font-size:15px}
-.contact{margin-top:72px;margin-bottom:56px;background:var(--ink);color:var(--bg);border-radius:18px;padding:44px 36px;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
-.contact>*{min-width:0}
-.contact h2{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em}
-.contact h2 em{font-style:normal;color:var(--saffron)}
-.contact p{opacity:.75;margin-top:12px;max-width:48ch}
-.contact .lines{display:grid;gap:10px;font-family:var(--f-mono);font-size:15px}
-.contact .lines button,.contact .lines a{all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);border-radius:10px;word-break:break-all}
-.contact .lines button:hover,.contact .lines a:hover{border-color:var(--saffron)}
-.contact .lines small{opacity:.6;white-space:nowrap}
-footer{padding-block:0 40px;color:var(--muted);font-size:13px;font-family:var(--f-mono);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-@media (max-width:900px){
-  .hero,.daily,.contact{grid-template-columns:1fr}
-  .feat{grid-template-columns:1fr}
-  .disc,.skills,.edu,.client{grid-template-columns:1fr 1fr}
-  .disc>div:not(:nth-child(3n+1)){padding-left:0;border-left:0}
-  .disc>div:nth-child(2n){padding-left:20px;border-left:1px solid var(--line)}
-  .job{grid-template-columns:1fr;gap:16px}
-  .row{grid-template-columns:1fr 1.4fr}
-  .row .tech{grid-column:2}
-  .facts{grid-template-columns:repeat(3,1fr)}
-  .fact:nth-child(4){padding-left:0;border-left:0}
-  .fact:nth-child(n+4){border-top:1px solid var(--line)}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
 }
-@media (max-width:600px){
-  nav .wrap{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:6px}
-  nav{overflow:hidden}
-  nav .wrap>*{min-width:0}
-  nav ul{min-width:0;max-width:none;flex-wrap:nowrap;overflow-x:auto;gap:18px;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-inline:-16px;padding-inline:16px;mask-image:linear-gradient(90deg,#000 85%,transparent)}
-  nav ul::-webkit-scrollbar{display:none}
-  nav ul a{white-space:nowrap;display:inline-block;padding-block:6px}
-  section,#contact,#top{scroll-margin-top:96px}
-  .console{font-size:11.5px;line-height:1.7}
-  .console pre{padding:14px}
-  .console-bar span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-  .fact b{font-size:28px}
-  .contact .lines{font-size:14px}
-  .filters label{padding:8px 12px}
-  .hero{padding-block:36px 32px;gap:28px}
-  .disc,.skills,.edu,.client{grid-template-columns:1fr}
-  .disc>div:nth-child(2n){padding-left:0;border-left:0}
-  .row{grid-template-columns:1fr;gap:6px}
-  .row .tech{grid-column:auto}
-  .card{padding:20px}
-  .contact{padding:28px 20px}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15.5px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+  position: relative;
 }
-@media (max-width:380px){.console{font-size:10.5px}.hero h1{font-size:44px}.facts{grid-template-columns:1fr}.fact+.fact{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
-@media (prefers-reduced-motion:reduce){.cursor,.live i{animation:none}html{scroll-behavior:auto}}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+img { max-width: 100%; height: auto; }
+[hidden] { display: none !important; }
+
+/* ========================================================
+   FULL-PAGE 3D SPIRAL BACKGROUND CANVAS (ZERO-LAG FIXED)
+   ======================================================== */
+.fullpage-spiral-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.spiral-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.75;
+}
+
+.fullpage-spiral-overlay {
+  display: none !important;
+}
+
+/* ========================================================
+   HIGH-PERFORMANCE ULTRA-LIGHTWEIGHT CURSOR
+   ======================================================== */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999999;
+  transform: translate3d(-50%, -50%, 0);
+  box-shadow: 0 0 10px var(--accent-bright);
+  will-change: transform;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(114, 207, 109, 0.55);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999998;
+  transform: translate3d(-50%, -50%, 0);
+  box-shadow: 0 0 14px rgba(114, 207, 109, 0.2);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  will-change: transform;
+}
+
+.cursor-ring.active {
+  width: 50px;
+  height: 50px;
+  border-color: var(--accent);
+  background: rgba(114, 207, 109, 0.08);
+}
+
+@media (max-width: 992px) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+/* ========================================================
+   PAGE CONTENT WRAPPER & TYPOGRAPHY
+   ======================================================== */
+.page-content {
+  position: relative;
+  z-index: 1;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+@media (max-width: 600px) {
+  .wrap { padding-inline: 16px; }
+}
+
+.accent { color: var(--accent); }
+.py { color: var(--accent); font-weight: 600; }
+a { color: var(--accent); text-decoration: none; transition: color 0.15s, opacity 0.15s; }
+a:hover { opacity: 0.85; }
+
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+/* ========================================================
+   REVEAL ON SCROLL (LIGHTWEIGHT INTERSECTION OBSERVER)
+   ======================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.in,
+.hero .reveal,
+.hero-copy .reveal,
+.trust-strip .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ========================================================
+   SPOTLIGHT CARDS (HIGH-PERFORMANCE ZERO-REFLOW)
+   ======================================================== */
+.spotlight-card {
+  position: relative;
+  background: rgba(14, 16, 23, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(350px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(114, 207, 109, 0.12), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+.spotlight-card:hover {
+  border-color: rgba(114, 207, 109, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(114, 207, 109, 0.18);
+}
+
+/* ========================================================
+   NAVIGATION BAR
+   ======================================================== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 9, 13, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding-block: 14px;
+}
+nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.mark {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.mark span {
+  color: var(--accent);
+  display: inline-block;
+  font-size: 24px;
+  line-height: 0;
+  animation: pulseDot 2s ease-in-out infinite alternate;
+}
+@keyframes pulseDot {
+  0% { text-shadow: 0 0 4px var(--accent); }
+  100% { text-shadow: 0 0 14px var(--accent-bright); }
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+nav ul a {
+  color: var(--fg-2);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+nav ul a:hover {
+  color: var(--fg);
+  background: var(--surface-2);
+}
+.nav-cta {
+  background: var(--surface-2);
+  color: var(--fg) !important;
+  border: 1px solid var(--line-2);
+  padding: 7px 15px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s !important;
+}
+.nav-cta:hover {
+  border-color: var(--accent) !important;
+  background: var(--accent-soft) !important;
+  box-shadow: 0 0 14px rgba(114, 207, 109, 0.2);
+}
+
+@media (max-width: 900px) {
+  nav ul {
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 2px;
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+}
+
+/* ========================================================
+   HERO SECTION
+   ======================================================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  padding-block: 76px 60px;
+}
+.hero > * { min-width: 0; }
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 14px 4px 5px;
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  background: rgba(14, 16, 23, 0.75);
+  font-size: 12.5px;
+  color: var(--fg-2);
+  margin-bottom: 22px;
+}
+.hero-pill-badge {
+  background: var(--accent);
+  color: #000;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.hero-pill-badge i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #000;
+  animation: blink 1.2s infinite;
+}
+
+.hero h1 {
+  font-size: clamp(44px, 6.5vw, 76px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  margin-bottom: 14px;
+}
+.hero h1 .accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #a3f79e 60%, #39ff14 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.role {
+  font-family: var(--f-display);
+  font-size: clamp(20px, 2.3vw, 25px);
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.role b {
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--accent-soft);
+  padding: 2px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(114, 207, 109, 0.25);
+}
+
+.pitch {
+  color: var(--fg-2);
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 54ch;
+  margin-bottom: 26px;
+}
+.pitch strong { color: var(--fg); font-weight: 600; }
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  padding: 8px 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--fg);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.chip-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+.chip-btn.primary {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.chip-btn.primary:hover {
+  background: #84db7f;
+  box-shadow: 0 0 18px rgba(114, 207, 109, 0.4);
+}
+
+.chip-btn.cert-chip {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: rgba(114, 207, 109, 0.35);
+  font-weight: 600;
+}
+.chip-btn.cert-chip:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 16px rgba(114, 207, 109, 0.35);
+}
+
+.copied {
+  color: var(--accent);
+  font-family: var(--f-mono);
+  font-size: 12px;
+  min-height: 18px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ========================================================
+   LIVE AI AGENT TERMINAL
+   ======================================================== */
+.console {
+  background: var(--console);
+  color: var(--console-fg);
+  border-radius: 14px;
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.8), 0 0 30px -10px rgba(114, 207, 109, 0.15);
+  position: relative;
+  transition: border-color 0.25s;
+}
+.console:hover {
+  border-color: rgba(114, 207, 109, 0.4);
+}
+.console-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--line);
+  color: var(--console-dim);
+  font-size: 11.5px;
+}
+.console-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.console-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.console-dot.red { background: #ef4444; }
+.console-dot.yellow { background: #eab308; }
+.console-dot.green { background: #22c55e; }
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-bright);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.console-tabs {
+  display: flex;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+}
+.console-tab {
+  background: transparent;
+  border: none;
+  color: var(--console-dim);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  padding: 7px 14px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.console-tab:hover { color: var(--fg); }
+.console-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: rgba(114, 207, 109, 0.05);
+}
+
+.console pre {
+  margin: 0;
+  padding: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font: inherit;
+  min-height: 200px;
+}
+.c-dim { color: var(--console-dim); }
+.c-ok { color: var(--accent); font-weight: 600; }
+.c-acc { color: var(--accent); font-weight: 600; }
+.c-key { color: #a3f79e; }
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--accent);
+  vertical-align: -2px;
+  box-shadow: 0 0 6px var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes pulse { 50% { opacity: 0.35; } }
+
+/* ========================================================
+   TRUST STRIP (NETVELOPERS SPEC)
+   ======================================================== */
+.trust-strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(14, 16, 23, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 18px 0;
+}
+.trust-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.trust-strip-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.trust-strip-items {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.trust-strip-item {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--fg-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.trust-strip-item svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ========================================================
+   FACTS & STATS METRICS
+   ======================================================== */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid var(--line);
+  background: rgba(14, 16, 23, 0.75);
+  backdrop-filter: blur(8px);
+}
+.fact {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background 0.15s;
+}
+.fact + .fact {
+  border-left: 1px solid var(--line);
+}
+.fact:hover {
+  background: var(--surface-2);
+}
+.fact b {
+  font-family: var(--f-display);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.fact b .stat-suffix {
+  color: var(--accent);
+  font-size: 26px;
+}
+.fact span {
+  font-size: 13px;
+  color: var(--fg-2);
+  line-height: 1.4;
+}
+
+/* ========================================================
+   CORE STACK
+   ======================================================== */
+.core {
+  margin-top: 40px;
+  display: grid;
+  gap: 14px;
+}
+.core-label {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.core ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.core li {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.core li b {
+  font-family: var(--f-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--fg);
+}
+.core li span {
+  font-size: 12.5px;
+  color: var(--fg-2);
+}
+
+/* ========================================================
+   SECTION HEADINGS & COMMONS
+   ======================================================== */
+section {
+  padding-block: 84px 16px;
+}
+section, #contact, #top { scroll-margin-top: 80px; }
+
+.sec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.sec-head h2 {
+  font-size: clamp(32px, 4.2vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-top: 6px;
+}
+.sec-head p {
+  max-width: 52ch;
+  color: var(--fg-2);
+  font-size: 15px;
+}
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ========================================================
+   DISCIPLINES (WHAT I DO)
+   ======================================================== */
+.disc {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.disc > div {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.disc h3 {
+  font-size: 19px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.disc h3 small {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.disc p {
+  color: var(--fg-2);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ========================================================
+   EXPERIENCE SECTION
+   ======================================================== */
+.job {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  padding: 36px;
+}
+.job .when {
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  color: var(--fg-3);
+}
+.job h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+.job .org {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 4px;
+}
+.badge {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(114, 207, 109, 0.3);
+  font-weight: 600;
+}
+.job ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+  color: var(--fg-2);
+  font-size: 14.5px;
+}
+.job li::marker { color: var(--accent); }
+
+.client {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.client div {
+  padding: 18px;
+}
+.client h4 {
+  margin: 0 0 6px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--fg);
+}
+.client p {
+  font-size: 13.5px;
+  color: var(--fg-2);
+  line-height: 1.5;
+}
+
+/* ========================================================
+   FLAGSHIP PRODUCTS (FEATURED)
+   ======================================================== */
+.feat {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+.card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.card .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.card h3 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+.card .kind {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(114, 207, 109, 0.3);
+  padding: 4px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.card .lede {
+  color: var(--fg-2);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+.card ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--fg-2);
+}
+.card li::marker { color: var(--accent); }
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+.stack span {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 6px;
+  color: var(--fg-2);
+}
+.stack span.hl {
+  border-color: rgba(114, 207, 109, 0.4);
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+.metric {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ========================================================
+   WORK INDEX (FILTERS & ROWS)
+   ======================================================== */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.fr { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+.filters label {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  color: var(--fg-2);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.filters label b {
+  font-weight: 600;
+  opacity: 0.7;
+}
+.filters label:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+#f-all:checked ~ .filters label[for="f-all"],
+#f-ai:checked ~ .filters label[for="f-ai"],
+#f-vision:checked ~ .filters label[for="f-vision"],
+#f-apps:checked ~ .filters label[for="f-apps"],
+#f-tools:checked ~ .filters label[for="f-tools"] {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  font-weight: 600;
+  box-shadow: 0 0 14px rgba(114, 207, 109, 0.3);
+}
+
+#f-ai:checked ~ .index .row:not([data-cat="ai"]),
+#f-vision:checked ~ .index .row:not([data-cat="vision"]),
+#f-apps:checked ~ .index .row:not([data-cat="apps"]),
+#f-tools:checked ~ .index .row:not([data-cat="tools"]) {
+  display: none;
+}
+
+.index {
+  border-top: 1px solid var(--line);
+}
+.row {
+  display: grid;
+  grid-template-columns: 260px 1fr 220px;
+  gap: 24px;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+  transition: background 0.15s ease;
+}
+.row:hover {
+  background: rgba(255,255,255,0.015);
+}
+.row > * { min-width: 0; }
+.row h3 { font-size: 18px; font-weight: 700; }
+.row .tag {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 600;
+}
+.row p { color: var(--fg-2); font-size: 14.5px; line-height: 1.55; }
+.row .tech {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--fg-3);
+  line-height: 1.6;
+}
+
+/* ========================================================
+   CERTIFICATIONS SECTION (11 CREDENTIALS + MODAL)
+   ======================================================== */
+.cert-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.cert-stat-item {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cert-stat-badge {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+  align-self: flex-start;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(114, 207, 109, 0.3);
+}
+.cert-stat-item strong { font-size: 16px; color: var(--fg); font-family: var(--f-display); }
+.cert-stat-item small { color: var(--fg-2); font-size: 13px; line-height: 1.4; }
+
+#cf-all:checked ~ .filters label[for="cf-all"],
+#cf-ai:checked ~ .filters label[for="cf-ai"],
+#cf-mcp:checked ~ .filters label[for="cf-mcp"],
+#cf-sec:checked ~ .filters label[for="cf-sec"],
+#cf-auto:checked ~ .filters label[for="cf-auto"] {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  font-weight: 600;
+  box-shadow: 0 0 14px rgba(114, 207, 109, 0.3);
+}
+
+#cf-ai:checked ~ .cert-grid .cert-card:not([data-cat~="ai"]),
+#cf-mcp:checked ~ .cert-grid .cert-card:not([data-cat~="mcp"]),
+#cf-sec:checked ~ .cert-grid .cert-card:not([data-cat~="sec"]),
+#cf-auto:checked ~ .cert-grid .cert-card:not([data-cat~="auto"]) {
+  display: none;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 12px;
+}
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.cert-card.spotlight {
+  border-color: rgba(114, 207, 109, 0.25);
+}
+
+.cert-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: #08090d;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  display: block;
+}
+.cert-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.cert-card:hover .cert-media img {
+  transform: scale(1.03);
+}
+.cert-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 9, 13, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+.cert-card:hover .cert-overlay, .cert-media:focus-visible .cert-overlay {
+  opacity: 1;
+}
+.cert-overlay span {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  background: var(--accent);
+  padding: 8px 18px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+
+.cert-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.cert-body .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cert-issuer {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(114, 207, 109, 0.3);
+}
+.cert-badge-ver {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  border: 1px solid rgba(114, 207, 109, 0.25);
+}
+
+.cert-body h3 {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+.cert-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  color: var(--fg-3);
+}
+.cert-desc {
+  font-size: 13.5px;
+  color: var(--fg-2);
+  line-height: 1.55;
+  margin: 0;
+}
+.cert-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.cert-tags span {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 4px;
+  color: var(--fg-3);
+}
+.cert-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  margin-top: 4px;
+}
+.cert-btn {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+.cert-btn.primary {
+  background: var(--surface-2);
+  color: var(--fg);
+  border: 1px solid var(--line-2);
+  font-weight: 500;
+}
+.cert-btn.primary:hover {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(114, 207, 109, 0.3);
+}
+
+.cert-more {
+  margin-top: 32px;
+  background: var(--surface);
+  color: var(--fg);
+  border-radius: 16px;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  border: 1px solid var(--line);
+}
+.cert-more-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  border: 1px solid rgba(114, 207, 109, 0.25);
+}
+.cert-more h4 { margin: 0 0 4px; font-size: 18px; font-weight: 700; }
+.cert-more p { margin: 0; font-size: 14.5px; color: var(--fg-2); line-height: 1.55; }
+
+/* ========================================================
+   CERTIFICATE MODAL
+   ======================================================== */
+.cert-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(8, 9, 13, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.cert-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cert-modal-box {
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--line-2);
+  border-radius: 20px;
+  max-width: 780px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 35px 90px rgba(0,0,0,0.8), 0 0 40px rgba(114, 207, 109, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.96);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cert-modal-backdrop.open .cert-modal-box {
+  transform: scale(1);
+}
+.cert-modal-head {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.cert-modal-head h3 { font-size: 20px; margin: 0; font-weight: 700; }
+.cert-modal-close {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 22px;
+  color: var(--fg-2);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.cert-modal-close:hover {
+  color: var(--fg);
+  border-color: var(--accent);
+}
+.cert-modal-img-wrap {
+  background: #06070a;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--line);
+}
+.cert-modal-img-wrap img {
+  max-width: 100%;
+  max-height: 55vh;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+}
+.cert-modal-info {
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+.cert-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+}
+.cert-modal-grid b {
+  display: block;
+  color: var(--fg-3);
+  font-weight: 500;
+  margin-bottom: 2px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.cert-modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 24px;
+  border-top: 1px solid var(--line);
+}
+
+/* ========================================================
+   AI EVERY DAY (WORKFLOW & TOOLS)
+   ======================================================== */
+.daily {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.flow {
+  padding: 28px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+}
+.flow ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 18px;
+  counter-reset: s;
+}
+.flow li {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  counter-increment: s;
+  align-items: start;
+}
+.flow li::before {
+  content: counter(s, decimal-leading-zero);
+  color: var(--accent);
+  font-weight: 700;
+  background: var(--accent-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  text-align: center;
+}
+.flow b { color: var(--fg); font-weight: 600; }
+.flow span { color: var(--fg-2); display: block; margin-top: 2px; }
+
+.tools {
+  display: grid;
+  gap: 16px;
+}
+.tools div {
+  padding: 20px;
+}
+.tools h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+}
+.tools p {
+  font-size: 14px;
+  color: var(--fg-2);
+  line-height: 1.5;
+}
+
+/* ========================================================
+   SKILLS MATRIX
+   ======================================================== */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.skills > div {
+  padding: 22px;
+}
+.skills h4 {
+  margin: 0 0 12px;
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.pills span {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--fg-2);
+}
+.pills span.hl {
+  background: var(--accent-soft);
+  border-color: rgba(114, 207, 109, 0.35);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ========================================================
+   EDUCATION & ABOUT
+   ======================================================== */
+.edu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.edu > div {
+  padding: 26px;
+}
+.edu h4 {
+  margin: 8px 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.edu p {
+  color: var(--fg-2);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+/* ========================================================
+   CONTACT CTA (NETVELOPERS SPEC)
+   ======================================================== */
+.contact {
+  margin-top: 84px;
+  margin-bottom: 64px;
+  background: radial-gradient(circle at 80% 20%, rgba(114, 207, 109, 0.12) 0%, var(--surface) 60%);
+  border: 1px solid var(--line-2);
+  border-radius: 20px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 36px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.8), 0 0 30px -10px rgba(114, 207, 109, 0.12);
+}
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.contact h2 {
+  font-size: clamp(34px, 4.8vw, 54px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.contact h2 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.contact p {
+  color: var(--fg-2);
+  margin-top: 14px;
+  max-width: 48ch;
+  font-size: 15.5px;
+}
+.contact .lines {
+  display: grid;
+  gap: 12px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+}
+.contact .lines button,
+.contact .lines a {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
+  border-radius: 12px;
+  word-break: break-all;
+  color: var(--fg);
+  transition: all 0.2s ease;
+}
+.contact .lines button:hover,
+.contact .lines a:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.contact .lines small {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* ========================================================
+   FOOTER
+   ======================================================== */
+footer {
+  padding-block: 0 48px;
+  color: var(--fg-3);
+  font-size: 13px;
+  font-family: var(--f-mono);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+footer a { color: var(--fg-2); }
+footer a:hover { color: var(--accent); }
+
+/* ========================================================
+   RESPONSIVE DESIGN
+   ======================================================== */
+@media (max-width: 992px) {
+  .hero { grid-template-columns: 1fr; padding-block: 54px 40px; }
+  .daily, .contact { grid-template-columns: 1fr; }
+  .feat { grid-template-columns: 1fr; }
+  .disc, .skills, .edu, .client { grid-template-columns: 1fr 1fr; }
+  .job { grid-template-columns: 1fr; gap: 20px; }
+  .row { grid-template-columns: 1fr 1.4fr; }
+  .row .tech { grid-column: 2; }
+  .facts { grid-template-columns: repeat(3, 1fr); }
+  .core ul { grid-template-columns: repeat(3, 1fr); }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 650px) {
+  .facts { grid-template-columns: 1fr 1fr; }
+  .disc, .skills, .edu, .client, .cert-stats, .cert-grid { grid-template-columns: 1fr; }
+  .core ul { grid-template-columns: 1fr 1fr; }
+  .core li:first-child { grid-column: 1 / -1; }
+  .row { grid-template-columns: 1fr; gap: 8px; }
+  .row .tech { grid-column: auto; }
+  .contact { padding: 30px 22px; }
+  .contact h2 { font-size: 32px; }
+  .hero h1 { font-size: 42px; }
+}
 </style>
-
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <a class="mark" href="#top">dhruvi<span>.</span>dev</a>
-    <ul>
-      <li><a href="#about">What I do</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#certifications">Certificates</a></li>
-      <li><a href="#ai">AI workflow</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<!-- High-Performance Full-Page Fixed 3D Spiral Canvas -->
+<div class="fullpage-spiral-wrapper" aria-hidden="true">
+  <canvas class="spiral-canvas" id="spiral-canvas"></canvas>
+  <div class="fullpage-spiral-overlay"></div>
+</div>
 
-<main class="wrap" id="top">
+<!-- Lightweight GPU-Accelerated Cursor Elements -->
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 
-  <header class="hero">
-    <div>
-      <p class="eyebrow">Team Leader · RemoteDevs Infotech · Bhavnagar, India</p>
-      <h1>Dhruvi<br><em>Jetani</em></h1>
-      <p class="role">Software Engineer &amp; <b>AI Engineer</b></p>
-      <p class="pitch">I build complete products end to end: school ERPs, real-time chat platforms, cloud storage SaaS, CCTV face recognition, and the AI agents that automate the work around them, with <strong class="py">Python</strong> at the core of my AI work. I use AI tools every day, and I build them too &#8212; backed by 11+ industry certifications across OpenAI, Anthropic, and Zapier MCP. Today I lead a development team shipping for international clients, including a German government project.</p>
-      <div class="contact-row">
-        <button class="chip-btn primary" type="button" data-copy="dhruvijetani.dev@gmail.com" id="copy-email-hero">dhruvijetani.dev@gmail.com</button>
-        <button class="chip-btn" type="button" data-copy="+91 9726317823" id="copy-phone-hero">+91 97263 17823</button>
-        <a class="chip-btn" href="https://dhruvi-api.onrender.com/" target="_blank" rel="noopener">Live API ↗</a>
-        <a class="chip-btn cert-chip" href="#certifications">&#9733; 11+ Certifications</a>
-      </div>
-      <p class="copied" id="copied-hero" aria-live="polite"></p>
+<div class="page-content">
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="wrap">
+      <a class="mark" href="#top">dhruvi<span>.</span>dev</a>
+      <ul>
+        <li><a href="#about">What I do</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#featured">Work</a></li>
+        <li><a href="#certifications">Certificates</a></li>
+        <li><a href="#ai">AI workflow</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a class="nav-cta" href="#contact">Contact <span>&rarr;</span></a></li>
+      </ul>
     </div>
+  </nav>
 
-    <div class="console" aria-label="Example of an AI agent run I use at work">
-      <div class="console-bar"><span>agent@remotedevs ~ /sprint-42</span><span class="live"><i></i>running</span></div>
-<pre><span class="c-dim">$</span> agent run <span class="c-acc">"ship ERP fee reminders"</span>
+  <!-- HERO SECTION -->
+  <div class="wrap" id="top">
+    <header class="hero">
+      <div class="hero-copy">
+        <div class="hero-pill reveal">
+          <span class="hero-pill-badge"><i></i>AI-FIRST</span>
+          <span>Team Leader · RemoteDevs Infotech · Bhavnagar, India</span>
+        </div>
+        <h1 class="reveal">Dhruvi<br><span class="accent">Jetani</span></h1>
+        <p class="role reveal">Software Engineer &amp; <b>AI Engineer</b></p>
+        <p class="pitch reveal">
+          I build complete products end to end: school ERPs, real-time chat platforms, cloud storage SaaS, CCTV face recognition, and the AI agents that automate the work around them, with <strong class="py">Python</strong> at the core of my AI work. I use AI tools every day, and I build them too &#8212; backed by 11+ industry certifications across OpenAI, Anthropic, and Zapier MCP. Today I lead a development team shipping for international clients, including a German government project.
+        </p>
+        <div class="contact-row reveal">
+          <button class="chip-btn primary" type="button" data-copy="dhruvijetani.dev@gmail.com" id="copy-email-hero">dhruvijetani.dev@gmail.com</button>
+          <button class="chip-btn" type="button" data-copy="+91 9726317823" id="copy-phone-hero">+91 97263 17823</button>
+          <a class="chip-btn" href="https://dhruvi-api.onrender.com/" target="_blank" rel="noopener">Live API ↗</a>
+          <a class="chip-btn cert-chip" href="#certifications">&#9733; 11+ Certifications</a>
+        </div>
+        <p class="copied" id="copied-hero" aria-live="polite"></p>
+      </div>
+
+      <!-- Live Interactive AI Agent Console -->
+      <div class="console reveal" aria-label="Interactive AI Agent Execution Console">
+        <div class="console-bar">
+          <div class="console-dots">
+            <span class="console-dot red"></span>
+            <span class="console-dot yellow"></span>
+            <span class="console-dot green"></span>
+          </div>
+          <span>agent@remotedevs ~ /production</span>
+          <span class="live"><i></i>RUNNING</span>
+        </div>
+        <div class="console-tabs" id="console-tabs" role="tablist">
+          <button class="console-tab active" data-tab="0" role="tab">ERP Fees &amp; WhatsApp</button>
+          <button class="console-tab" data-tab="1" role="tab">VisionAI CCTV</button>
+          <button class="console-tab" data-tab="2" role="tab">Zapier MCP Agent</button>
+          <button class="console-tab" data-tab="3" role="tab">German Gov Portal</button>
+        </div>
+        <pre id="console-body"><span class="c-dim">$</span> agent run <span class="c-acc">"ship ERP fee reminders"</span>
 <span class="c-dim">›</span> <span class="c-key">plan</span>      read spec, split into 4 tasks
 <span class="c-dim">›</span> <span class="c-key">code</span>      reminders.ts · whatsapp_local.ts
 <span class="c-dim">›</span> <span class="c-key">rules</span>     BEFORE_DUE · DUE · OVERDUE_DAILY
@@ -365,649 +1717,1273 @@ footer{padding-block:0 40px;color:var(--muted);font-size:13px;font-family:var(--
 <span class="c-dim">›</span> <span class="c-key">review</span>    PR opened for team review
 <span class="c-ok">✓ done</span> <span class="c-dim">— human review next, then deploy</span>
 <span class="c-dim">$</span> <span class="cursor"></span></pre>
-    </div>
-  </header>
-
-  <div class="facts">
-    <div class="fact"><b>2023→</b><span>Team Leader &amp; Senior Software Engineer</span></div>
-    <div class="fact"><b>11+</b><span>Certified credentials (OpenAI &#183; Anthropic &#183; Zapier MCP)</span></div>
-    <div class="fact"><b>25+</b><span>products, agents and tools built</span></div>
-    <div class="fact"><b>88</b><span>features in D Chat, my real-time chat app</span></div>
-    <div class="fact"><b>A+</b><span>BCA, MK Bhavnagar University</span></div>
+      </div>
+    </header>
   </div>
 
-  <div class="core" aria-label="Core stack">
-    <p class="eyebrow">Core stack</p>
-    <ul>
-      <li><b>Python</b><span>AI agents, FastAPI, Flask, PyTorch</span></li>
-      <li><b>Node.js</b><span>APIs, real-time, Socket.IO</span></li>
-      <li><b>Express</b><span>REST APIs, auth, webhooks</span></li>
-      <li><b>React</b><span>Hooks, Context, TypeScript</span></li>
-      <li><b>Next.js</b><span>Full apps with Strapi CMS</span></li>
-    </ul>
-  </div>
-
-  <section id="about">
-    <div class="sec-head">
-      <div><p class="eyebrow">Multispecialist</p><h2>What I do</h2></div>
-      <p>One person who can take a product from Figma to database to deployment, then add the AI layer on top. These are the areas I work in every week.</p>
-    </div>
-    <div class="disc">
-      <div><h3>Software engineering <small>PYTHON · NODE · REACT · NEXT</small></h3><p><strong class="py">Python</strong>, JavaScript, TypeScript, PHP, SQL and Bash. <strong class="py">React</strong> and <strong class="py">Next.js</strong>, <strong class="py">Node.js</strong> and <strong class="py">Express</strong>, FastAPI and Flask, core PHP with cURL, TYPO3 Fluid and TypoScript, over MySQL, PostgreSQL, MongoDB and SQLite. With AI, any other language a project needs.</p></div>
-      <div><h3>AI agents &amp; automation <small>LLM · TOOLS</small></h3><p>Custom agents with tool-calling, memory and escalation logic. Workflow agents that plan, write code, run tests and report.</p></div>
-      <div><h3>RAG &amp; local LLMs <small>OLLAMA · VECTORS</small></h3><p>Private, offline RAG pipelines with Ollama plus ChromaDB, Pinecone or FAISS for knowledge-grounded answers.</p></div>
-      <div><h3>Computer vision <small>YOLO · INSIGHTFACE</small></h3><p>Face recognition attendance, object detection and tracking, CCTV alerts, OCR document extraction.</p></div>
-      <div><h3>TYPO3 &amp; CMS <small>FLUID · TCA</small></h3><p>Extension development, Fluid templates, TCA, major version upgrades (v12 → v14 LTS), Strapi headless CMS.</p></div>
-      <div><h3>Cross-platform &amp; shipping <small>PWA · ELECTRON</small></h3><p>One codebase for Android, iOS, desktop and the browser with Capacitor and Electron. Deployed APIs on Render and GitHub Pages.</p></div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="sec-head">
-      <div><p class="eyebrow">Experience</p><h2>Leading the team</h2></div>
-    </div>
-    <div class="job">
-      <div>
-        <p class="when">Jan 2023 — Present</p>
-        <h3>Team Leader &amp; Senior Software Engineer</h3>
-        <p class="org">RemoteDevs Infotech</p>
-        <span class="badge">Current role</span>
-      </div>
-      <div>
-        <ul>
-          <li>Lead a team of developers: plan sprint tasks, run code reviews, mentor juniors and keep milestones on schedule.</li>
-          <li>Work on a German government project, plus other international client platforms.</li>
-          <li>Build and deploy end-to-end software with React.js, Node.js (Express), PHP (core cURL APIs), jQuery and JavaScript over MongoDB and MySQL.</li>
-          <li>Built and hosted secure Node.js REST APIs with token authentication and public endpoints on Render.com.</li>
-          <li>Customise TYPO3 with TCA and Fluid, write custom extensions and handle version upgrades.</li>
-          <li>Designed API architecture with token generation, secure API key management and real-time CRUD on file system and JSON storage.</li>
-          <li>Synchronise data across platforms with PHP cURL REST clients; write advanced MySQL for large datasets, analytics and reporting.</li>
-          <li>Built a digital signature board (draw, image or typed-name signatures) so documents can be signed from anywhere, using IndexedDB and JavaScript. The client was very happy with it.</li>
-          <li>Store structured data in the browser with IndexedDB and LocalStorage (Base64), and process PDFs and images inside client platforms.</li>
-          <li>Build and deploy AI agents and LLM automation inside the company to speed up delivery and take on complex tasks autonomously.</li>
-        </ul>
-        <div class="client">
-          <div><h4>Government customer portal</h4><p>TYPO3 portal for a German public-sector programme: multi-role dashboards, candidate pipeline, multilingual UI.</p></div>
-          <div><h4>TYPO3 v12 → v14.3.7 LTS</h4><p>Full upgrade of a German financial site on PHP 8.3 with complete visual parity and better page speed.</p></div>
-          <div><h4>Digital Signature Board</h4><p>Sign any document from anywhere: draw a signature, upload a signature image or type a name. Built with IndexedDB and JavaScript. The client was very happy with it.</p></div>
-          <div><h4>RemoteDevs platform</h4><p>Company platform in React, TypeScript, Tailwind and Supabase, with Resend email and an AI chatbot.</p></div>
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="wrap trust-strip-inner reveal">
+      <span class="trust-strip-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        Engineering Excellence
+      </span>
+      <div class="trust-strip-items">
+        <div class="trust-strip-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          <span>11+ Frontier LLM Credentials (OpenAI · Anthropic · Zapier MCP)</span>
+        </div>
+        <div class="trust-strip-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span>German Public-Sector Delivery &amp; TYPO3 Upgrades</span>
+        </div>
+        <div class="trust-strip-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <span>Full-Stack + Vision + Autonomous AI Agents</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="featured">
-    <div class="sec-head">
-      <div><p class="eyebrow">Selected work</p><h2>Flagship products</h2></div>
-      <p>Four complete systems I designed and built myself, from database schema to UI.</p>
-    </div>
-    <div class="feat">
-
-      <article class="card">
-        <div class="top"><h3>Shiksha ERP</h3><span class="kind">School ERP</span></div>
-        <p class="lede">A complete school management system for admins, principals, teachers and students. It runs in any browser and installs as an app on Android, iOS, Windows and Linux.</p>
-        <ul>
-          <li>25+ modules: students, teachers, classes, timetable, attendance, homework, tests, results, fees, events, notices, study material, reports</li>
-          <li>QR attendance kiosk, teacher leave flow and reports</li>
-          <li>Fee engine with Razorpay (HMAC-SHA256 verified) and automatic WhatsApp reminders before, on and after the due date</li>
-          <li>Strict role scoping, targeted push notifications, WhatsApp-style messaging</li>
-          <li>Recharts dashboards, PDF reports, one-command database backups</li>
-        </ul>
-        <p class="metric">27 database tables · 4,200+ line API server</p>
-        <div class="stack"><span class="hl">React</span><span>TypeScript</span><span class="hl">Express</span><span>PostgreSQL</span><span>Capacitor</span><span>Electron</span><span>whatsapp-web.js</span><span>Razorpay</span><span>jsPDF</span></div>
-      </article>
-
-      <article class="card">
-        <div class="top"><h3>VisionAI</h3><span class="kind">Computer vision</span></div>
-        <p class="lede">An AI video intelligence platform: CCTV face recognition attendance, object detection and searchable video events.</p>
-        <ul>
-          <li>Multi-angle face enrolment (front, 45° left/right, profile) with blur and sharpness checks</li>
-          <li>InsightFace buffalo_l (SCRFD-10G + ArcFace R50), 512-d embeddings in FAISS, per-photo vectors</li>
-          <li>YOLO + ByteTrack detection and tracking, live camera and RTSP/IP streams over WebSocket</li>
-          <li>Offline video analysis with a per-second timeline and bounding boxes</li>
-          <li>Attendance, leave and visitor management, evidence vault, alerts, AI video search</li>
-        </ul>
-        <p class="metric">Real models, no mock data</p>
-        <div class="stack"><span class="hl">React 19</span><span>TypeScript</span><span class="hl">FastAPI</span><span>InsightFace</span><span>FAISS</span><span>YOLO</span><span>OpenCV</span><span>Gemini</span></div>
-      </article>
-
-      <article class="card">
-        <div class="top"><h3>D Chat</h3><span class="kind">Real-time</span></div>
-        <p class="lede">A real-time team chat app with an admin panel, polls, leave management and file sharing. 88 features in total.</p>
-        <ul>
-          <li>1-to-1 and group chat, replies, edit, forward, pins, typing and read ticks</li>
-          <li>Gmail OTP signup and reset, bcrypt and JWT sessions</li>
-          <li>Files up to ~32 GB, voice notes, location sharing, automatic GIF maker (FFmpeg)</li>
-          <li>Polls, slash commands, personal notes, leave balance</li>
-          <li>Admin panel with 17 tools, including one-click backup</li>
-        </ul>
-        <p class="metric">88 features · 12 categories</p>
-        <div class="stack"><span class="hl">React 18</span><span class="hl">Node.js</span><span>Socket.IO</span><span>MongoDB</span><span>JWT</span><span>Nodemailer</span><span>Multer</span><span>FFmpeg</span></div>
-      </article>
-
-      <article class="card">
-        <div class="top"><h3>CloudVault</h3><span class="kind">SaaS</span></div>
-        <p class="lede">A cloud storage SaaS with free, Pro and Business plans and real payments in India and abroad.</p>
-        <ul>
-          <li>Upload zone, file list and live storage quota bar</li>
-          <li>Pro and Business plans, monthly and yearly, via Razorpay (UPI, cards) and Stripe</li>
-          <li>Payment callbacks for reliable subscription renewal</li>
-          <li>Admin panel for users, plans and storage</li>
-          <li>Object storage on self-hosted MinIO in Docker</li>
-        </ul>
-        <p class="metric">Free · Pro · Business plans</p>
-        <div class="stack"><span class="hl">React</span><span class="hl">Node.js</span><span class="hl">Express</span><span>MinIO</span><span>Docker</span><span>Stripe</span><span>Razorpay</span><span>JWT</span></div>
-      </article>
-
-    </div>
-  </section>
-
-  <section id="work">
-    <div class="sec-head">
-      <div><p class="eyebrow">Everything else</p><h2>Agents, tools &amp; builds</h2></div>
-      <p>AI agents, vision systems, desktop utilities and experiments. Filter by area.</p>
-    </div>
-    <input class="fr" type="radio" name="pf" id="f-all" checked>
-    <input class="fr" type="radio" name="pf" id="f-ai">
-    <input class="fr" type="radio" name="pf" id="f-vision">
-    <input class="fr" type="radio" name="pf" id="f-apps">
-    <input class="fr" type="radio" name="pf" id="f-tools">
-    <div class="filters" role="group" aria-label="Filter projects">
-      <label for="f-all">All <b>20</b></label>
-      <label for="f-ai">AI &amp; agents <b>11</b></label>
-      <label for="f-vision">Vision &amp; media <b>2</b></label>
-      <label for="f-apps">Apps &amp; APIs <b>4</b></label>
-      <label for="f-tools">Desktop &amp; data <b>3</b></label>
-    </div>
-    <div class="index" id="index">
-      <div class="row" data-cat="ai"><div><h3>AI Customer Support Agent</h3><p class="tag">AI agent</p></div><p>Fully autonomous agent that handles customer queries end to end, with tool-calling into CRM APIs, a knowledge base and escalation rules.</p><p class="tech">LLMs · tool-calling · CRM APIs</p></div>
-      <div class="row" data-cat="ai"><div><h3>RAG Document Q&amp;A</h3><p class="tag">RAG</p></div><p>Ask questions over your own documents. Runs fully offline and private with a local LLM and a vector store.</p><p class="tech">Ollama · ChromaDB · embeddings</p></div>
-      <div class="row" data-cat="ai"><div><h3>Workflow Automation Agent</h3><p class="tag">Custom GPT</p></div><p>Takes a requirement, generates the code, runs tests and writes the report, all in one autonomous run.</p><p class="tech">Custom GPT · test runner</p></div>
-      <div class="row" data-cat="ai"><div><h3>Mini Coder LLM</h3><p class="tag">LLM from scratch</p></div><p>A small GPT-style language model I wrote and trained myself: token and position embeddings, causal-masked transformer decoder, text generation.</p><p class="tech">PyTorch · Transformer</p></div>
-      <div class="row" data-cat="ai"><div><h3>Passport AI</h3><p class="tag">Document AI</p></div><p>Upload a passport as PDF or image. It extracts name, number, nationality and dates, auto-fills the form and saves the row to Google Sheets.</p><p class="tech">FastAPI · EasyOCR · pdfplumber · Gemini · Apps Script</p></div>
-      <div class="row" data-cat="ai"><div><h3>AI News Agent</h3><p class="tag">Scheduled agent</p></div><p>Runs on cron, collects the latest AI news and sends a formatted HTML digest by email every day.</p><p class="tech">Python · NewsAPI · SMTP · cron</p></div>
-      <div class="row" data-cat="ai"><div><h3>Lead Agent</h3><p class="tag">Sales automation</p></div><p>Search a niche, find matching companies and their sites, and extract contact emails automatically.</p><p class="tech">Python · search · scraping</p></div>
-      <div class="row" data-cat="ai"><div><h3>AI SVG Generator</h3><p class="tag">Generative AI</p></div><p>Type a prompt and get clean, coloured SVG artwork back, with the raw SVG extracted from the model output.</p><p class="tech">Flask · GPT-4 · regex cleanup</p></div>
-      <div class="row" data-cat="ai"><div><h3>Simple AI Chatbot</h3><p class="tag">ML chatbot</p></div><p>Intent classifier that also answers in Gujarati, falls back to Wikipedia and Google search, and suggests PDF manuals.</p><p class="tech">Flask · scikit-learn Naive Bayes</p></div>
-      <div class="row" data-cat="ai"><div><h3>PHP AI Chatbot</h3><p class="tag">Support bot</p></div><p>Customer support bot with manual lookup, FAQ responses and an OpenAI fallback for open questions.</p><p class="tech">PHP · Composer · OpenAI</p></div>
-      <div class="row" data-cat="ai"><div><h3>File Organizer Agent</h3><p class="tag">Automation</p></div><p>Watches the Downloads folder and sorts files into images, documents, videos, music, archives and scripts, with a log.</p><p class="tech">Python · shutil</p></div>
-      <div class="row" data-cat="vision"><div><h3>AI CCTV System</h3><p class="tag">Security</p></div><p>Live camera feed with YOLO detection, face recognition of registered people, unknown-person and loitering alerts, continuous recording and a live dashboard. Ships as a Windows, macOS and Linux app.</p><p class="tech">YOLO11 · face recognition · SQLite · WebSocket · email alerts</p></div>
-      <div class="row" data-cat="vision"><div><h3>Sprocket AI Video Studio</h3><p class="tag">Video generation</p></div><p>Turns images into finished videos with 40 animation effects, background removal, occasion templates, title styling and audio.</p><p class="tech">Flask · MoviePy · NumPy</p></div>
-      <div class="row" data-cat="apps"><div><h3>Digital Signature Board</h3><p class="tag">German client project</p></div><p>Sign documents from anywhere in three ways: draw with mouse or finger, upload a signature image, or type your name as a signature. Signatures are saved in the browser and placed on the document. The client was very happy with the result.</p><p class="tech">JavaScript · Canvas · IndexedDB</p></div>
-      <div class="row" data-cat="apps"><div><h3>Secure API Project</h3><p class="tag">Public API</p></div><p>Token-protected Node.js REST API with export endpoints, deployed publicly on Render. Live and documented.</p><p class="tech">Node · Express · tokens · <a href="https://dhruvi-api.onrender.com/" target="_blank" rel="noopener">dhruvi-api.onrender.com</a></p></div>
-      <div class="row" data-cat="apps"><div><h3>Strapi Blog</h3><p class="tag">Headless CMS</p></div><p>Blog with a Strapi content backend and a Next.js frontend.</p><p class="tech">Strapi · Next.js</p></div>
-      <div class="row" data-cat="apps"><div><h3>Storybook UI Library</h3><p class="tag">Design system</p></div><p>Reusable React components documented as stories, built for consistent UI across projects.</p><p class="tech">React · Vite · Storybook</p></div>
-      <div class="row" data-cat="tools"><div><h3>DevLauncher</h3><p class="tag">Desktop app</p></div><p>Smart dev-environment launcher that starts at login, opens projects in one click and tracks daily screen time.</p><p class="tech">Python · tkinter</p></div>
-      <div class="row" data-cat="tools"><div><h3>Disk Girl</h3><p class="tag">Desktop widget</p></div><p>A small draggable avatar that shows free and used disk space at startup and refreshes on click.</p><p class="tech">Python · tkinter</p></div>
-      <div class="row" data-cat="tools"><div><h3>Data analysis &amp; visualisation</h3><p class="tag">Data</p></div><p>Pandas analysis of the Titanic dataset and Matplotlib bar, pie, line and ML charts.</p><p class="tech">Pandas · Matplotlib</p></div>
-    </div>
-  </section>
-
-  <section id="certifications">
-    <div class="sec-head">
-      <div>
-        <p class="eyebrow">Verified Credentials &#183; 11+ Certifications</p>
-        <h2>Certificates &amp; continuous learning</h2>
-      </div>
-      <p>Official certifications from OpenAI Academy, Anthropic, and Zapier MCP &amp; AI Agents &#8212; validating production mastery in autonomous agent loops, prompt engineering, Model Context Protocol governance, and automated operations.</p>
-    </div>
-
-    <div class="cert-stats">
-      <div class="cert-stat-item">
-        <span class="cert-stat-badge openai">OpenAI Academy</span>
-        <strong>Agents &amp; Workflows</strong>
-        <small>Multi-agent orchestration, tool calling &amp; state persistence</small>
-      </div>
-      <div class="cert-stat-item">
-        <span class="cert-stat-badge anthropic">Anthropic Education</span>
-        <strong>Claude 101</strong>
-        <small>Prompt architecture, structured tags &amp; LLM capabilities</small>
-      </div>
-      <div class="cert-stat-item">
-        <span class="cert-stat-badge zapier">Zapier Academy</span>
-        <strong>AI Agents &amp; Model Context Protocol</strong>
-        <small>Agent building, MCP governance &amp; enterprise security</small>
-      </div>
-    </div>
-
-    <input class="fr" type="radio" name="cf" id="cf-all" checked>
-    <input class="fr" type="radio" name="cf" id="cf-ai">
-    <input class="fr" type="radio" name="cf" id="cf-mcp">
-    <input class="fr" type="radio" name="cf" id="cf-sec">
-    <input class="fr" type="radio" name="cf" id="cf-auto">
-
-    <div class="filters" role="group" aria-label="Filter certificates">
-      <label for="cf-all">All credentials <b>11</b></label>
-      <label for="cf-ai">AI &amp; Agents <b>3</b></label>
-      <label for="cf-mcp">Zapier MCP <b>2</b></label>
-      <label for="cf-sec">Security &amp; Ops <b>2</b></label>
-      <label for="cf-auto">Workflows <b>4</b></label>
-    </div>
-
-    <div class="cert-grid">
-      <article class="cert-card spotlight" data-cat="ai" data-title="Agents and Workflows" data-issuer="OpenAI Academy" data-issuer-class="issuer-openai" data-recipient="Dhruvi Jetani" data-cred-id="ID: 65vknudxsc" data-desc="Architecting autonomous agents, multi-agent orchestration loops, dynamic tool-calling, state persistence, and human-in-the-loop workflows." data-img="badges/openai-agents-workflows.webp" data-png="badges/openai-agents-workflows.png" data-skills="OpenAI Academy, Autonomous Agents, Multi-Agent, Tool Calling, Workflows">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Agents and Workflows">
-          <picture>
-            <source srcset="badges/openai-agents-workflows.webp" type="image/webp">
-            <img src="badges/openai-agents-workflows.png" alt="Agents and Workflows credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-openai">OpenAI Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Agents and Workflows</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: 65vknudxsc</b></span>
-          </div>
-          <p class="cert-desc">Architecting autonomous agents, multi-agent orchestration loops, dynamic tool-calling, state persistence, and human-in-the-loop workflows.</p>
-          <div class="cert-tags"><span>OpenAI Academy</span><span>Autonomous Agents</span><span>Multi-Agent</span><span>Tool Calling</span><span>Workflows</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card spotlight" data-cat="ai" data-title="Claude 101" data-issuer="Anthropic Education" data-issuer-class="issuer-anthropic" data-recipient="Dhruvi Jetani" data-cred-id="Verified Completion" data-desc="Frontier model foundations, structured prompt engineering, XML tag syntax, large context window management, and Constitutional AI principles." data-img="badges/anthropic-claude-101.webp" data-png="badges/anthropic-claude-101.png" data-skills="Anthropic, Claude 3.5 / 3.7, Prompt Engineering, Structured Output, LLM Design">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Claude 101">
-          <picture>
-            <source srcset="badges/anthropic-claude-101.webp" type="image/webp">
-            <img src="badges/anthropic-claude-101.png" alt="Claude 101 credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-anthropic">Anthropic Education</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Claude 101</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>Verified Completion</b></span>
-          </div>
-          <p class="cert-desc">Frontier model foundations, structured prompt engineering, XML tag syntax, large context window management, and Constitutional AI principles.</p>
-          <div class="cert-tags"><span>Anthropic</span><span>Claude 3.5 / 3.7</span><span>Prompt Engineering</span><span>Structured Output</span><span>LLM Design</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card spotlight" data-cat="ai" data-title="Building AI Agents" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 45C56C6B" data-desc="Designing autonomous AI agents with live trigger reasoning, cross-API tool execution, state tracking, and resilient enterprise actions." data-img="badges/zapier-building-ai-agents.webp" data-png="badges/zapier-building-ai-agents.png" data-skills="Zapier Academy, AI Agents, Action Triggers, Decision Logic, API Integration">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building AI Agents">
-          <picture>
-            <source srcset="badges/zapier-building-ai-agents.webp" type="image/webp">
-            <img src="badges/zapier-building-ai-agents.png" alt="Building AI Agents credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Building AI Agents</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: 45C56C6B</b></span>
-          </div>
-          <p class="cert-desc">Designing autonomous AI agents with live trigger reasoning, cross-API tool execution, state tracking, and resilient enterprise actions.</p>
-          <div class="cert-tags"><span>Zapier Academy</span><span>AI Agents</span><span>Action Triggers</span><span>Decision Logic</span><span>API Integration</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card spotlight" data-cat="mcp" data-title="Governing Zapier MCP" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 135AEED6" data-desc="Model Context Protocol (MCP) governance: permission scopes, tool exposure policies, security fences, agent auditing, and enterprise compliance." data-img="badges/zapier-governing-zapier-mcp.webp" data-png="badges/zapier-governing-zapier-mcp.png" data-skills="Model Context Protocol, MCP Governance, Access Control, Enterprise Security">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Governing Zapier MCP">
-          <picture>
-            <source srcset="badges/zapier-governing-zapier-mcp.webp" type="image/webp">
-            <img src="badges/zapier-governing-zapier-mcp.png" alt="Governing Zapier MCP credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Governing Zapier MCP</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: 135AEED6</b></span>
-          </div>
-          <p class="cert-desc">Model Context Protocol (MCP) governance: permission scopes, tool exposure policies, security fences, agent auditing, and enterprise compliance.</p>
-          <div class="cert-tags"><span>Model Context Protocol</span><span>MCP Governance</span><span>Access Control</span><span>Enterprise Security</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card" data-cat="mcp" data-title="What is Zapier MCP?" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: D15665EF" data-desc="Standard architecture of Model Context Protocol (MCP): bridging frontier LLMs with 7,000+ business applications via structured context." data-img="badges/zapier-what-is-zapier-mcp.webp" data-png="badges/zapier-what-is-zapier-mcp.png" data-skills="Model Context Protocol, MCP Architecture, Tool Protocol, API Bridging">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: What is Zapier MCP?">
-          <picture>
-            <source srcset="badges/zapier-what-is-zapier-mcp.webp" type="image/webp">
-            <img src="badges/zapier-what-is-zapier-mcp.png" alt="What is Zapier MCP? credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>What is Zapier MCP?</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: D15665EF</b></span>
-          </div>
-          <p class="cert-desc">Standard architecture of Model Context Protocol (MCP): bridging frontier LLMs with 7,000+ business applications via structured context.</p>
-          <div class="cert-tags"><span>Model Context Protocol</span><span>MCP Architecture</span><span>Tool Protocol</span><span>API Bridging</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card" data-cat="sec" data-title="Security and Governance" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 2403E859" data-desc="Enterprise data isolation, role-based access control (RBAC), credential safety, compliance auditing, and multi-tenant threat mitigation." data-img="badges/zapier-security-and-governance.webp" data-png="badges/zapier-security-and-governance.png" data-skills="Data Security, RBAC, Compliance Audits, Governance, Threat Isolation">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Security and Governance">
-          <picture>
-            <source srcset="badges/zapier-security-and-governance.webp" type="image/webp">
-            <img src="badges/zapier-security-and-governance.png" alt="Security and Governance credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Security and Governance</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: 2403E859</b></span>
-          </div>
-          <p class="cert-desc">Enterprise data isolation, role-based access control (RBAC), credential safety, compliance auditing, and multi-tenant threat mitigation.</p>
-          <div class="cert-tags"><span>Data Security</span><span>RBAC</span><span>Compliance Audits</span><span>Governance</span><span>Threat Isolation</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card" data-cat="sec" data-title="Monitoring and Operations" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 7BE7E060" data-desc="Automated workflow observability: error diagnostics, telemetry, alert dispatch, automated retry pipelines, and high availability SRE." data-img="badges/zapier-monitoring-and-operations.webp" data-png="badges/zapier-monitoring-and-operations.png" data-skills="Observability, Error Triage, Telemetry, SRE Operations, Auto-Retry">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Monitoring and Operations">
-          <picture>
-            <source srcset="badges/zapier-monitoring-and-operations.webp" type="image/webp">
-            <img src="badges/zapier-monitoring-and-operations.png" alt="Monitoring and Operations credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Monitoring and Operations</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: 7BE7E060</b></span>
-          </div>
-          <p class="cert-desc">Automated workflow observability: error diagnostics, telemetry, alert dispatch, automated retry pipelines, and high availability SRE.</p>
-          <div class="cert-tags"><span>Observability</span><span>Error Triage</span><span>Telemetry</span><span>SRE Operations</span><span>Auto-Retry</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card" data-cat="auto" data-title="Building Intermediate Zaps" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: A356A747" data-desc="Multi-branch conditional logic, webhook routing, custom JavaScript code transforms, line-item looping, and complex data formatting." data-img="badges/zapier-building-intermediate-zaps.webp" data-png="badges/zapier-building-intermediate-zaps.png" data-skills="Multi-Step Logic, Custom Code, Webhooks, Data Transform, Looping">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building Intermediate Zaps">
-          <picture>
-            <source srcset="badges/zapier-building-intermediate-zaps.webp" type="image/webp">
-            <img src="badges/zapier-building-intermediate-zaps.png" alt="Building Intermediate Zaps credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Building Intermediate Zaps</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: A356A747</b></span>
-          </div>
-          <p class="cert-desc">Multi-branch conditional logic, webhook routing, custom JavaScript code transforms, line-item looping, and complex data formatting.</p>
-          <div class="cert-tags"><span>Multi-Step Logic</span><span>Custom Code</span><span>Webhooks</span><span>Data Transform</span><span>Looping</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card" data-cat="auto" data-title="Building Basic Zaps" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 5CF48200" data-desc="Event trigger architecture, field mapping, multi-app handoffs, error debugging, and production integration reliability." data-img="badges/zapier-building-basic-zaps.webp" data-png="badges/zapier-building-basic-zaps.png" data-skills="Triggers & Actions, Field Mapping, Integration, Data Sync">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building Basic Zaps">
-          <picture>
-            <source srcset="badges/zapier-building-basic-zaps.webp" type="image/webp">
-            <img src="badges/zapier-building-basic-zaps.png" alt="Building Basic Zaps credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Building Basic Zaps</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: 5CF48200</b></span>
-          </div>
-          <p class="cert-desc">Event trigger architecture, field mapping, multi-app handoffs, error debugging, and production integration reliability.</p>
-          <div class="cert-tags"><span>Triggers & Actions</span><span>Field Mapping</span><span>Integration</span><span>Data Sync</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card" data-cat="auto" data-title="Jumpstart" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 5A3F4788" data-desc="Rapid automation framework design, workflow audit discovery, and accelerating digital transformation across manual team tasks." data-img="badges/zapier-jumpstart.webp" data-png="badges/zapier-jumpstart.png" data-skills="Automation Blueprint, Rapid Prototyping, Process Streamlining">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Jumpstart">
-          <picture>
-            <source srcset="badges/zapier-jumpstart.webp" type="image/webp">
-            <img src="badges/zapier-jumpstart.png" alt="Jumpstart credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Jumpstart</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: 5A3F4788</b></span>
-          </div>
-          <p class="cert-desc">Rapid automation framework design, workflow audit discovery, and accelerating digital transformation across manual team tasks.</p>
-          <div class="cert-tags"><span>Automation Blueprint</span><span>Rapid Prototyping</span><span>Process Streamlining</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-      <article class="cert-card" data-cat="auto" data-title="Account Setup" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 20692F3F" data-desc="Enterprise account administration, connected app authentication, workspace security configuration, and multi-user environments." data-img="badges/zapier-account-setup.webp" data-png="badges/zapier-account-setup.png" data-skills="Organization Admin, OAuth & Auth, Environment Setup, Security Hygiene">
-        <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Account Setup">
-          <picture>
-            <source srcset="badges/zapier-account-setup.webp" type="image/webp">
-            <img src="badges/zapier-account-setup.png" alt="Account Setup credential badge" loading="lazy">
-          </picture>
-          <div class="cert-overlay"><span>View Credential</span></div>
-        </div>
-        <div class="cert-body">
-          <div class="top">
-            <span class="cert-issuer issuer-zapier">Zapier Academy</span>
-            <span class="cert-badge-ver">&#10003; Verified</span>
-          </div>
-          <h3>Account Setup</h3>
-          <div class="cert-meta">
-            <span><b>Credential:</b> Professional</span>
-            <span><b>ID: 20692F3F</b></span>
-          </div>
-          <p class="cert-desc">Enterprise account administration, connected app authentication, workspace security configuration, and multi-user environments.</p>
-          <div class="cert-tags"><span>Organization Admin</span><span>OAuth & Auth</span><span>Environment Setup</span><span>Security Hygiene</span></div>
-          <div class="cert-actions">
-            <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <div class="cert-more">
-      <div class="cert-more-icon">&#9733;</div>
-      <div>
-        <h4>Continuous learning &amp; production application</h4>
-        <p>In addition to these 11 verified credentials, I continuously pursue advanced courses across frontier LLMs, Python AI engineering, and full-stack architecture. Every certification is backed by real production code shipped at RemoteDevs Infotech for international clients.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="ai">
-    <div class="sec-head">
-      <div><p class="eyebrow">How I work</p><h2>AI every day</h2></div>
-      <p>I use AI as a daily part of development and leadership, and I build AI systems for clients. Because of that, no language or framework is a barrier.</p>
-    </div>
-    <div class="daily">
-      <div class="flow">
-        <ol>
-          <li><div><b>Requirement → plan</b><span>Agent breaks the ticket into tasks; I review scope before code.</span></div></li>
-          <li><div><b>Code with AI pair</b><span>Prompt-engineered generation, in any language the client needs.</span></div></li>
-          <li><div><b>Agent runs tests</b><span>Automated checks and a report on what passed and what didn't.</span></div></li>
-          <li><div><b>Human review</b><span>I review output and code with my team before anything ships.</span></div></li>
-          <li><div><b>Docs &amp; handover</b><span>Manuals, flowcharts and READMEs written alongside the work.</span></div></li>
-        </ol>
-      </div>
-      <div class="tools">
-        <div><h4>LLMs I use daily</h4><p>Claude and Claude Code, ChatGPT and Gemini for coding, debugging, research and documentation.</p></div>
-        <div><h4>Local and private AI</h4><p>Ollama for on-premise models when data must stay inside the company.</p></div>
-        <div><h4>Prompt engineering</h4><p>Advanced prompts that produce production-ready code and repeatable automations.</p></div>
-        <div><h4>Agents in the team</h4><p>Building and deploying agents at RemoteDevs to take over repetitive and critical tasks at speed.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="sec-head">
-      <div><p class="eyebrow">Toolbox</p><h2>Skills</h2></div>
-    </div>
-    <div class="skills">
-      <div><h4>Languages</h4><div class="pills"><span class="hl">Python</span><span>JavaScript</span><span>TypeScript</span><span>PHP</span><span>SQL</span><span>Bash / Shell</span><span>HTML5</span><span>CSS3</span><span>TypoScript</span><span>Fluid</span><span>Any language with AI</span></div></div>
-      <div><h4>Frontend</h4><div class="pills"><span class="hl">React.js</span><span>Hooks &amp; Context</span><span class="hl">Next.js</span><span>Vite</span><span>Tailwind</span><span>Bootstrap</span><span>jQuery</span><span>Storybook</span><span>Animations &amp; 3D</span><span>Accessibility</span></div></div>
-      <div><h4>Backend</h4><div class="pills"><span>Node.js</span><span>Express</span><span>FastAPI</span><span>Flask</span><span>Core PHP</span><span>REST APIs</span><span>Socket.IO</span><span>cURL</span><span>Webhooks</span><span>Nodemailer</span></div></div>
-      <div><h4>Data</h4><div class="pills"><span>MySQL (complex queries)</span><span>PostgreSQL</span><span>MongoDB</span><span>SQLite</span><span>IndexedDB</span><span>LocalStorage</span><span>JSON</span><span>Base64</span><span>Pandas</span><span>Matplotlib</span></div></div>
-      <div><h4>AI &amp; ML</h4><div class="pills"><span class="hl">AI agents</span><span class="hl">OpenAI Certified</span><span class="hl">Anthropic Certified</span><span class="hl">Zapier MCP Certified</span><span>Prompt engineering</span><span>RAG</span><span>Ollama</span><span>ChromaDB</span><span>Pinecone</span><span>FAISS</span><span>PyTorch</span><span>YOLO</span><span>InsightFace</span><span>OpenCV</span><span>OCR</span><span>scikit-learn</span><span>Gemini API</span><span>OpenAI API</span></div></div>
-      <div><h4>CMS &amp; platforms</h4><div class="pills"><span>TYPO3 (Fluid, TCA, extensions)</span><span>TYPO3 upgrades</span><span>Strapi</span><span>Supabase</span></div></div>
-      <div><h4>Mobile &amp; desktop</h4><div class="pills"><span>Capacitor (Android, iOS)</span><span>Electron</span><span>PWA</span><span>tkinter desktop apps</span></div></div>
-      <div><h4>Security &amp; payments</h4><div class="pills"><span>JWT</span><span>OAuth</span><span>bcrypt</span><span>API key management</span><span>HMAC verification</span><span>Razorpay</span><span>Stripe</span></div></div>
-      <div><h4>DevOps &amp; design</h4><div class="pills"><span>Git &amp; GitHub</span><span>Docker</span><span>MinIO</span><span>Render</span><span>GitHub Pages</span><span>systemd</span><span>Figma</span><span>Adobe XD</span><span>Photoshop</span></div></div>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="edu">
-      <div><p class="eyebrow">Education</p><h4>BCA, Grade A+</h4><p>Maharaja Krishnakumarsinhji Bhavnagar University, Bhavnagar. Completed August 2021.</p></div>
-      <div><p class="eyebrow">Also</p><h4>Documentation &amp; planning</h4><p>Manuals, system flowcharts, UI plans and feature docs. Cross-browser support and international project experience.</p></div>
-      <div><p class="eyebrow">Outside work</p><h4>Research &amp; learning</h4><p>Learning new things and keeping up with the latest technology. Driven by curiosity, defined by clean code and smart user experiences.</p></div>
-    </div>
-  </section>
-
-  <div class="contact" id="contact">
-    <div>
-      <h2>Let's build <em>something real.</em></h2>
-      <p>Software products, AI agents, or a team that ships both. Tap to copy my details.</p>
-    </div>
-    <div class="lines">
-      <button type="button" id="copy-email" data-copy="dhruvijetani.dev@gmail.com"><span>dhruvijetani.dev@gmail.com</span><small>copy</small></button>
-      <button type="button" id="copy-phone" data-copy="+91 9726317823"><span>+91 97263 17823</span><small>copy</small></button>
-      <a href="https://dhruvi-api.onrender.com/" target="_blank" rel="noopener"><span>dhruvi-api.onrender.com</span><small>open ↗</small></a>
-      <p class="copied" id="copied-foot" aria-live="polite"></p>
     </div>
   </div>
 
-  <footer><span>© 2026 Dhruvi Jetani</span><span>Built by hand, with AI as my pair.</span></footer>
+  <main class="wrap">
 
-<!-- Certificate Preview Modal -->
-<div class="cert-modal-backdrop" id="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="cert-modal-box">
-    <div class="cert-modal-head">
+    <!-- FACTS & METRICS -->
+    <div class="facts reveal" id="stats-counter">
+      <div class="fact">
+        <b><span class="count" data-target="2023">2023</span><span class="stat-suffix">&rarr;</span></b>
+        <span>Team Leader &amp; Senior Software Engineer</span>
+      </div>
+      <div class="fact">
+        <b><span class="count" data-target="11">11</span><span class="stat-suffix">+</span></b>
+        <span>Certified credentials (OpenAI &#183; Anthropic &#183; Zapier MCP)</span>
+      </div>
+      <div class="fact">
+        <b><span class="count" data-target="25">25</span><span class="stat-suffix">+</span></b>
+        <span>products, agents and tools built</span>
+      </div>
+      <div class="fact">
+        <b><span class="count" data-target="88">88</span><span class="stat-suffix"></span></b>
+        <span>features in D Chat, real-time chat app</span>
+      </div>
+      <div class="fact">
+        <b><span>A+</span></b>
+        <span>BCA, MK Bhavnagar University</span>
+      </div>
+    </div>
+
+    <!-- CORE STACK -->
+    <div class="core reveal" aria-label="Core stack">
+      <p class="core-label">Core Engineering Stack</p>
+      <ul>
+        <li class="spotlight-card"><b>Python</b><span>AI agents, FastAPI, Flask, PyTorch</span></li>
+        <li class="spotlight-card"><b>Node.js</b><span>APIs, real-time, Socket.IO</span></li>
+        <li class="spotlight-card"><b>Express</b><span>REST APIs, auth, webhooks</span></li>
+        <li class="spotlight-card"><b>React</b><span>Hooks, Context, TypeScript</span></li>
+        <li class="spotlight-card"><b>Next.js</b><span>Full apps with Strapi CMS</span></li>
+      </ul>
+    </div>
+
+    <!-- DISCIPLINES (WHAT I DO) -->
+    <section id="about">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">&#9670; Multispecialist</p>
+          <h2>What I do</h2>
+        </div>
+        <p>One person who can take a product from Figma to database to deployment, then add the AI layer on top. These are the areas I work in every week.</p>
+      </div>
+      <div class="disc reveal">
+        <div class="spotlight-card">
+          <h3>Software engineering <small>PYTHON · NODE · REACT · NEXT</small></h3>
+          <p><strong class="py">Python</strong>, JavaScript, TypeScript, PHP, SQL and Bash. <strong class="py">React</strong> and <strong class="py">Next.js</strong>, <strong class="py">Node.js</strong> and <strong class="py">Express</strong>, FastAPI and Flask, core PHP with cURL, TYPO3 Fluid and TypoScript, over MySQL, PostgreSQL, MongoDB and SQLite. With AI, any other language a project needs.</p>
+        </div>
+        <div class="spotlight-card">
+          <h3>AI agents &amp; automation <small>LLM · TOOLS · MCP</small></h3>
+          <p>Custom agents with tool-calling, memory and escalation logic. Workflow agents that plan, write code, run tests and report autonomously across enterprise APIs.</p>
+        </div>
+        <div class="spotlight-card">
+          <h3>RAG &amp; local LLMs <small>OLLAMA · VECTORS</small></h3>
+          <p>Private, offline RAG pipelines with Ollama plus ChromaDB, Pinecone or FAISS for knowledge-grounded enterprise answers that never leave company infrastructure.</p>
+        </div>
+        <div class="spotlight-card">
+          <h3>Computer vision <small>YOLO · INSIGHTFACE</small></h3>
+          <p>Face recognition attendance, object detection and tracking, CCTV alerts, OCR document extraction, and video pipeline processing.</p>
+        </div>
+        <div class="spotlight-card">
+          <h3>TYPO3 &amp; CMS <small>FLUID · TCA · UPGRADES</small></h3>
+          <p>Extension development, Fluid templates, TCA, major version upgrades (v12 → v14 LTS), Strapi headless CMS, and enterprise customer portals.</p>
+        </div>
+        <div class="spotlight-card">
+          <h3>Cross-platform &amp; shipping <small>PWA · ELECTRON</small></h3>
+          <p>One codebase for Android, iOS, desktop and the browser with Capacitor and Electron. Deployed production APIs on Render and cloud services.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">&#9670; Experience</p>
+          <h2>Leading the team</h2>
+        </div>
+      </div>
+      <div class="job spotlight-card reveal">
+        <div>
+          <p class="when">Jan 2023 — Present</p>
+          <h3>Team Leader &amp; Senior Software Engineer</h3>
+          <p class="org">RemoteDevs Infotech</p>
+          <span class="badge">Current role</span>
+        </div>
+        <div>
+          <ul>
+            <li>Lead a team of developers: plan sprint tasks, run code reviews, mentor juniors and keep milestones on schedule.</li>
+            <li>Work on a German government project, plus other international client platforms.</li>
+            <li>Build and deploy end-to-end software with React.js, Node.js (Express), PHP (core cURL APIs), jQuery and JavaScript over MongoDB and MySQL.</li>
+            <li>Built and hosted secure Node.js REST APIs with token authentication and public endpoints on Render.com.</li>
+            <li>Customise TYPO3 with TCA and Fluid, write custom extensions and handle version upgrades.</li>
+            <li>Designed API architecture with token generation, secure API key management and real-time CRUD on file system and JSON storage.</li>
+            <li>Synchronise data across platforms with PHP cURL REST clients; write advanced MySQL for large datasets, analytics and reporting.</li>
+            <li>Built a digital signature board (draw, image or typed-name signatures) so documents can be signed from anywhere, using IndexedDB and JavaScript. The client was very happy with it.</li>
+            <li>Store structured data in the browser with IndexedDB and LocalStorage (Base64), and process PDFs and images inside client platforms.</li>
+            <li>Build and deploy AI agents and LLM automation inside the company to speed up delivery and take on complex tasks autonomously.</li>
+          </ul>
+          <div class="client">
+            <div class="spotlight-card"><h4>Government customer portal</h4><p>TYPO3 portal for a German public-sector programme: multi-role dashboards, candidate pipeline, multilingual UI.</p></div>
+            <div class="spotlight-card"><h4>TYPO3 v12 → v14.3.7 LTS</h4><p>Full upgrade of a German financial site on PHP 8.3 with complete visual parity and better page speed.</p></div>
+            <div class="spotlight-card"><h4>Digital Signature Board</h4><p>Sign any document from anywhere: draw a signature, upload a signature image or type a name. Built with IndexedDB and JavaScript. The client was very happy with it.</p></div>
+            <div class="spotlight-card"><h4>RemoteDevs platform</h4><p>Company platform in React, TypeScript, Tailwind and Supabase, with Resend email and an AI chatbot.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLAGSHIP PRODUCTS -->
+    <section id="featured">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">&#9670; Selected work</p>
+          <h2>Flagship products</h2>
+        </div>
+        <p>Four complete systems I designed and built myself, from database schema to UI.</p>
+      </div>
+      <div class="feat reveal">
+
+        <article class="card spotlight-card">
+          <div class="top">
+            <h3>Shiksha ERP</h3>
+            <span class="kind">School ERP</span>
+          </div>
+          <p class="lede">A complete school management system for admins, principals, teachers and students. It runs in any browser and installs as an app on Android, iOS, Windows and Linux.</p>
+          <ul>
+            <li>25+ modules: students, teachers, classes, timetable, attendance, homework, tests, results, fees, events, notices, study material, reports</li>
+            <li>QR attendance kiosk, teacher leave flow and reports</li>
+            <li>Fee engine with Razorpay (HMAC-SHA256 verified) and automatic WhatsApp reminders before, on and after the due date</li>
+            <li>Strict role scoping, targeted push notifications, WhatsApp-style messaging</li>
+            <li>Recharts dashboards, PDF reports, one-command database backups</li>
+          </ul>
+          <p class="metric">27 database tables · 4,200+ line API server</p>
+          <div class="stack">
+            <span class="hl">React</span><span>TypeScript</span><span class="hl">Express</span><span>PostgreSQL</span><span>Capacitor</span><span>Electron</span><span>whatsapp-web.js</span><span>Razorpay</span><span>jsPDF</span>
+          </div>
+        </article>
+
+        <article class="card spotlight-card">
+          <div class="top">
+            <h3>VisionAI</h3>
+            <span class="kind">Computer vision</span>
+          </div>
+          <p class="lede">An AI video intelligence platform: CCTV face recognition attendance, object detection and searchable video events.</p>
+          <ul>
+            <li>Multi-angle face enrolment (front, 45° left/right, profile) with blur and sharpness checks</li>
+            <li>InsightFace buffalo_l (SCRFD-10G + ArcFace R50), 512-d embeddings in FAISS, per-photo vectors</li>
+            <li>YOLO + ByteTrack detection and tracking, live camera and RTSP/IP streams over WebSocket</li>
+            <li>Offline video analysis with a per-second timeline and bounding boxes</li>
+            <li>Attendance, leave and visitor management, evidence vault, alerts, AI video search</li>
+          </ul>
+          <p class="metric">Real models, no mock data</p>
+          <div class="stack">
+            <span class="hl">React 19</span><span>TypeScript</span><span class="hl">FastAPI</span><span>InsightFace</span><span>FAISS</span><span>YOLO</span><span>OpenCV</span><span>Gemini</span>
+          </div>
+        </article>
+
+        <article class="card spotlight-card">
+          <div class="top">
+            <h3>D Chat</h3>
+            <span class="kind">Real-time</span>
+          </div>
+          <p class="lede">A real-time team chat app with an admin panel, polls, leave management and file sharing. 88 features in total.</p>
+          <ul>
+            <li>1-to-1 and group chat, replies, edit, forward, pins, typing and read ticks</li>
+            <li>Gmail OTP signup and reset, bcrypt and JWT sessions</li>
+            <li>Files up to ~32 GB, voice notes, location sharing, automatic GIF maker (FFmpeg)</li>
+            <li>Polls, slash commands, personal notes, leave balance</li>
+            <li>Admin panel with 17 tools, including one-click backup</li>
+          </ul>
+          <p class="metric">88 features · 12 categories</p>
+          <div class="stack">
+            <span class="hl">React 18</span><span class="hl">Node.js</span><span>Socket.IO</span><span>MongoDB</span><span>JWT</span><span>Nodemailer</span><span>Multer</span><span>FFmpeg</span>
+          </div>
+        </article>
+
+        <article class="card spotlight-card">
+          <div class="top">
+            <h3>CloudVault</h3>
+            <span class="kind">SaaS</span>
+          </div>
+          <p class="lede">A cloud storage SaaS with free, Pro and Business plans and real payments in India and abroad.</p>
+          <ul>
+            <li>Upload zone, file list and live storage quota bar</li>
+            <li>Pro and Business plans, monthly and yearly, via Razorpay (UPI, cards) and Stripe</li>
+            <li>Payment callbacks for reliable subscription renewal</li>
+            <li>Admin panel for users, plans and storage</li>
+            <li>Object storage on self-hosted MinIO in Docker</li>
+          </ul>
+          <p class="metric">Free · Pro · Business plans</p>
+          <div class="stack">
+            <span class="hl">React</span><span class="hl">Node.js</span><span class="hl">Express</span><span>MinIO</span><span>Docker</span><span>Stripe</span><span>Razorpay</span><span>JWT</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- WORK INDEX (FILTERABLE) -->
+    <section id="work">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">&#9670; Everything else</p>
+          <h2>Agents, tools &amp; builds</h2>
+        </div>
+        <p>AI agents, vision systems, desktop utilities and experiments. Filter by area.</p>
+      </div>
+      <input class="fr" type="radio" name="pf" id="f-all" checked>
+      <input class="fr" type="radio" name="pf" id="f-ai">
+      <input class="fr" type="radio" name="pf" id="f-vision">
+      <input class="fr" type="radio" name="pf" id="f-apps">
+      <input class="fr" type="radio" name="pf" id="f-tools">
+      <div class="filters reveal" role="group" aria-label="Filter projects">
+        <label for="f-all">All <b>20</b></label>
+        <label for="f-ai">AI &amp; agents <b>11</b></label>
+        <label for="f-vision">Vision &amp; media <b>2</b></label>
+        <label for="f-apps">Apps &amp; APIs <b>4</b></label>
+        <label for="f-tools">Desktop &amp; data <b>3</b></label>
+      </div>
+      <div class="index reveal" id="index">
+        <div class="row" data-cat="ai"><div><h3>AI Customer Support Agent</h3><p class="tag">AI agent</p></div><p>Fully autonomous agent that handles customer queries end to end, with tool-calling into CRM APIs, a knowledge base and escalation rules.</p><p class="tech">LLMs · tool-calling · CRM APIs</p></div>
+        <div class="row" data-cat="ai"><div><h3>RAG Document Q&amp;A</h3><p class="tag">RAG</p></div><p>Ask questions over your own documents. Runs fully offline and private with a local LLM and a vector store.</p><p class="tech">Ollama · ChromaDB · embeddings</p></div>
+        <div class="row" data-cat="ai"><div><h3>Workflow Automation Agent</h3><p class="tag">Custom GPT</p></div><p>Takes a requirement, generates the code, runs tests and writes the report, all in one autonomous run.</p><p class="tech">Custom GPT · test runner</p></div>
+        <div class="row" data-cat="ai"><div><h3>Mini Coder LLM</h3><p class="tag">LLM from scratch</p></div><p>A small GPT-style language model I wrote and trained myself: token and position embeddings, causal-masked transformer decoder, text generation.</p><p class="tech">PyTorch · Transformer</p></div>
+        <div class="row" data-cat="ai"><div><h3>Passport AI</h3><p class="tag">Document AI</p></div><p>Upload a passport as PDF or image. It extracts name, number, nationality and dates, auto-fills the form and saves the row to Google Sheets.</p><p class="tech">FastAPI · EasyOCR · pdfplumber · Gemini · Apps Script</p></div>
+        <div class="row" data-cat="ai"><div><h3>AI News Agent</h3><p class="tag">Scheduled agent</p></div><p>Runs on cron, collects the latest AI news and sends a formatted HTML digest by email every day.</p><p class="tech">Python · NewsAPI · SMTP · cron</p></div>
+        <div class="row" data-cat="ai"><div><h3>Lead Agent</h3><p class="tag">Sales automation</p></div><p>Search a niche, find matching companies and their sites, and extract contact emails automatically.</p><p class="tech">Python · search · scraping</p></div>
+        <div class="row" data-cat="ai"><div><h3>AI SVG Generator</h3><p class="tag">Generative AI</p></div><p>Type a prompt and get clean, coloured SVG artwork back, with the raw SVG extracted from the model output.</p><p class="tech">Flask · GPT-4 · regex cleanup</p></div>
+        <div class="row" data-cat="ai"><div><h3>Simple AI Chatbot</h3><p class="tag">ML chatbot</p></div><p>Intent classifier that also answers in Gujarati, falls back to Wikipedia and Google search, and suggests PDF manuals.</p><p class="tech">Flask · scikit-learn Naive Bayes</p></div>
+        <div class="row" data-cat="ai"><div><h3>PHP AI Chatbot</h3><p class="tag">Support bot</p></div><p>Customer support bot with manual lookup, FAQ responses and an OpenAI fallback for open questions.</p><p class="tech">PHP · Composer · OpenAI</p></div>
+        <div class="row" data-cat="ai"><div><h3>File Organizer Agent</h3><p class="tag">Automation</p></div><p>Watches the Downloads folder and sorts files into images, documents, videos, music, archives and scripts, with a log.</p><p class="tech">Python · shutil</p></div>
+        <div class="row" data-cat="vision"><div><h3>AI CCTV System</h3><p class="tag">Security</p></div><p>Live camera feed with YOLO detection, face recognition of registered people, unknown-person and loitering alerts, continuous recording and a live dashboard. Ships as a Windows, macOS and Linux app.</p><p class="tech">YOLO11 · face recognition · SQLite · WebSocket · email alerts</p></div>
+        <div class="row" data-cat="vision"><div><h3>Sprocket AI Video Studio</h3><p class="tag">Video generation</p></div><p>Turns images into finished videos with 40 animation effects, background removal, occasion templates, title styling and audio.</p><p class="tech">Flask · MoviePy · NumPy</p></div>
+        <div class="row" data-cat="apps"><div><h3>Digital Signature Board</h3><p class="tag">German client project</p></div><p>Sign documents from anywhere in three ways: draw with mouse or finger, upload a signature image, or type your name as a signature. Signatures are saved in the browser and placed on the document. The client was very happy with the result.</p><p class="tech">JavaScript · Canvas · IndexedDB</p></div>
+        <div class="row" data-cat="apps"><div><h3>Secure API Project</h3><p class="tag">Public API</p></div><p>Token-protected Node.js REST API with export endpoints, deployed publicly on Render. Live and documented.</p><p class="tech">Node · Express · tokens · <a href="https://dhruvi-api.onrender.com/" target="_blank" rel="noopener">dhruvi-api.onrender.com</a></p></div>
+        <div class="row" data-cat="apps"><div><h3>Strapi Blog</h3><p class="tag">Headless CMS</p></div><p>Blog with a Strapi content backend and a Next.js frontend.</p><p class="tech">Strapi · Next.js</p></div>
+        <div class="row" data-cat="apps"><div><h3>Storybook UI Library</h3><p class="tag">Design system</p></div><p>Reusable React components documented as stories, built for consistent UI across projects.</p><p class="tech">React · Vite · Storybook</p></div>
+        <div class="row" data-cat="tools"><div><h3>DevLauncher</h3><p class="tag">Desktop app</p></div><p>Smart dev-environment launcher that starts at login, opens projects in one click and tracks daily screen time.</p><p class="tech">Python · tkinter</p></div>
+        <div class="row" data-cat="tools"><div><h3>Disk Girl</h3><p class="tag">Desktop widget</p></div><p>A small draggable avatar that shows free and used disk space at startup and refreshes on click.</p><p class="tech">Python · tkinter</p></div>
+        <div class="row" data-cat="tools"><div><h3>Data analysis &amp; visualisation</h3><p class="tag">Data</p></div><p>Pandas analysis of the Titanic dataset and Matplotlib bar, pie, line and ML charts.</p><p class="tech">Pandas · Matplotlib</p></div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS (11 CREDENTIALS + MODAL) -->
+    <section id="certifications">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">&#9670; Verified Credentials &#183; 11+ Certifications</p>
+          <h2>Certificates &amp; continuous learning</h2>
+        </div>
+        <p>Official certifications from OpenAI Academy, Anthropic, and Zapier MCP &amp; AI Agents &#8212; validating production mastery in autonomous agent loops, prompt engineering, Model Context Protocol governance, and automated operations.</p>
+      </div>
+
+      <div class="cert-stats reveal">
+        <div class="cert-stat-item spotlight-card">
+          <span class="cert-stat-badge">OpenAI Academy</span>
+          <strong>Agents &amp; Workflows</strong>
+          <small>Multi-agent orchestration, tool calling &amp; state persistence</small>
+        </div>
+        <div class="cert-stat-item spotlight-card">
+          <span class="cert-stat-badge">Anthropic Education</span>
+          <strong>Claude 101</strong>
+          <small>Prompt architecture, structured tags &amp; LLM capabilities</small>
+        </div>
+        <div class="cert-stat-item spotlight-card">
+          <span class="cert-stat-badge">Zapier Academy</span>
+          <strong>AI Agents &amp; Model Context Protocol</strong>
+          <small>Agent building, MCP governance &amp; enterprise security</small>
+        </div>
+      </div>
+
+      <input class="fr" type="radio" name="cf" id="cf-all" checked>
+      <input class="fr" type="radio" name="cf" id="cf-ai">
+      <input class="fr" type="radio" name="cf" id="cf-mcp">
+      <input class="fr" type="radio" name="cf" id="cf-sec">
+      <input class="fr" type="radio" name="cf" id="cf-auto">
+
+      <div class="filters reveal" role="group" aria-label="Filter certificates">
+        <label for="cf-all">All credentials <b>11</b></label>
+        <label for="cf-ai">AI &amp; Agents <b>3</b></label>
+        <label for="cf-mcp">Zapier MCP <b>2</b></label>
+        <label for="cf-sec">Security &amp; Ops <b>2</b></label>
+        <label for="cf-auto">Workflows <b>4</b></label>
+      </div>
+
+      <div class="cert-grid reveal">
+        <!-- 1: OpenAI Agents & Workflows -->
+        <article class="cert-card spotlight spotlight-card" data-cat="ai" data-title="Agents and Workflows" data-issuer="OpenAI Academy" data-issuer-class="issuer-openai" data-recipient="Dhruvi Jetani" data-cred-id="ID: 65vknudxsc" data-desc="Architecting autonomous agents, multi-agent orchestration loops, dynamic tool-calling, state persistence, and human-in-the-loop workflows." data-img="badges/openai-agents-workflows.webp" data-png="badges/openai-agents-workflows.png" data-skills="OpenAI Academy, Autonomous Agents, Multi-Agent, Tool Calling, Workflows">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Agents and Workflows">
+            <picture>
+              <source srcset="badges/openai-agents-workflows.webp" type="image/webp">
+              <img src="badges/openai-agents-workflows.png" alt="Agents and Workflows credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">OpenAI Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Agents and Workflows</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: 65vknudxsc</b></span>
+            </div>
+            <p class="cert-desc">Architecting autonomous agents, multi-agent orchestration loops, dynamic tool-calling, state persistence, and human-in-the-loop workflows.</p>
+            <div class="cert-tags"><span>OpenAI Academy</span><span>Autonomous Agents</span><span>Multi-Agent</span><span>Tool Calling</span><span>Workflows</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2: Anthropic Claude 101 -->
+        <article class="cert-card spotlight spotlight-card" data-cat="ai" data-title="Claude 101" data-issuer="Anthropic Education" data-issuer-class="issuer-anthropic" data-recipient="Dhruvi Jetani" data-cred-id="Verified Completion" data-desc="Frontier model foundations, structured prompt engineering, XML tag syntax, large context window management, and Constitutional AI principles." data-img="badges/anthropic-claude-101.webp" data-png="badges/anthropic-claude-101.png" data-skills="Anthropic, Claude 3.5 / 3.7, Prompt Engineering, Structured Output, LLM Design">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Claude 101">
+            <picture>
+              <source srcset="badges/anthropic-claude-101.webp" type="image/webp">
+              <img src="badges/anthropic-claude-101.png" alt="Claude 101 credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Anthropic Education</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Claude 101</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>Verified Completion</b></span>
+            </div>
+            <p class="cert-desc">Frontier model foundations, structured prompt engineering, XML tag syntax, large context window management, and Constitutional AI principles.</p>
+            <div class="cert-tags"><span>Anthropic</span><span>Claude 3.5 / 3.7</span><span>Prompt Engineering</span><span>Structured Output</span><span>LLM Design</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3: Zapier Building AI Agents -->
+        <article class="cert-card spotlight spotlight-card" data-cat="ai" data-title="Building AI Agents" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 45C56C6B" data-desc="Designing autonomous AI agents with live trigger reasoning, cross-API tool execution, state tracking, and resilient enterprise actions." data-img="badges/zapier-building-ai-agents.webp" data-png="badges/zapier-building-ai-agents.png" data-skills="Zapier Academy, AI Agents, Action Triggers, Decision Logic, API Integration">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building AI Agents">
+            <picture>
+              <source srcset="badges/zapier-building-ai-agents.webp" type="image/webp">
+              <img src="badges/zapier-building-ai-agents.png" alt="Building AI Agents credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Building AI Agents</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: 45C56C6B</b></span>
+            </div>
+            <p class="cert-desc">Designing autonomous AI agents with live trigger reasoning, cross-API tool execution, state tracking, and resilient enterprise actions.</p>
+            <div class="cert-tags"><span>Zapier Academy</span><span>AI Agents</span><span>Action Triggers</span><span>Decision Logic</span><span>API Integration</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4: Governing Zapier MCP -->
+        <article class="cert-card spotlight spotlight-card" data-cat="mcp" data-title="Governing Zapier MCP" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 135AEED6" data-desc="Model Context Protocol (MCP) governance: permission scopes, tool exposure policies, security fences, agent auditing, and enterprise compliance." data-img="badges/zapier-governing-zapier-mcp.webp" data-png="badges/zapier-governing-zapier-mcp.png" data-skills="Model Context Protocol, MCP Governance, Access Control, Enterprise Security">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Governing Zapier MCP">
+            <picture>
+              <source srcset="badges/zapier-governing-zapier-mcp.webp" type="image/webp">
+              <img src="badges/zapier-governing-zapier-mcp.png" alt="Governing Zapier MCP credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Governing Zapier MCP</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: 135AEED6</b></span>
+            </div>
+            <p class="cert-desc">Model Context Protocol (MCP) governance: permission scopes, tool exposure policies, security fences, agent auditing, and enterprise compliance.</p>
+            <div class="cert-tags"><span>Model Context Protocol</span><span>MCP Governance</span><span>Access Control</span><span>Enterprise Security</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5: What is Zapier MCP? -->
+        <article class="cert-card spotlight-card" data-cat="mcp" data-title="What is Zapier MCP?" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: D15665EF" data-desc="Standard architecture of Model Context Protocol (MCP): bridging frontier LLMs with 7,000+ business applications via structured context." data-img="badges/zapier-what-is-zapier-mcp.webp" data-png="badges/zapier-what-is-zapier-mcp.png" data-skills="Model Context Protocol, MCP Architecture, Tool Protocol, API Bridging">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: What is Zapier MCP?">
+            <picture>
+              <source srcset="badges/zapier-what-is-zapier-mcp.webp" type="image/webp">
+              <img src="badges/zapier-what-is-zapier-mcp.png" alt="What is Zapier MCP? credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>What is Zapier MCP?</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: D15665EF</b></span>
+            </div>
+            <p class="cert-desc">Standard architecture of Model Context Protocol (MCP): bridging frontier LLMs with 7,000+ business applications via structured context.</p>
+            <div class="cert-tags"><span>Model Context Protocol</span><span>MCP Architecture</span><span>Tool Protocol</span><span>API Bridging</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6: Security and Governance -->
+        <article class="cert-card spotlight-card" data-cat="sec" data-title="Security and Governance" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 2403E859" data-desc="Enterprise data isolation, role-based access control (RBAC), credential safety, compliance auditing, and multi-tenant threat mitigation." data-img="badges/zapier-security-and-governance.webp" data-png="badges/zapier-security-and-governance.png" data-skills="Data Security, RBAC, Compliance Audits, Governance, Threat Isolation">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Security and Governance">
+            <picture>
+              <source srcset="badges/zapier-security-and-governance.webp" type="image/webp">
+              <img src="badges/zapier-security-and-governance.png" alt="Security and Governance credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Security and Governance</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: 2403E859</b></span>
+            </div>
+            <p class="cert-desc">Enterprise data isolation, role-based access control (RBAC), credential safety, compliance auditing, and multi-tenant threat mitigation.</p>
+            <div class="cert-tags"><span>Data Security</span><span>RBAC</span><span>Compliance Audits</span><span>Governance</span><span>Threat Isolation</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7: Monitoring and Operations -->
+        <article class="cert-card spotlight-card" data-cat="sec" data-title="Monitoring and Operations" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 7BE7E060" data-desc="Automated workflow observability: error diagnostics, telemetry, alert dispatch, automated retry pipelines, and high availability SRE." data-img="badges/zapier-monitoring-and-operations.webp" data-png="badges/zapier-monitoring-and-operations.png" data-skills="Observability, Error Triage, Telemetry, SRE Operations, Auto-Retry">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Monitoring and Operations">
+            <picture>
+              <source srcset="badges/zapier-monitoring-and-operations.webp" type="image/webp">
+              <img src="badges/zapier-monitoring-and-operations.png" alt="Monitoring and Operations credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Monitoring and Operations</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: 7BE7E060</b></span>
+            </div>
+            <p class="cert-desc">Automated workflow observability: error diagnostics, telemetry, alert dispatch, automated retry pipelines, and high availability SRE.</p>
+            <div class="cert-tags"><span>Observability</span><span>Error Triage</span><span>Telemetry</span><span>SRE Operations</span><span>Auto-Retry</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8: Building Intermediate Zaps -->
+        <article class="cert-card spotlight-card" data-cat="auto" data-title="Building Intermediate Zaps" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: A356A747" data-desc="Multi-branch conditional logic, webhook routing, custom JavaScript code transforms, line-item looping, and complex data formatting." data-img="badges/zapier-building-intermediate-zaps.webp" data-png="badges/zapier-building-intermediate-zaps.png" data-skills="Multi-Step Logic, Custom Code, Webhooks, Data Transform, Looping">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building Intermediate Zaps">
+            <picture>
+              <source srcset="badges/zapier-building-intermediate-zaps.webp" type="image/webp">
+              <img src="badges/zapier-building-intermediate-zaps.png" alt="Building Intermediate Zaps credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Building Intermediate Zaps</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: A356A747</b></span>
+            </div>
+            <p class="cert-desc">Multi-branch conditional logic, webhook routing, custom JavaScript code transforms, line-item looping, and complex data formatting.</p>
+            <div class="cert-tags"><span>Multi-Step Logic</span><span>Custom Code</span><span>Webhooks</span><span>Data Transform</span><span>Looping</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9: Building Basic Zaps -->
+        <article class="cert-card spotlight-card" data-cat="auto" data-title="Building Basic Zaps" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 5CF48200" data-desc="Event trigger architecture, field mapping, multi-app handoffs, error debugging, and production integration reliability." data-img="badges/zapier-building-basic-zaps.webp" data-png="badges/zapier-building-basic-zaps.png" data-skills="Triggers & Actions, Field Mapping, Integration, Data Sync">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building Basic Zaps">
+            <picture>
+              <source srcset="badges/zapier-building-basic-zaps.webp" type="image/webp">
+              <img src="badges/zapier-building-basic-zaps.png" alt="Building Basic Zaps credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Building Basic Zaps</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: 5CF48200</b></span>
+            </div>
+            <p class="cert-desc">Event trigger architecture, field mapping, multi-app handoffs, error debugging, and production integration reliability.</p>
+            <div class="cert-tags"><span>Triggers & Actions</span><span>Field Mapping</span><span>Integration</span><span>Data Sync</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10: Jumpstart -->
+        <article class="cert-card spotlight-card" data-cat="auto" data-title="Jumpstart" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 5A3F4788" data-desc="Rapid automation framework design, workflow audit discovery, and accelerating digital transformation across manual team tasks." data-img="badges/zapier-jumpstart.webp" data-png="badges/zapier-jumpstart.png" data-skills="Automation Blueprint, Rapid Prototyping, Process Streamlining">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Jumpstart">
+            <picture>
+              <source srcset="badges/zapier-jumpstart.webp" type="image/webp">
+              <img src="badges/zapier-jumpstart.png" alt="Jumpstart credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Jumpstart</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: 5A3F4788</b></span>
+            </div>
+            <p class="cert-desc">Rapid automation framework design, workflow audit discovery, and accelerating digital transformation across manual team tasks.</p>
+            <div class="cert-tags"><span>Automation Blueprint</span><span>Rapid Prototyping</span><span>Process Streamlining</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 11: Account Setup -->
+        <article class="cert-card spotlight-card" data-cat="auto" data-title="Account Setup" data-issuer="Zapier Academy" data-issuer-class="issuer-zapier" data-recipient="Dhruvi Jetani" data-cred-id="ID: 20692F3F" data-desc="Enterprise account administration, connected app authentication, workspace security configuration, and multi-user environments." data-img="badges/zapier-account-setup.webp" data-png="badges/zapier-account-setup.png" data-skills="Organization Admin, OAuth & Auth, Environment Setup, Security Hygiene">
+          <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Account Setup">
+            <picture>
+              <source srcset="badges/zapier-account-setup.webp" type="image/webp">
+              <img src="badges/zapier-account-setup.png" alt="Account Setup credential badge" loading="lazy">
+            </picture>
+            <div class="cert-overlay"><span>View Credential</span></div>
+          </div>
+          <div class="cert-body">
+            <div class="top">
+              <span class="cert-issuer">Zapier Academy</span>
+              <span class="cert-badge-ver">&#10003; Verified</span>
+            </div>
+            <h3>Account Setup</h3>
+            <div class="cert-meta">
+              <span><b>Credential:</b> Professional</span>
+              <span><b>ID: 20692F3F</b></span>
+            </div>
+            <p class="cert-desc">Enterprise account administration, connected app authentication, workspace security configuration, and multi-user environments.</p>
+            <div class="cert-tags"><span>Organization Admin</span><span>OAuth & Auth</span><span>Environment Setup</span><span>Security Hygiene</span></div>
+            <div class="cert-actions">
+              <button type="button" class="cert-btn primary" data-open-cert>View Credential Details</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="cert-more reveal">
+        <div class="cert-more-icon">&#9733;</div>
+        <div>
+          <h4>Continuous learning &amp; production application</h4>
+          <p>In addition to these 11 verified credentials, I continuously pursue advanced courses across frontier LLMs, Python AI engineering, and full-stack architecture. Every certification is backed by real production code shipped at RemoteDevs Infotech for international clients.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI EVERY DAY WORKFLOW -->
+    <section id="ai">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">&#9670; How I work</p>
+          <h2>AI every day</h2>
+        </div>
+        <p>I use AI as a daily part of development and leadership, and I build AI systems for clients. Because of that, no language or framework is a barrier.</p>
+      </div>
+      <div class="daily reveal">
+        <div class="flow spotlight-card">
+          <ol>
+            <li><div><b>Requirement → plan</b><span>Agent breaks the ticket into tasks; I review scope before code.</span></div></li>
+            <li><div><b>Code with AI pair</b><span>Prompt-engineered generation, in any language the client needs.</span></div></li>
+            <li><div><b>Agent runs tests</b><span>Automated checks and a report on what passed and what didn't.</span></div></li>
+            <li><div><b>Human review</b><span>I review output and code with my team before anything ships.</span></div></li>
+            <li><div><b>Docs &amp; handover</b><span>Manuals, flowcharts and READMEs written alongside the work.</span></div></li>
+          </ol>
+        </div>
+        <div class="tools">
+          <div class="spotlight-card"><h4>LLMs I use daily</h4><p>Claude and Claude Code, ChatGPT and Gemini for coding, debugging, research and documentation.</p></div>
+          <div class="spotlight-card"><h4>Local and private AI</h4><p>Ollama for on-premise models when data must stay inside the company.</p></div>
+          <div class="spotlight-card"><h4>Prompt engineering</h4><p>Advanced prompts that produce production-ready code and repeatable automations.</p></div>
+          <div class="spotlight-card"><h4>Agents in the team</h4><p>Building and deploying agents at RemoteDevs to take over repetitive and critical tasks at speed.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS MATRIX -->
+    <section id="skills">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">&#9670; Toolbox</p>
+          <h2>Skills</h2>
+        </div>
+      </div>
+      <div class="skills reveal">
+        <div class="spotlight-card"><h4>Languages</h4><div class="pills"><span class="hl">Python</span><span>JavaScript</span><span>TypeScript</span><span>PHP</span><span>SQL</span><span>Bash / Shell</span><span>HTML5</span><span>CSS3</span><span>TypoScript</span><span>Fluid</span><span>Any language with AI</span></div></div>
+        <div class="spotlight-card"><h4>Frontend</h4><div class="pills"><span class="hl">React.js</span><span>Hooks &amp; Context</span><span class="hl">Next.js</span><span>Vite</span><span>Tailwind</span><span>Bootstrap</span><span>jQuery</span><span>Storybook</span><span>Animations &amp; 3D</span><span>Accessibility</span></div></div>
+        <div class="spotlight-card"><h4>Backend</h4><div class="pills"><span>Node.js</span><span>Express</span><span>FastAPI</span><span>Flask</span><span>Core PHP</span><span>REST APIs</span><span>Socket.IO</span><span>cURL</span><span>Webhooks</span><span>Nodemailer</span></div></div>
+        <div class="spotlight-card"><h4>Data</h4><div class="pills"><span>MySQL (complex queries)</span><span>PostgreSQL</span><span>MongoDB</span><span>SQLite</span><span>IndexedDB</span><span>LocalStorage</span><span>JSON</span><span>Base64</span><span>Pandas</span><span>Matplotlib</span></div></div>
+        <div class="spotlight-card"><h4>AI &amp; ML</h4><div class="pills"><span class="hl">AI agents</span><span class="hl">OpenAI Certified</span><span class="hl">Anthropic Certified</span><span class="hl">Zapier MCP Certified</span><span>Prompt engineering</span><span>RAG</span><span>Ollama</span><span>ChromaDB</span><span>Pinecone</span><span>FAISS</span><span>PyTorch</span><span>YOLO</span><span>InsightFace</span><span>OpenCV</span><span>OCR</span><span>scikit-learn</span><span>Gemini API</span><span>OpenAI API</span></div></div>
+        <div class="spotlight-card"><h4>CMS &amp; platforms</h4><div class="pills"><span>TYPO3 (Fluid, TCA, extensions)</span><span>TYPO3 upgrades</span><span>Strapi</span><span>Supabase</span></div></div>
+        <div class="spotlight-card"><h4>Mobile &amp; desktop</h4><div class="pills"><span>Capacitor (Android, iOS)</span><span>Electron</span><span>PWA</span><span>tkinter desktop apps</span></div></div>
+        <div class="spotlight-card"><h4>Security &amp; payments</h4><div class="pills"><span>JWT</span><span>OAuth</span><span>bcrypt</span><span>API key management</span><span>HMAC verification</span><span>Razorpay</span><span>Stripe</span></div></div>
+        <div class="spotlight-card"><h4>DevOps &amp; design</h4><div class="pills"><span>Git &amp; GitHub</span><span>Docker</span><span>MinIO</span><span>Render</span><span>GitHub Pages</span><span>systemd</span><span>Figma</span><span>Adobe XD</span><span>Photoshop</span></div></div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & BACKGROUND -->
+    <section id="education">
+      <div class="edu reveal">
+        <div class="spotlight-card"><p class="eyebrow">&#9670; Education</p><h4>BCA, Grade A+</h4><p>Maharaja Krishnakumarsinhji Bhavnagar University, Bhavnagar. Completed August 2021.</p></div>
+        <div class="spotlight-card"><p class="eyebrow">&#9670; Also</p><h4>Documentation &amp; planning</h4><p>Manuals, system flowcharts, UI plans and feature docs. Cross-browser support and international project experience.</p></div>
+        <div class="spotlight-card"><p class="eyebrow">&#9670; Outside work</p><h4>Research &amp; learning</h4><p>Learning new things and keeping up with the latest technology. Driven by curiosity, defined by clean code and smart user experiences.</p></div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA CARD -->
+    <div class="contact reveal" id="contact">
       <div>
-        <span class="cert-issuer" id="modal-issuer">OpenAI Academy</span>
-        <h3 id="modal-title">Agents and Workflows</h3>
+        <h2>Let's build <em>something real.</em></h2>
+        <p>Software products, AI agents, or a team that ships both. Tap to copy my details or check my live deployed APIs.</p>
       </div>
-      <button type="button" class="cert-modal-close" id="modal-close" aria-label="Close modal">&times;</button>
-    </div>
-    <div class="cert-modal-img-wrap">
-      <img id="modal-img" src="" alt="Credential Badge Preview">
-    </div>
-    <div class="cert-modal-info">
-      <div class="cert-modal-grid">
-        <div><b>Issued to</b><span id="modal-recipient">Dhruvi Jetani</span></div>
-        <div><b>Credential</b><span>Professional Certificate</span></div>
-        <div><b>Authentication</b><span id="modal-id">Verified</span></div>
+      <div class="lines">
+        <button type="button" id="copy-email" data-copy="dhruvijetani.dev@gmail.com"><span>dhruvijetani.dev@gmail.com</span><small>copy</small></button>
+        <button type="button" id="copy-phone" data-copy="+91 9726317823"><span>+91 97263 17823</span><small>copy</small></button>
+        <a href="https://dhruvi-api.onrender.com/" target="_blank" rel="noopener"><span>dhruvi-api.onrender.com</span><small>open ↗</small></a>
+        <p class="copied" id="copied-foot" aria-live="polite"></p>
       </div>
-      <p id="modal-desc" class="cert-desc"></p>
-      <div class="cert-tags" id="modal-tags"></div>
     </div>
-    <div class="cert-modal-foot">
-      <button type="button" class="cert-btn primary" id="modal-close-btn">Close</button>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>&copy; 2026 Dhruvi Jetani &middot; Software &amp; AI Engineer</span>
+      <span>Engineered with AI pair programming &middot; Netvelopers-grade Dark Performance</span>
+    </footer>
+
+    <!-- CERTIFICATE PREVIEW MODAL -->
+    <div class="cert-modal-backdrop" id="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="cert-modal-box">
+        <div class="cert-modal-head">
+          <div>
+            <span class="cert-issuer" id="modal-issuer">OpenAI Academy</span>
+            <h3 id="modal-title">Agents and Workflows</h3>
+          </div>
+          <button type="button" class="cert-modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="cert-modal-img-wrap">
+          <img id="modal-img" src="" alt="Credential Badge Preview">
+        </div>
+        <div class="cert-modal-info">
+          <div class="cert-modal-grid">
+            <div><b>Issued to</b><span id="modal-recipient">Dhruvi Jetani</span></div>
+            <div><b>Credential</b><span>Professional Certificate</span></div>
+            <div><b>Authentication</b><span id="modal-id">Verified</span></div>
+          </div>
+          <p id="modal-desc" class="cert-desc"></p>
+          <div class="cert-tags" id="modal-tags"></div>
+        </div>
+        <div class="cert-modal-foot">
+          <button type="button" class="cert-btn primary" id="modal-close-btn">Close</button>
+        </div>
+      </div>
     </div>
-  </div>
+
+  </main>
 </div>
-</main>
 
+<!-- ========================================================
+     ULTRA-HIGH PERFORMANCE CLIENT-SIDE JAVASCRIPT
+     ======================================================== -->
 <script>
-(function(){
-  function done(btn,msg){
-    var out = btn.closest('.contact') ? document.getElementById('copied-foot') : document.getElementById('copied-hero');
-    if(out){ out.textContent = msg; clearTimeout(out._t); out._t = setTimeout(function(){ out.textContent=''; }, 2200); }
+// ========================================================
+// 1. EXACT NETVELOPERS 3D GATHER & BLAST NODE CANVAS (AUTHENTIC NETVELOPERS.COM/EN/)
+//    - 3D glowing node constellation field with vortex Gather & explosive Blast
+//    - Netvelopers exact saturated lime green: rgb(57, 255, 20)
+//    - Dynamic 3D laser connections between nodes & live laser beams connecting to mouse cursor
+//    - Blinking energy surges & high-performance 60-120 FPS
+(function() {
+  const canvas = document.getElementById('spiral-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d', { alpha: false });
+  let W = window.innerWidth;
+  let H = window.innerHeight;
+  let nodes = [];
+  let N = window.innerWidth <= 992 ? 50 : 160;
+  
+  // Animation state (Gather & Blast: Immediate on load & repeats every 3 seconds)
+  const GATHER_FRAMES = 48; // ~0.8s rapid spiral vortex gather
+  const CYCLE_FRAMES = 180; // Exactly 3.0 seconds full cycle
+  let introTimer = 0; // Starts gathering & blasting immediately on page load
+  const CENTER = { x: 0, y: 150, z: 1000 }; 
+  
+  // Blinking / Energy Surge state
+  let isBlinking = false;
+  let blinksRemaining = 0;
+  let blinkPhase = 0;
+  let globalFlash = 1.0;
+  
+  // Netvelopers signature electric lime green RGB constants (never shadowed)
+  const CR = 57, CG = 255, CB = 20;
+
+  // Mouse tracking
+  let mouse = { x: -1000, y: -1000, active: false };
+
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
+  }, { passive: true });
+
+  window.addEventListener('mouseout', () => { 
+    mouse.active = false; 
+  }, { passive: true });
+
+  // On click: trigger instant energy shockwave
+  window.addEventListener('click', () => {
+    globalFlash = 1.5;
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      n.bx = (Math.random() - 0.5) * 28;
+      n.by = (Math.random() - 0.5) * 28;
+      n.bz = (Math.random() - 0.5) * 28;
+    }
+  }, { passive: true });
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    N = window.innerWidth <= 992 ? 50 : 160;
   }
-  document.querySelectorAll('[data-copy]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var v = btn.getAttribute('data-copy');
-      try{
-        navigator.clipboard.writeText(v).then(function(){ done(btn,'Copied: '+v); }, function(){ done(btn,'Select and copy: '+v); });
-      }catch(e){ done(btn,'Select and copy: '+v); }
+
+  function init() {
+    nodes = [];
+    introTimer = 0; // Start gather & blast immediately on page load
+    isBlinking = false;
+    
+    const isMobile = window.innerWidth <= 992;
+    const fov = W * 0.8;
+    
+    for (let i = 0; i < N; i++) {
+      if (isMobile) {
+        let zVal = Math.random() * 800 + 200;
+        let scale = fov / zVal;
+        let screenX = (Math.random() - 0.5) * W;
+        let screenY = (Math.random() - 0.5) * H;
+        
+        nodes.push({
+          x: screenX / scale,
+          y: screenY / scale,
+          z: zVal,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          vz: (Math.random() - 0.5) * 0.5,
+          bx: 0, by: 0, bz: 0
+        });
+      } else {
+        nodes.push({
+          x: (Math.random() - 0.5) * 3600,
+          y: (Math.random() - 0.5) * 1900 + 150,
+          z: Math.random() * 2600 + 100,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          vz: (Math.random() - 0.5) * 1.6 - 0.3,
+          bx: 0, by: 0, bz: 0 
+        });
+      }
+    }
+  }
+
+  function loop() {
+    // Schedule next frame right away so loop can never freeze
+    requestAnimationFrame(loop);
+
+    ctx.fillStyle = '#08090d';
+    ctx.fillRect(0, 0, W, H);
+    
+    introTimer++;
+
+    // Cyclic Gather & Blast reset
+    if (introTimer > CYCLE_FRAMES) {
+      introTimer = 0;
+    }
+
+    // Energy Surge Blinks (Netvelopers signature)
+    if (introTimer > GATHER_FRAMES + 80) {
+      if (!isBlinking && Math.random() < 0.0035) {
+        isBlinking = true;
+        blinksRemaining = Math.random() > 0.5 ? 2 : 3;
+        blinkPhase = 0;
+      }
+      
+      if (isBlinking) {
+        blinkPhase += 0.25;
+        globalFlash = 1.0 + Math.sin(blinkPhase) * 1.6; 
+        
+        if (blinkPhase >= Math.PI) {
+          blinkPhase = 0;
+          blinksRemaining--;
+          if (blinksRemaining <= 0) {
+            isBlinking = false;
+            globalFlash = 1.0;
+          }
+        }
+      }
+    }
+
+    // 1. Gather & Blast Physics
+    for (let i = 0; i < nodes.length; i++) {
+      let n = nodes[i];
+
+      if (introTimer < GATHER_FRAMES) {
+        // Vortex pull into center with spiral rotation
+        let ease = Math.pow(introTimer / GATHER_FRAMES, 2.0); 
+        let pull = 0.05 + ease * 0.12; 
+        n.x += (CENTER.x - n.x) * pull;
+        n.y += (CENTER.y - n.y) * pull;
+        n.z += (CENTER.z - n.z) * pull;
+
+        // Dynamic vortex spiral swirl while gathering
+        let spin = 0.045 * (1 + ease * 2.2);
+        let rx = n.x - CENTER.x;
+        let ry = n.y - CENTER.y;
+        n.x = CENTER.x + rx * Math.cos(spin) - ry * Math.sin(spin);
+        n.y = CENTER.y + rx * Math.sin(spin) + ry * Math.cos(spin);
+      } 
+      else if (introTimer === GATHER_FRAMES) {
+        // BLAST OUTWARD EXPLOSION!
+        globalFlash = 1.45;
+        let dx = (Math.random() - 0.5) * 2;
+        let dy = (Math.random() - 0.5) * 2;
+        let dz = (Math.random() - 0.5) * 2;
+        let len = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1;
+        let force = Math.random() * 34 + 18; 
+        
+        n.bx = (dx / len) * force;
+        n.by = (dy / len) * force;
+        n.bz = (dz / len) * force;
+      }
+
+      n.x += n.bx;
+      n.y += n.by;
+      n.z += n.bz;
+      
+      n.bx *= 0.93;
+      n.by *= 0.93;
+      n.bz *= 0.93;
+
+      if (introTimer > GATHER_FRAMES) {
+        n.x += n.vx;
+        n.y += n.vy;
+        n.z += n.vz;
+
+        if (n.z < 10) n.z = 2100;
+        if (n.z > 2100) n.z = 10;
+        if (n.x < -1600) n.x = 1600;
+        if (n.x > 1600) n.x = -1600;
+        if (n.y < -1200) n.y = 1200;
+        if (n.y > 1200) n.y = -1200;
+      }
+    }
+
+    nodes.sort((a, b) => b.z - a.z);
+
+    const fov = W * 0.8;
+    const isMobile = window.innerWidth <= 992;
+    const maxLineDist = isMobile ? 180 : 360;
+
+    // 2. Draw 3D connecting laser lines
+    for (let i = 0; i < nodes.length; i++) {
+      let a = nodes[i];
+      let scaleA = fov / Math.max(a.z, 1);
+      let pxA = (a.x * scaleA) + W / 2;
+      let pyA = (a.y * scaleA) + H / 2;
+
+      if (pxA < -200 || pxA > W + 200 || pyA < -200 || pyA > H + 200) continue;
+
+      for (let j = i + 1; j < Math.min(nodes.length, i + 22); j++) {
+        let nodeB = nodes[j];
+        let dx = a.x - nodeB.x;
+        let dy = a.y - nodeB.y;
+        let dz = a.z - nodeB.z;
+        let dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+
+        if (dist < maxLineDist) {
+          let scaleB = fov / Math.max(nodeB.z, 1);
+          let pxB = (nodeB.x * scaleB) + W / 2;
+          let pyB = (nodeB.y * scaleB) + H / 2;
+
+          let baseAlpha = (1 - dist / maxLineDist) * Math.min(1, 1000 / a.z);
+          let alpha = Math.min(0.24, baseAlpha * 0.22 * Math.min(globalFlash, 1.4));
+          
+          ctx.beginPath();
+          ctx.moveTo(pxA, pyA);
+          ctx.lineTo(pxB, pyB);
+          ctx.strokeStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha})`;
+          ctx.lineWidth = Math.max(0.4, scaleA * 0.3); 
+          ctx.stroke();
+        }
+      }
+
+      // Live laser connection beams to mouse cursor
+      let maxMouseDist = isMobile ? 150 : 250;
+      if (mouse.active) {
+        let dxMouse = pxA - mouse.x;
+        let dyMouse = pyA - mouse.y;
+        let distMouse = Math.sqrt(dxMouse*dxMouse + dyMouse*dyMouse);
+        
+        if (distMouse < maxMouseDist && a.z < 1100) { 
+           let alphaMouse = Math.min(0.4, (1 - distMouse / maxMouseDist) * 0.38 * Math.min(globalFlash, 1.4));
+           ctx.beginPath();
+           ctx.moveTo(pxA, pyA);
+           ctx.lineTo(mouse.x, mouse.y);
+           ctx.strokeStyle = `rgba(180, 255, 150, ${alphaMouse})`;
+           ctx.lineWidth = Math.max(0.5, scaleA * 0.6); 
+           ctx.stroke();
+        }
+      }
+    }
+
+    // 3. Draw glowing 3D nodes (Netvelopers signature)
+    for (let i = 0; i < nodes.length; i++) {
+      let n = nodes[i];
+      let scale = fov / Math.max(n.z, 1);
+      let px = (n.x * scale) + W / 2;
+      let py = (n.y * scale) + H / 2;
+
+      if (px < -60 || px > W + 60 || py < -60 || py > H + 60) continue; // CONTINUE! Never return!
+
+      let radius = Math.max(1.3, 2.0 * scale); 
+      let alpha = Math.min(0.38, (900 / n.z) * 0.38 * Math.min(globalFlash, 1.4));
+
+      // Outer luminous halo
+      ctx.beginPath();
+      ctx.arc(px, py, radius * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha * 0.18})`;
+      ctx.fill();
+
+      // Sharp glowing node core
+      ctx.beginPath();
+      ctx.arc(px, py, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha})`;
+      ctx.fill();
+    }
+  }
+
+  window.addEventListener('resize', () => { resize(); init(); }, { passive: true });
+  resize();
+  init();
+  loop();
+})();
+
+// 2. ULTRA-SMOOTH GPU-ACCELERATED CURSOR (ZERO LAG)
+// ========================================================
+(function() {
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (!dot || !ring || window.innerWidth <= 992) return;
+
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    // Immediate dot placement via GPU transform
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+  }, { passive: true });
+
+  function renderCursor() {
+    // Smooth lerp for trailing ring
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+    requestAnimationFrame(renderCursor);
+  }
+  renderCursor();
+
+  // Hover states using event delegation (Zero setup lag)
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest('a, button, .chip-btn, .spotlight-card, label, input, .cert-media')) {
+      ring.classList.add('active');
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest('a, button, .chip-btn, .spotlight-card, label, input, .cert-media')) {
+      ring.classList.remove('active');
+    }
+  }, { passive: true });
+})();
+
+// ========================================================
+// 3. EVENT-DELEGATED CARD SPOTLIGHT (ZERO FORCED REFLOWS)
+// ========================================================
+(function() {
+  let activeCard = null;
+
+  document.addEventListener('mousemove', (e) => {
+    const card = e.target.closest('.spotlight-card');
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+    }
+  }, { passive: true });
+})();
+
+// ========================================================
+// 4. LIGHTWEIGHT SCROLL REVEAL OBSERVER
+// ========================================================
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+
+// ========================================================
+// 5. ANIMATED NUMBERS COUNTER
+// ========================================================
+(function() {
+  const counterSection = document.getElementById('stats-counter');
+  if (!counterSection) return;
+
+  let triggered = false;
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !triggered) {
+      triggered = true;
+      document.querySelectorAll('.count').forEach(el => {
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        if (!target) return;
+        const duration = 1400;
+        const start = target > 200 ? target - 35 : 0;
+        const startTime = performance.now();
+
+        function updateCount(currTime) {
+          const elapsed = currTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(start + (target - start) * ease);
+          el.textContent = current;
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            el.textContent = target;
+          }
+        }
+        requestAnimationFrame(updateCount);
+      });
+      observer.unobserve(counterSection);
+    }
+  }, { threshold: 0.15 });
+
+  observer.observe(counterSection);
+})();
+
+// ========================================================
+// 6. INTERACTIVE LIVE AGENT CONSOLE SCENARIOS
+// ========================================================
+(function() {
+  const consoleBody = document.getElementById('console-body');
+  const tabs = document.querySelectorAll('.console-tab');
+  if (!consoleBody || !tabs.length) return;
+
+  const scenarios = [
+    // Scenario 0: Shiksha ERP Fees & WhatsApp
+    `<span class="c-dim">$</span> agent run <span class="c-acc">"ship ERP fee reminders"</span>
+<span class="c-dim">›</span> <span class="c-key">plan</span>      read spec, split into 4 tasks
+<span class="c-dim">›</span> <span class="c-key">code</span>      reminders.ts · whatsapp_local.ts
+<span class="c-dim">›</span> <span class="c-key">rules</span>     BEFORE_DUE · DUE · OVERDUE_DAILY
+<span class="c-dim">›</span> <span class="c-key">verify</span>    HMAC-SHA256 on Razorpay callback
+<span class="c-dim">›</span> <span class="c-key">test</span>      reminders.test.ts  <span class="c-ok">✓ passed</span>
+<span class="c-dim">›</span> <span class="c-key">review</span>    PR opened for team review
+<span class="c-ok">✓ done</span> <span class="c-dim">— human review next, then deploy</span>
+<span class="c-dim">$</span> <span class="cursor"></span>`,
+
+    // Scenario 1: VisionAI CCTV & FAISS
+    `<span class="c-dim">$</span> agent run <span class="c-acc">"deploy VisionAI face index"</span>
+<span class="c-dim">›</span> <span class="c-key">detect</span>    SCRFD-10G face localisation <span class="c-ok">✓ 99.4%</span>
+<span class="c-dim">›</span> <span class="c-key">embed</span>     ArcFace R50 512-d embeddings
+<span class="c-dim">›</span> <span class="c-key">index</span>     FAISS IndexFlatIP + cosine similarity
+<span class="c-dim">›</span> <span class="c-key">stream</span>    RTSP/IP over WebSocket live feed
+<span class="c-dim">›</span> <span class="c-key">bench</span>     14.2ms latency per face  <span class="c-ok">✓ verified</span>
+<span class="c-ok">✓ active</span> <span class="c-dim">— camera streams connected to dashboard</span>
+<span class="c-dim">$</span> <span class="cursor"></span>`,
+
+    // Scenario 2: Zapier MCP Agent
+    `<span class="c-dim">$</span> agent run <span class="c-acc">"orchestrate Zapier MCP loop"</span>
+<span class="c-dim">›</span> <span class="c-key">protocol</span>  Model Context Protocol initialized
+<span class="c-dim">›</span> <span class="c-key">tools</span>     7,000+ app connectors exposed via RBAC
+<span class="c-dim">›</span> <span class="c-key">policy</span>    credential safety &amp; enterprise audit log
+<span class="c-dim">›</span> <span class="c-key">invoke</span>    CRM sync &amp; multi-branch decision logic
+<span class="c-dim">›</span> <span class="c-key">telemetry</span> SRE auto-retry active  <span class="c-ok">✓ compliant</span>
+<span class="c-ok">✓ success</span> <span class="c-dim">— enterprise automation pipeline running</span>
+<span class="c-dim">$</span> <span class="cursor"></span>`,
+
+    // Scenario 3: German Gov TYPO3
+    `<span class="c-dim">$</span> agent run <span class="c-acc">"verify TYPO3 v14 LTS upgrade"</span>
+<span class="c-dim">›</span> <span class="c-key">target</span>    German public-sector portal
+<span class="c-dim">›</span> <span class="c-key">runtime</span>   PHP 8.3 · TCA schema migration
+<span class="c-dim">›</span> <span class="c-key">fluid</span>     Fluid template rendering &amp; i18n
+<span class="c-dim">›</span> <span class="c-key">parity</span>    100% visual parity check  <span class="c-ok">✓ passed</span>
+<span class="c-dim">›</span> <span class="c-key">speed</span>     PageSpeed mobile: 98, desktop: 100
+<span class="c-ok">✓ shipped</span> <span class="c-dim">— signed off with client approval</span>
+<span class="c-dim">$</span> <span class="cursor"></span>`
+  ];
+
+  let currentTab = 0;
+  let autoTimer = null;
+
+  function switchTab(idx) {
+    currentTab = idx;
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle('active', i === idx);
+    });
+    consoleBody.innerHTML = scenarios[idx];
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      clearInterval(autoTimer);
+      switchTab(i);
+      startAuto();
+    });
+  });
+
+  function startAuto() {
+    autoTimer = setInterval(() => {
+      currentTab = (currentTab + 1) % scenarios.length;
+      switchTab(currentTab);
+    }, 7500);
+  }
+  startAuto();
+})();
+
+// ========================================================
+// 7. CLIPBOARD COPY TOAST
+// ========================================================
+(function() {
+  function done(btn, msg) {
+    const out = btn.closest('.contact') ? document.getElementById('copied-foot') : document.getElementById('copied-hero');
+    if (out) {
+      out.innerHTML = `<span>&#10003;</span> ${msg}`;
+      clearTimeout(out._t);
+      out._t = setTimeout(() => { out.textContent = ''; }, 2200);
+    }
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const v = btn.getAttribute('data-copy');
+      try {
+        navigator.clipboard.writeText(v).then(
+          () => done(btn, 'Copied: ' + v),
+          () => done(btn, 'Select and copy: ' + v)
+        );
+      } catch(e) {
+        done(btn, 'Select and copy: ' + v);
+      }
     });
   });
 })();
 
-// Certifications preview modal (No dates shown)
-(function(){
-  var modal = document.getElementById('cert-modal');
-  if(!modal) return;
-  var closeBtn = document.getElementById('modal-close');
-  var closeFootBtn = document.getElementById('modal-close-btn');
-  var mImg = document.getElementById('modal-img');
-  var mTitle = document.getElementById('modal-title');
-  var mIssuer = document.getElementById('modal-issuer');
-  var mRecipient = document.getElementById('modal-recipient');
-  var mId = document.getElementById('modal-id');
-  var mDesc = document.getElementById('modal-desc');
-  var mTags = document.getElementById('modal-tags');
+// ========================================================
+// 8. CERTIFICATION PREVIEW MODAL
+// ========================================================
+(function() {
+  const modal = document.getElementById('cert-modal');
+  if (!modal) return;
+  const closeBtn = document.getElementById('modal-close');
+  const closeFootBtn = document.getElementById('modal-close-btn');
+  const mImg = document.getElementById('modal-img');
+  const mTitle = document.getElementById('modal-title');
+  const mIssuer = document.getElementById('modal-issuer');
+  const mRecipient = document.getElementById('modal-recipient');
+  const mId = document.getElementById('modal-id');
+  const mDesc = document.getElementById('modal-desc');
+  const mTags = document.getElementById('modal-tags');
 
-  function openModal(card){
+  function openModal(card) {
     mTitle.textContent = card.dataset.title;
     mIssuer.textContent = card.dataset.issuer;
-    mIssuer.className = 'cert-issuer ' + (card.dataset.issuerClass || '');
     mRecipient.textContent = card.dataset.recipient;
     mId.textContent = card.dataset.credId;
     mDesc.textContent = card.dataset.desc;
     mImg.src = card.dataset.png || card.dataset.img;
     mImg.alt = card.dataset.title + ' credential badge';
-    
+
     mTags.innerHTML = '';
-    if(card.dataset.skills){
-      card.dataset.skills.split(',').forEach(function(s){
-        var span = document.createElement('span');
+    if (card.dataset.skills) {
+      card.dataset.skills.split(',').forEach(s => {
+        const span = document.createElement('span');
         span.textContent = s.trim();
         mTags.appendChild(span);
       });
@@ -1018,39 +2994,38 @@ footer{padding-block:0 40px;color:var(--muted);font-size:13px;font-family:var(--
     document.body.style.overflow = 'hidden';
   }
 
-  function closeModal(){
+  function closeModal() {
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('[data-open-cert]').forEach(function(el){
-    el.addEventListener('click', function(e){
+  document.querySelectorAll('[data-open-cert]').forEach(el => {
+    el.addEventListener('click', (e) => {
       e.preventDefault();
-      var card = el.closest('.cert-card');
-      if(card) openModal(card);
+      const card = el.closest('.cert-card');
+      if (card) openModal(card);
     });
-    if(el.classList.contains('cert-media')){
-      el.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
+    if (el.classList.contains('cert-media')) {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          var card = el.closest('.cert-card');
-          if(card) openModal(card);
+          const card = el.closest('.cert-card');
+          if (card) openModal(card);
         }
       });
     }
   });
 
-  if(closeBtn) closeBtn.addEventListener('click', closeModal);
-  if(closeFootBtn) closeFootBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', function(e){
-    if(e.target === modal) closeModal();
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (closeFootBtn) closeFootBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
   });
-  window.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 })();
-
 </script>
 
 </body>
