@@ -312,6 +312,11 @@ nav ul a:hover {
     white-space: nowrap;
     padding-bottom: 2px;
     mask-image: linear-gradient(90deg, #000 85%, transparent);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  nav ul::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -2457,11 +2462,11 @@ footer a:hover { color: var(--accent); }
      ======================================================== -->
 <script>
 // ========================================================
-// 1. EXACT NETVELOPERS 3D GATHER & BLAST NODE CANVAS (AUTHENTIC NETVELOPERS.COM/EN/)
+// 1. EXACT NETVELOPERS 3D GATHER & BLAST NODE CANVAS (DESKTOP + MOBILE HIGH-PERFORMANCE)
 //    - 3D glowing node constellation field with vortex Gather & explosive Blast
 //    - Netvelopers exact saturated lime green: rgb(57, 255, 20)
-//    - Dynamic 3D laser connections between nodes & live laser beams connecting to mouse cursor
-//    - Blinking energy surges & high-performance 60-120 FPS
+//    - Tailored for mobile devices: high node density, visible glow, calibrated boundaries, and touch tracking
+//    - Recycles Gather & Blast every 3 seconds seamlessly
 (function() {
   const canvas = document.getElementById('spiral-canvas');
   if (!canvas) return;
@@ -2470,13 +2475,12 @@ footer a:hover { color: var(--accent); }
   let W = window.innerWidth;
   let H = window.innerHeight;
   let nodes = [];
-  let N = window.innerWidth <= 992 ? 50 : 160;
+  let N = window.innerWidth <= 992 ? 85 : 160;
   
   // Animation state (Gather & Blast: Immediate on load & repeats every 3 seconds)
   const GATHER_FRAMES = 48; // ~0.8s rapid spiral vortex gather
   const CYCLE_FRAMES = 180; // Exactly 3.0 seconds full cycle
   let introTimer = 0; // Starts gathering & blasting immediately on page load
-  const CENTER = { x: 0, y: 150, z: 1000 }; 
   
   // Blinking / Energy Surge state
   let isBlinking = false;
@@ -2487,7 +2491,7 @@ footer a:hover { color: var(--accent); }
   // Netvelopers signature electric lime green RGB constants (never shadowed)
   const CR = 57, CG = 255, CB = 20;
 
-  // Mouse tracking
+  // Mouse & Touch tracking
   let mouse = { x: -1000, y: -1000, active: false };
 
   window.addEventListener('mousemove', e => {
@@ -2498,6 +2502,34 @@ footer a:hover { color: var(--accent); }
 
   window.addEventListener('mouseout', () => { 
     mouse.active = false; 
+  }, { passive: true });
+
+  // Touch support for mobile devices
+  window.addEventListener('touchstart', e => {
+    if (e.touches && e.touches[0]) {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+      mouse.active = true;
+      globalFlash = 1.4;
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        n.bx = (Math.random() - 0.5) * 22;
+        n.by = (Math.random() - 0.5) * 22;
+        n.bz = (Math.random() - 0.5) * 22;
+      }
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchmove', e => {
+    if (e.touches && e.touches[0]) {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+      mouse.active = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    setTimeout(() => { mouse.active = false; }, 800);
   }, { passive: true });
 
   // On click: trigger instant energy shockwave
@@ -2514,7 +2546,7 @@ footer a:hover { color: var(--accent); }
   function resize() {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
-    N = window.innerWidth <= 992 ? 50 : 160;
+    N = window.innerWidth <= 992 ? 85 : 160;
   }
 
   function init() {
@@ -2527,18 +2559,18 @@ footer a:hover { color: var(--accent); }
     
     for (let i = 0; i < N; i++) {
       if (isMobile) {
-        let zVal = Math.random() * 800 + 200;
+        let zVal = Math.random() * 750 + 200;
         let scale = fov / zVal;
-        let screenX = (Math.random() - 0.5) * W;
-        let screenY = (Math.random() - 0.5) * H;
+        let screenX = (Math.random() - 0.5) * W * 1.35;
+        let screenY = (Math.random() - 0.5) * H * 1.35;
         
         nodes.push({
           x: screenX / scale,
           y: screenY / scale,
           z: zVal,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          vz: (Math.random() - 0.5) * 0.5,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          vz: (Math.random() - 0.5) * 0.6,
           bx: 0, by: 0, bz: 0
         });
       } else {
@@ -2569,9 +2601,12 @@ footer a:hover { color: var(--accent); }
       introTimer = 0;
     }
 
-    // Energy Surge Blinks (Netvelopers signature)
-    if (introTimer > GATHER_FRAMES + 80) {
-      if (!isBlinking && Math.random() < 0.0035) {
+    const isMobile = window.innerWidth <= 992;
+    const CENTER = { x: 0, y: isMobile ? -30 : 150, z: isMobile ? 650 : 1000 };
+
+    // Energy Surge Blinks
+    if (introTimer > GATHER_FRAMES + 40) {
+      if (!isBlinking && Math.random() < 0.012) {
         isBlinking = true;
         blinksRemaining = Math.random() > 0.5 ? 2 : 3;
         blinkPhase = 0;
@@ -2579,7 +2614,7 @@ footer a:hover { color: var(--accent); }
       
       if (isBlinking) {
         blinkPhase += 0.25;
-        globalFlash = 1.0 + Math.sin(blinkPhase) * 1.6; 
+        globalFlash = 1.0 + Math.sin(blinkPhase) * 1.4; 
         
         if (blinkPhase >= Math.PI) {
           blinkPhase = 0;
@@ -2618,7 +2653,7 @@ footer a:hover { color: var(--accent); }
         let dy = (Math.random() - 0.5) * 2;
         let dz = (Math.random() - 0.5) * 2;
         let len = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1;
-        let force = Math.random() * 34 + 18; 
+        let force = isMobile ? (Math.random() * 26 + 14) : (Math.random() * 34 + 18); 
         
         n.bx = (dx / len) * force;
         n.by = (dy / len) * force;
@@ -2638,20 +2673,23 @@ footer a:hover { color: var(--accent); }
         n.y += n.vy;
         n.z += n.vz;
 
-        if (n.z < 10) n.z = 2100;
-        if (n.z > 2100) n.z = 10;
-        if (n.x < -1600) n.x = 1600;
-        if (n.x > 1600) n.x = -1600;
-        if (n.y < -1200) n.y = 1200;
-        if (n.y > 1200) n.y = -1200;
+        let boundX = isMobile ? 550 : 1600;
+        let boundY = isMobile ? 950 : 1200;
+        let boundZ = isMobile ? 1200 : 2100;
+
+        if (n.z < 10) n.z = boundZ;
+        if (n.z > boundZ) n.z = 10;
+        if (n.x < -boundX) n.x = boundX;
+        if (n.x > boundX) n.x = -boundX;
+        if (n.y < -boundY) n.y = boundY;
+        if (n.y > boundY) n.y = -boundY;
       }
     }
 
     nodes.sort((a, b) => b.z - a.z);
 
     const fov = W * 0.8;
-    const isMobile = window.innerWidth <= 992;
-    const maxLineDist = isMobile ? 180 : 360;
+    const maxLineDist = isMobile ? 240 : 360;
 
     // 2. Draw 3D connecting laser lines
     for (let i = 0; i < nodes.length; i++) {
@@ -2660,7 +2698,7 @@ footer a:hover { color: var(--accent); }
       let pxA = (a.x * scaleA) + W / 2;
       let pyA = (a.y * scaleA) + H / 2;
 
-      if (pxA < -200 || pxA > W + 200 || pyA < -200 || pyA > H + 200) continue;
+      if (pxA < -120 || pxA > W + 120 || pyA < -120 || pyA > H + 120) continue;
 
       for (let j = i + 1; j < Math.min(nodes.length, i + 22); j++) {
         let nodeB = nodes[j];
@@ -2675,31 +2713,35 @@ footer a:hover { color: var(--accent); }
           let pyB = (nodeB.y * scaleB) + H / 2;
 
           let baseAlpha = (1 - dist / maxLineDist) * Math.min(1, 1000 / a.z);
-          let alpha = Math.min(0.24, baseAlpha * 0.22 * Math.min(globalFlash, 1.4));
+          let alpha = isMobile
+            ? Math.min(0.35, baseAlpha * 0.32 * Math.min(globalFlash, 1.4))
+            : Math.min(0.24, baseAlpha * 0.22 * Math.min(globalFlash, 1.4));
           
           ctx.beginPath();
           ctx.moveTo(pxA, pyA);
           ctx.lineTo(pxB, pyB);
           ctx.strokeStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha})`;
-          ctx.lineWidth = Math.max(0.4, scaleA * 0.3); 
+          ctx.lineWidth = isMobile ? Math.max(0.6, scaleA * 0.45) : Math.max(0.4, scaleA * 0.3); 
           ctx.stroke();
         }
       }
 
-      // Live laser connection beams to mouse cursor
-      let maxMouseDist = isMobile ? 150 : 250;
+      // Live laser connection beams to mouse / touch position
+      let maxMouseDist = isMobile ? 180 : 250;
       if (mouse.active) {
         let dxMouse = pxA - mouse.x;
         let dyMouse = pyA - mouse.y;
         let distMouse = Math.sqrt(dxMouse*dxMouse + dyMouse*dyMouse);
         
-        if (distMouse < maxMouseDist && a.z < 1100) { 
-           let alphaMouse = Math.min(0.4, (1 - distMouse / maxMouseDist) * 0.38 * Math.min(globalFlash, 1.4));
+        if (distMouse < maxMouseDist && a.z < 1200) { 
+           let alphaMouse = isMobile
+             ? Math.min(0.5, (1 - distMouse / maxMouseDist) * 0.48 * Math.min(globalFlash, 1.4))
+             : Math.min(0.4, (1 - distMouse / maxMouseDist) * 0.38 * Math.min(globalFlash, 1.4));
            ctx.beginPath();
            ctx.moveTo(pxA, pyA);
            ctx.lineTo(mouse.x, mouse.y);
            ctx.strokeStyle = `rgba(180, 255, 150, ${alphaMouse})`;
-           ctx.lineWidth = Math.max(0.5, scaleA * 0.6); 
+           ctx.lineWidth = Math.max(0.6, scaleA * 0.7); 
            ctx.stroke();
         }
       }
@@ -2712,15 +2754,17 @@ footer a:hover { color: var(--accent); }
       let px = (n.x * scale) + W / 2;
       let py = (n.y * scale) + H / 2;
 
-      if (px < -60 || px > W + 60 || py < -60 || py > H + 60) continue; // CONTINUE! Never return!
+      if (px < -60 || px > W + 60 || py < -60 || py > H + 60) continue;
 
-      let radius = Math.max(1.3, 2.0 * scale); 
-      let alpha = Math.min(0.38, (900 / n.z) * 0.38 * Math.min(globalFlash, 1.4));
+      let radius = isMobile ? Math.max(2.4, 3.4 * scale) : Math.max(1.3, 2.0 * scale); 
+      let alpha = isMobile
+        ? Math.min(0.55, (750 / n.z) * 0.55 * Math.min(globalFlash, 1.4))
+        : Math.min(0.38, (900 / n.z) * 0.38 * Math.min(globalFlash, 1.4));
 
       // Outer luminous halo
       ctx.beginPath();
-      ctx.arc(px, py, radius * 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha * 0.18})`;
+      ctx.arc(px, py, radius * 2.4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha * (isMobile ? 0.26 : 0.18)})`;
       ctx.fill();
 
       // Sharp glowing node core
