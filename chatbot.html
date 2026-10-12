@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dhruvi Jetani — AI Conversational Assistant</title>
+<meta name="description" content="Interactive AI Assistant for Dhruvi Jetani — Software Engineer, AI Engineer & Team Leader. Explore enterprise ERPs, computer vision, PyTorch LLMs, and cloud systems.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* ========================================================
+    HIGH-PERFORMANCE UNIFIED GREEN DARK THEME (PORTFOLIO MATCH)
+   ======================================================== */
+:root {
+  --bg: #08090d;
+  --bg-2: #0e1017;
+  --surface: #12141c;
+  --surface-2: #161924;
+  --surface-3: #1c2130;
+  --line: #1c2130;
+  --line-2: #272e42;
+  --line-glow: rgba(114, 207, 109, 0.35);
+
+  --fg: #ffffff;
+  --fg-2: #a5b4cb;
+  --fg-3: #64748b;
+  --fg-muted: #475569;
+
+  /* Unified Electric Green Palette */
+  --accent: #72cf6d;
+  --accent-bright: #39ff14;
+  --accent-soft: rgba(114, 207, 109, 0.12);
+  --accent-border: rgba(114, 207, 109, 0.3);
+  --accent-glow: rgba(114, 207, 109, 0.25);
+
+  --user-bg: #152219;
+  --user-border: rgba(114, 207, 109, 0.35);
+  --bot-bg: #12141c;
+  --bot-border: #1c2130;
+
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --f-display: 'Bricolage Grotesque', var(--sans);
+  --f-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ========================================================
+   LIGHTWEIGHT BACKGROUND PARTICLES CANVAS
+   ======================================================== */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ========================================================
+   CURSOR
+   ======================================================== */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999999;
+  transform: translate3d(-50%, -50%, 0);
+  box-shadow: 0 0 10px var(--accent-bright);
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(114, 207, 109, 0.55);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999998;
+  transform: translate3d(-50%, -50%, 0);
+  box-shadow: 0 0 14px rgba(114, 207, 109, 0.2);
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+
+@media (max-width: 992px) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+/* ========================================================
+   APP CONTAINER & LAYOUT
+   ======================================================== */
+.app-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: 100dvh;
+  max-width: 1080px;
+  margin: 0 auto;
+  border-inline: 1px solid var(--line);
+  background: rgba(8, 9, 13, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+}
+
+/* ========================================================
+   HEADER
+   ======================================================== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  background: rgba(18, 20, 28, 0.95);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1c2130, #12141c);
+  border: 1.5px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+  flex-shrink: 0;
+}
+
+.status-badge {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 8px var(--accent-bright);
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.header-title-wrap h1 {
+  font-family: var(--f-display);
+  font-size: 17.5px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-title-wrap h1 .brand-dot {
+  color: var(--accent);
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--fg-2);
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-family: var(--f-mono);
+  font-weight: 500;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--fg-2);
+  background: var(--surface-2);
+  border: 1px solid var(--line-2);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.nav-link-btn.btn-reset {
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: var(--fg-3);
+  padding: 6px 8px;
+}
+
+.nav-link-btn.btn-reset:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+/* ========================================================
+   CHAT AREA
+   ======================================================== */
+#chat-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  scroll-behavior: smooth;
+}
+
+#chat-history::-webkit-scrollbar {
+  width: 5px;
+}
+
+#chat-history::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+  border-radius: 4px;
+}
+
+#chat-history::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-border);
+}
+
+/* Message Wrappers */
+.msg-row {
+  display: flex;
+  gap: 12px;
+  max-width: 86%;
+  animation: slideFadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msg-row.bot {
+  align-self: flex-start;
+}
+
+.msg-row.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.bot-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.msg-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.msg-bubble {
+  padding: 13px 18px;
+  border-radius: 14px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--fg);
+  word-break: break-word;
+}
+
+.msg-row.bot .msg-bubble {
+  background: var(--bot-bg);
+  border: 1px solid var(--bot-border);
+  border-left: 2.5px solid var(--accent);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.msg-row.user .msg-bubble {
+  background: var(--user-bg);
+  border: 1px solid var(--user-border);
+  color: #e6ffed;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 18px rgba(114, 207, 109, 0.12);
+}
+
+.msg-title {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 15.5px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.msg-bubble p {
+  margin-bottom: 8px;
+}
+
+.msg-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.msg-bubble strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.msg-bubble a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.msg-bubble a:hover {
+  color: var(--accent-bright);
+}
+
+.msg-bubble code {
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #d1fae5;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.msg-bubble ul {
+  margin-left: 0;
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.msg-bubble li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 5px;
+}
+
+.msg-bubble li::before {
+  content: '◆';
+  position: absolute;
+  left: 2px;
+  top: 1px;
+  font-size: 8px;
+  color: var(--accent);
+}
+
+/* Message Action Chips */
+.msg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-2);
+  color: var(--fg-2);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.chip-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Welcome Banner */
+.welcome-card {
+  background: linear-gradient(145deg, rgba(18, 20, 28, 0.95), rgba(22, 25, 36, 0.85));
+  border: 1px solid var(--accent-border);
+  box-shadow: 0 0 35px rgba(114, 207, 109, 0.12);
+  border-radius: 16px;
+  padding: 22px;
+  max-width: 650px;
+}
+
+.welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11.5px;
+  font-family: var(--f-mono);
+  margin-bottom: 12px;
+  border: 1px solid var(--accent-border);
+}
+
+.welcome-title {
+  font-family: var(--f-display);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, #ffffff 40%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-desc {
+  font-size: 14px;
+  color: var(--fg-2);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+.welcome-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.pill-tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  background: var(--surface-3);
+  color: #c7d2fe;
+  border: 1px solid var(--line-2);
+}
+
+/* Typing Indicator */
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+}
+
+.typing-dots span {
+  width: 6.5px;
+  height: 6.5px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: typingBounce 1.2s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ========================================================
+   SUGGESTIONS TRAY
+   ======================================================== */
+.suggestions-tray {
+  padding: 10px 18px;
+  border-top: 1px solid var(--line);
+  background: rgba(18, 20, 28, 0.95);
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+.suggestions-tray::-webkit-scrollbar {
+  height: 3px;
+}
+
+.suggestions-tray::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+}
+
+.sugg-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-2);
+  border-radius: 20px;
+  font-size: 12.5px;
+  color: var(--fg-2);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.sugg-pill:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ========================================================
+   INPUT BAR
+   ======================================================== */
+.input-area {
+  padding: 14px 18px;
+  background: rgba(14, 16, 23, 0.95);
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.input-field-wrap {
+  position: relative;
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  padding: 4px 14px;
+}
+
+.input-field-wrap:focus-within {
+  border-color: var(--accent-border);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+#userInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.5;
+  resize: none;
+  max-height: 120px;
+  min-height: 38px;
+  padding: 8px 0;
+}
+
+#userInput::placeholder {
+  color: var(--fg-3);
+}
+
+.send-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #2da125);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #08090d;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.send-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 24px var(--accent-bright);
+}
+
+.send-btn:active {
+  transform: scale(0.96);
+}
+
+.send-btn svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+/* ========================================================
+   MOBILE RESPONSIVENESS
+   ======================================================== */
+@media (max-width: 768px) {
+  header {
+    padding: 10px 14px;
+  }
+  .header-links .link-text {
+    display: none;
+  }
+  .header-title-wrap h1 {
+    font-size: 15.5px;
+  }
+  .msg-row {
+    max-width: 95%;
+  }
+  #chat-history {
+    padding: 14px 12px;
+    gap: 14px;
+  }
+  .welcome-card {
+    padding: 16px;
+  }
+  .welcome-title {
+    font-size: 18px;
+  }
+  .sugg-pill {
+    font-size: 11.5px;
+    padding: 5px 10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Particle Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Custom Cursor Elements -->
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+<!-- Chatbot App Shell -->
+<div class="app-container">
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <div class="avatar">
+        DJ
+        <div class="status-badge" title="Online & Ready"></div>
+      </div>
+      <div class="header-title-wrap">
+        <h1>Dhruvi Jetani <span class="brand-dot">•</span> AI Assistant</h1>
+        <div class="header-meta">
+          <span class="badge-tag">⚡ Software & AI Engineer</span>
+          <span class="badge-tag">🏆 Team Leader</span>
+          <span class="badge-tag" style="background: rgba(57, 255, 20, 0.12); color: var(--accent-bright);">◆ Multispecialist</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-links">
+      <a class="nav-link-btn" href="https://dhruvijetani217.github.io/portfolio/" target="_blank" rel="noopener" title="Main Portfolio">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="link-text">Portfolio</span>
+      </a>
+      <a class="nav-link-btn" href="https://dhruvijetani217.github.io/projects/" target="_blank" rel="noopener" title="Projects Showcase">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <span class="link-text">Projects</span>
+      </a>
+      <a class="nav-link-btn" href="https://github.com/dhruvijetani217" target="_blank" rel="noopener" title="GitHub">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span class="link-text">GitHub</span>
+      </a>
+      <button class="nav-link-btn btn-reset" onclick="resetChat()" title="Clear Chat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Chat History -->
+  <div id="chat-history">
+
+    <!-- Welcome Message -->
+    <div class="msg-row bot">
+      <div class="bot-avatar">DJ</div>
+      <div class="msg-body">
+        <div class="welcome-card">
+          <div class="welcome-badge">⚡ AI Assistant v2.5 Online</div>
+          <h2 class="welcome-title">Hi, I'm Dhruvi Jetani's AI Assistant</h2>
+          <p class="welcome-desc">
+            I can answer anything about Dhruvi's engineering background, enterprise school ERPs, custom PyTorch models, computer vision pipelines, full-stack systems, international German public-sector work, and how to hire or get in touch.
+          </p>
+          <div class="welcome-tags">
+            <span class="pill-tag">☁️ CloudVault SaaS</span>
+            <span class="pill-tag">💬 D Chat (88+ features)</span>
+            <span class="pill-tag">🧠 Mini Coder LLM</span>
+            <span class="pill-tag">👁️ VisionAI Biometrics</span>
+            <span class="pill-tag">🏫 School ERPs</span>
+            <span class="pill-tag">🤖 Autonomous RAG Agents</span>
+          </div>
+        </div>
+
+        <div class="msg-chips">
+          <button class="chip-btn" onclick="sendQuick('All Featured Projects')">⭐ All Featured Projects</button>
+          <button class="chip-btn" onclick="sendQuick('Core Skills & Tech Stack')">⚡ Core Skills & Tech</button>
+          <button class="chip-btn" onclick="sendQuick('Work Experience')">🏆 Work Experience</button>
+          <button class="chip-btn" onclick="sendQuick('School ERP Systems')">🏫 School ERP Systems</button>
+          <button class="chip-btn" onclick="sendQuick('Connect & Get In Touch')">📬 Contact & Hire</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Dynamic Suggestions Tray -->
+  <div class="suggestions-tray">
+    <div class="sugg-pill" onclick="sendQuick('All Featured Projects')">⭐ All Featured Projects</div>
+    <div class="sugg-pill" onclick="sendQuick('CloudVault Cloud Storage SaaS')">☁️ CloudVault SaaS</div>
+    <div class="sugg-pill" onclick="sendQuick('D Chat Messaging Platform')">💬 D Chat (88+ Features)</div>
+    <div class="sugg-pill" onclick="sendQuick('Mini Coder Transformer LLM')">🧠 Mini Coder LLM</div>
+    <div class="sugg-pill" onclick="sendQuick('VisionAI Biometric CCTV')">👁️ VisionAI CCTV</div>
+    <div class="sugg-pill" onclick="sendQuick('Enterprise School ERP Systems')">🏫 School ERP Systems</div>
+    <div class="sugg-pill" onclick="sendQuick('Autonomous AI Agents & RAG')">🤖 AI Agents & RAG</div>
+    <div class="sugg-pill" onclick="sendQuick('German Government Project')">🇩🇪 German Gov Project</div>
+    <div class="sugg-pill" onclick="sendQuick('Team Leadership & Experience')">🏆 Team Leadership</div>
+    <div class="sugg-pill" onclick="sendQuick('Core Skills & Technical Stack')">⚡ Technical Stack</div>
+    <div class="sugg-pill" onclick="sendQuick('Professional Certifications')">📜 11+ Certifications</div>
+    <div class="sugg-pill" onclick="sendQuick('Why Hire Dhruvi Jetani?')">🚀 Why Hire Dhruvi?</div>
+    <div class="sugg-pill" onclick="sendQuick('Connect & Get In Touch')">📬 Contact & Hire</div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="input-area">
+    <div class="input-field-wrap">
+      <textarea id="userInput" placeholder="Ask anything about Dhruvi's projects, skills, ERP, AI models, experience..." rows="1" onkeydown="handleKey(event)"></textarea>
+    </div>
+    <button class="send-btn" id="sendBtn" onclick="handleSend()" title="Send Message">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+
+</div>
+
+<!-- DATA & LOGIC SCRIPT -->
+<script>
+const QA = [
+  {
+    "keys": [
+      "skill",
+      "tech",
+      "stack",
+      "language",
+      "frontend",
+      "backend",
+      "database",
+      "tools",
+      "framework",
+      "what do you know"
+    ],
+    "title": "\u26a1 Core Skills & Technical Stack",
+    "ans": "Here is my complete technical stack across software & AI engineering:\n\n\u2022 **Core Programming**: Python (FastAPI, Flask, PyTorch, YOLO), JavaScript (ES6+), TypeScript, PHP (Core & OOP), SQL, Bash.\n\u2022 **Frontend & UI**: React.js, Next.js, Bootstrap, Tailwind CSS, Modern CSS3 animations, 3D Canvas effects, Figma-to-code translation.\n\u2022 **Backend Architecture**: Node.js (Express), Python FastAPI/Flask, PHP (cURL REST APIs), TYPO3 CMS (Fluid templating, TCA).\n\u2022 **Databases & Storage**: MySQL (complex queries, indexing), MongoDB, MinIO (S3-compatible object storage), Redis, IndexedDB, LocalStorage.\n\u2022 **AI & Machine Learning**: PyTorch (Transformers), InsightFace, YOLOv8 / ByteTrack, RAG pipelines, ChromaDB/Pinecone/FAISS, Ollama, LangChain, Prompt Engineering.\n\u2022 **API & Security**: RESTful API design, WebSockets / Socket.io real-time streaming, OAuth 2.0, JWT, HMAC-SHA256 signature verification.\n\u2022 **DevOps & Cloud**: Docker containerization, Render.com, GitHub Pages, CI/CD workflows, Git branch strategies.",
+    "chips": [
+      "Featured Projects",
+      "School ERP Systems",
+      "AI Models & Agents",
+      "German Government Project"
+    ]
+  },
+  {
+    "keys": [
+      "cloudvault",
+      "cloud storage",
+      "s3",
+      "minio",
+      "file storage",
+      "drive"
+    ],
+    "title": "\u2601\ufe0f CloudVault \u2014 Enterprise Cloud Storage SaaS",
+    "ans": "**CloudVault** is an enterprise-grade cloud storage platform engineered from scratch!\n\n\u2022 **Tech Stack**: React.js, Node.js, Express.js, MinIO S3 Object Storage, Docker.\n\u2022 **Storage Architecture**: Built with MinIO S3 for high-throughput blob storage, chunked multi-part file uploads, and presigned direct download URLs.\n\u2022 **Security & Sharing**: Password-protected file sharing, expiring links, and granular file access controls.\n\u2022 **Quota Management**: Tiered subscription quotas (Free, Pro, Enterprise) with automated enforcement.\n\u2022 **Deployment**: Fully Dockerized microservices stack ready for cloud clusters.\n\n\ud83d\udd17 **Explore Source Code**: [CloudVault on GitHub](https://github.com/dhruvijetani217/projects/tree/main/cloudvault_sendme)\n\ud83c\udf10 **Directory Showcase**: [View on Projects Directory](https://dhruvijetani217.github.io/projects/)",
+    "chips": [
+      "D Chat Platform",
+      "Mini Coder LLM",
+      "VisionAI CCTV",
+      "All Projects"
+    ]
+  },
+  {
+    "keys": [
+      "dchat",
+      "d chat",
+      "chat app",
+      "messaging",
+      "whatsapp",
+      "slack",
+      "socket.io",
+      "websocket"
+    ],
+    "title": "\ud83d\udcac D Chat \u2014 Enterprise Real-Time Messaging Platform",
+    "ans": "**D Chat** is a high-concurrency real-time collaboration & chat platform featuring 88+ production features!\n\n\u2022 **Tech Stack**: Node.js, Express, Socket.io (WebSockets), React.js, MongoDB.\n\u2022 **Real-Time Engine**: Bidirectional WebSocket channels supporting instant message delivery with sub-50ms latency.\n\u2022 **Key Capabilities**:\n  - 1-on-1 private messaging & multi-user group channels\n  - Live typing indicators & real-time online/offline presence tracking\n  - Message delivery & read receipts (ticks)\n  - Rich media previews, image lightbox, document sharing, audio notes\n  - Role-based admin moderation (pinning, kicking, mute controls)\n\u2022 **Reliability**: Automatic reconnection, message queuing during network drops, and persistent chat history.\n\n\ud83d\udd17 **Explore Source Code**: [D Chat on GitHub](https://github.com/dhruvijetani217/projects/tree/main/dchat_sendme)\n\ud83c\udf10 **Directory Showcase**: [View on Projects Directory](https://dhruvijetani217.github.io/projects/)",
+    "chips": [
+      "CloudVault SaaS",
+      "VisionAI CCTV",
+      "Mini Coder LLM",
+      "School ERP Systems"
+    ]
+  },
+  {
+    "keys": [
+      "mini coder",
+      "coder llm",
+      "transformer",
+      "pytorch",
+      "language model",
+      "custom llm",
+      "train llm"
+    ],
+    "title": "\ud83e\udde0 Mini Coder LLM \u2014 Custom Transformer Language Model",
+    "ans": "**Mini Coder LLM** is a custom autoregressive transformer language model designed and trained from the ground up in PyTorch!\n\n\u2022 **Tech Stack**: Python, PyTorch, NumPy, Hugging Face Tokenizers.\n\u2022 **Architecture Highlights**:\n  - Multi-Head Self-Attention (MHSA) mechanisms\n  - Causal masking for next-token autoregressive generation\n  - Learned positional encodings and layer normalization\n  - Custom Byte-Pair Encoding (BPE) code tokenizer\n\u2022 **What it Does**: Specializes in syntax prediction, code auto-completion, and code generation.\n\u2022 **Purpose**: Demonstrates deep, foundational mastery of AI model internals, loss calculations (Cross-Entropy), and transformer math \u2014 not just consuming high-level APIs!\n\n\ud83d\udd17 **Explore Source Code**: [Mini Coder LLM on GitHub](https://github.com/dhruvijetani217/projects/tree/main/mini_coder_llm_sendme)\n\ud83c\udf10 **Directory Showcase**: [View on Projects Directory](https://dhruvijetani217.github.io/projects/)",
+    "chips": [
+      "VisionAI CCTV",
+      "AI Agents & RAG",
+      "CloudVault SaaS",
+      "Core Tech Stack"
+    ]
+  },
+  {
+    "keys": [
+      "visionai",
+      "vision ai",
+      "cctv",
+      "face recognition",
+      "insightface",
+      "yolo",
+      "bytetrack",
+      "computer vision",
+      "biometric"
+    ],
+    "title": "\ud83d\udc41\ufe0f VisionAI \u2014 Video Intelligence & CCTV Analytics Platform",
+    "ans": "**VisionAI** is an enterprise computer vision platform for real-time CCTV camera streams and biometric surveillance!\n\n\u2022 **Tech Stack**: Python, OpenCV, InsightFace, YOLOv8, ByteTrack, PyTorch, FastAPI.\n\u2022 **Core Capabilities**:\n  - **Biometric Face Enrollment**: Generates 512-dimensional facial vector embeddings via InsightFace for highly accurate facial recognition.\n  - **Multi-Camera Tracking**: Ingests multi-camera RTSP/CCTV video feeds simultaneously with zero frame drops.\n  - **Object & Motion Tracking**: YOLO object detection paired with ByteTrack for seamless cross-frame identity persistence.\n  - **Automated Attendance**: Real-time shift & student attendance logging with spoof detection.\n  - **Security Alerts**: Instant notifications on unrecognized individuals or restricted-zone intrusions.\n\n\ud83d\udd17 **Explore Source Code**: [VisionAI on GitHub](https://github.com/dhruvijetani217/projects/tree/main/visionai_send%20me)\n\ud83c\udf10 **Directory Showcase**: [View on Projects Directory](https://dhruvijetani217.github.io/projects/)",
+    "chips": [
+      "Mini Coder LLM",
+      "School ERP Systems",
+      "Work Experience",
+      "All Projects"
+    ]
+  },
+  {
+    "keys": [
+      "erp",
+      "school erp",
+      "fee",
+      "whatsapp",
+      "razorpay",
+      "school",
+      "student erp"
+    ],
+    "title": "\ud83c\udfeb Enterprise School ERP Engineering",
+    "ans": "I have architected and deployed comprehensive, production-grade **School ERP Systems** end-to-end:\n\n\u2022 **Automated Fee Workflows**: Automated student fee scheduling, invoice generation, due-date calculation, and overdue penalty engines.\n\u2022 **HMAC-SHA256 Razorpay Integration**: Secure online fee payments with cryptographic HMAC-SHA256 callback verification, reconciliation, and automated digital receipts.\n\u2022 **Localized WhatsApp Notifications**: Automated transactional alerts to parents (fee due notices, receipt confirmations, attendance alerts) in Gujarati and English.\n\u2022 **Student & Staff Lifecycle**: Admission portals, dynamic report card generation, biometric CCTV integration, and timetable scheduling.\n\u2022 **High-Performance Architecture**: Normalized relational databases (MySQL) with optimized multi-table joins and indexing for instant query speeds during peak admission cycles.",
+    "chips": [
+      "VisionAI CCTV",
+      "Team Leadership & Experience",
+      "German Government Project",
+      "Core Tech Stack"
+    ]
+  },
+  {
+    "keys": [
+      "experience",
+      "work",
+      "job",
+      "company",
+      "remotedev",
+      "team lead",
+      "leader",
+      "leadership",
+      "role"
+    ],
+    "title": "\ud83c\udfc6 Work Experience \u2014 Team Leader at RemoteDevs Infotech",
+    "ans": "**Team Leader** at **RemoteDevs Infotech** (January 2023 \u2013 Present)\n\n\u2022 **Leadership & Delivery**: Lead engineering squads, conduct strict code reviews, direct sprint planning (Agile/Scrum), and mentor junior developers.\n\u2022 **German Government Project**: Architected enterprise features, security enhancements, and TYPO3 upgrades for German public-sector digital infrastructure.\n\u2022 **Multispecialist Execution**: Drive complete product cycles from initial Figma UX to database schemas, backend microservices, and AI models.\n\u2022 **AI R&D**: Integrate Python AI agents, LLMs, and computer vision systems into internal and client workflows.\n\u2022 **Third-Party Integrations**: Built production integrations with German client APIs (Lexware, Hireflix, TeachnGo, Join.com).\n\u2022 **High Availability**: Built and deployed secure token-authenticated RESTful APIs with 99.9% uptime on cloud platforms.",
+    "chips": [
+      "German Government Project",
+      "School ERP Systems",
+      "Core Tech Stack",
+      "Why Hire Dhruvi"
+    ]
+  },
+  {
+    "keys": [
+      "german",
+      "typo3",
+      "tca",
+      "fluid",
+      "lexware",
+      "hireflix",
+      "teachngo",
+      "join.com",
+      "germany"
+    ],
+    "title": "\ud83c\udde9\ud83c\uddea German Government Project & Production Integrations",
+    "ans": "I have extensive experience shipping software for international clients, including a **German government public-sector platform**:\n\n\u2022 **TYPO3 Enterprise CMS**:\n  - Custom TCA (Table Configuration Array) schema definitions\n  - Fluid templating engine for modular, reusable UI components\n  - Custom extension development & core TYPO3 version migrations\n  - Offline-first caching with IndexedDB & LocalStorage\n\u2022 **Production German Client APIs**:\n  - **Lexware**: Automated one-click invoice generation workflows via REST API\n  - **Hireflix**: Login-based asynchronous video interview recording & dynamic profile candidate sync\n  - **TeachnGo**: Real-time student import and automated course sync\n  - **Join.com**: Automated job posting and candidate pipeline ingestion\n\u2022 **Standards**: Strictly adhere to European GDPR compliance, data privacy, and WCAG accessibility standards.",
+    "chips": [
+      "Work Experience",
+      "Core Tech Stack",
+      "Digital Sign Board",
+      "Accessibility Module"
+    ]
+  },
+  {
+    "keys": [
+      "ai agent",
+      "rag",
+      "langchain",
+      "ollama",
+      "automation",
+      "vector db",
+      "chromadb",
+      "pinecone",
+      "autonomous"
+    ],
+    "title": "\ud83e\udd16 Autonomous AI Agents & RAG Architecture",
+    "ans": "I design and deploy autonomous AI systems and Retrieval-Augmented Generation (RAG) pipelines:\n\n\u2022 **RAG Architecture**: Connects LLMs (OpenAI, Claude, or local Ollama models) with vector databases (ChromaDB, Pinecone, FAISS) for context-grounded document search with zero hallucination.\n\u2022 **Tool-Calling Agents**: Autonomous multi-step agents that parse instructions, interact with external APIs, execute SQL queries, and synthesize results.\n\u2022 **AI News Agent**: Automated morning agent that scrapes AI research feeds, dedupes articles, and delivers a curated top-5 briefing email with motivational insights.\n\u2022 **Smart File Organizer Agent**: Background system daemon that continuously monitors downloads, classifies file mime-types, and auto-sorts files into categorized folders.\n\u2022 **Offline Air-Gapped AI**: Hands-on deployment of local LLMs using Ollama for confidential enterprise data.",
+    "chips": [
+      "Mini Coder LLM",
+      "VisionAI CCTV",
+      "Prompt Engineering",
+      "All Projects"
+    ]
+  },
+  {
+    "keys": [
+      "prompt",
+      "prompt engineering",
+      "chain of thought",
+      "few shot",
+      "zero shot",
+      "system prompt"
+    ],
+    "title": "\ud83d\udcdd Prompt Engineering Mastery",
+    "ans": "Prompt engineering is about architecting precision instructions to guarantee deterministic, reliable AI outputs:\n\n\u2022 **Chain-of-Thought (CoT)**: Guides models through step-by-step reasoning for complex problem solving.\n\u2022 **Few-Shot & Zero-Shot Design**: Calibrated examples ensuring models follow exact domain-specific logic.\n\u2022 **Structured JSON Schemas**: Enforces strict JSON outputs for direct programmatic consumption.\n\u2022 **System Prompt Engineering**: Designing persona, constraints, guardrails, and knowledge bounds (just like the prompt powering this assistant!).\n\u2022 **Prompt Chaining**: Linking outputs from one LLM call into subsequent agents to execute multi-stage workflows.",
+    "chips": [
+      "AI Agents & RAG",
+      "Mini Coder LLM",
+      "Certifications",
+      "Core Tech Stack"
+    ]
+  },
+  {
+    "keys": [
+      "all project",
+      "project list",
+      "show projects",
+      "what projects",
+      "portfolio projects",
+      "work list"
+    ],
+    "title": "\ud83d\udce6 Comprehensive Project Portfolio",
+    "ans": "Here is an overview of my featured production & open-source projects:\n\n1. **CloudVault** \u2014 Enterprise Cloud Storage SaaS (React, Node, MinIO S3, Docker)\n2. **D Chat** \u2014 Real-Time Messaging Platform with 88+ features (Node, Socket.io, React, MongoDB)\n3. **Mini Coder LLM** \u2014 Autoregressive Transformer Code Generation Model (PyTorch, Python)\n4. **VisionAI** \u2014 CCTV Video Intelligence & Biometric Face Attendance (InsightFace, YOLO, OpenCV)\n5. **School ERP Suite** \u2014 Automated fee reminders, WhatsApp notifications & Razorpay callbacks\n6. **Job API Services** \u2014 Public Node.js REST API with token auth deployed on Render\n7. **Digital Sign Board** \u2014 3-type signature module (Text, Draw, Upload) for German contracts\n8. **Scholar Support System** \u2014 College portal in PHP, MySQL, and JavaScript\n9. **Accessibility Features Module** \u2014 Zoom, contrast, dark/light, grayscale WCAG compliance\n10. **React Quiz Application** \u2014 Animated quiz with dynamic API question rendering\n11. **Autonomous AI Agents** \u2014 Daily AI news digest and smart file organizer daemon\n\n\ud83c\udf10 **Explore Live Directory**: [Projects Directory on GitHub Pages](https://dhruvijetani217.github.io/projects/)\n\ud83d\udce6 **Explore GitHub Repository**: [github.com/dhruvijetani217/projects](https://github.com/dhruvijetani217/projects)",
+    "chips": [
+      "CloudVault SaaS",
+      "D Chat Platform",
+      "Mini Coder LLM",
+      "VisionAI CCTV"
+    ]
+  },
+  {
+    "keys": [
+      "job api",
+      "node api",
+      "render api",
+      "dhruvi-api",
+      "token auth"
+    ],
+    "title": "\ud83d\udd0c Job API \u2014 Public RESTful API on Render",
+    "ans": "**Job API** is a token-authenticated public microservice engineered in Node.js and Express:\n\n\u2022 **Live Endpoint**: [https://dhruvi-api.onrender.com/](https://dhruvi-api.onrender.com/)\n\u2022 **Features**:\n  - Strict Bearer token authentication on all endpoints\n  - `GET /dhruvisapi/export?access_token=token` \u2014 Export all job listings in JSON format\n  - `GET /dhruvisapi/job/:id?access_token=token` \u2014 Single job lookup\n  - `POST /dhruvisapi/import?access_token=token` \u2014 Authenticated batch job ingestion\n  - Embedded responsive HTML/CSS console for browser testing\n\u2022 **Deployment**: Deployed on Render.com with automated CI/CD from GitHub.",
+    "chips": [
+      "All Projects",
+      "Core Tech Stack",
+      "Work Experience",
+      "Contact & Hire"
+    ]
+  },
+  {
+    "keys": [
+      "sign",
+      "digital sign",
+      "signature",
+      "sign board",
+      "contract"
+    ],
+    "title": "\u270d\ufe0f Digital Sign Board Module",
+    "ans": "The **Digital Sign Board** module was built for document signing in a live German platform:\n\n\u2022 **3 Signature Modes**:\n  1. **Text Signature**: Typographic signature rendering with customizable cursive fonts.\n  2. **Draw Canvas**: HTML5 smooth vector canvas drawing pad with color and stroke options.\n  3. **Image Signature**: Upload of scanned handwritten signatures with automatic transparency cleanup.\n\u2022 **Capabilities**:\n  - Drag-and-drop signature placement across multi-page PDF documents\n  - Pagination navigation and signature scaling\n  - 1-click export of cryptographically signed PDF documents\n\u2022 Deployed in production for European onboarding workflows.",
+    "chips": [
+      "German Government Project",
+      "School ERP Systems",
+      "All Projects",
+      "Accessibility Module"
+    ]
+  },
+  {
+    "keys": [
+      "scholar",
+      "college",
+      "student",
+      "academic",
+      "attendance",
+      "notice"
+    ],
+    "title": "\ud83c\udf93 Scholar Support System",
+    "ans": "**Scholar Support System** is an institutional academic management system:\n\n\u2022 **Tech Stack**: PHP, MySQL, JavaScript, HTML5/CSS3.\n\u2022 **Capabilities**:\n  - Student self-service portal for syllabus and course materials\n  - Attendance tracking and examination grade reporting\n  - Real-time administrative notice board for announcements\n  - Role-based access control for students, faculty, and administrators\n\u2022 Engineered with optimized relational SQL schemas to guarantee fast page loads.",
+    "chips": [
+      "School ERP Systems",
+      "Core Tech Stack",
+      "All Projects",
+      "Education"
+    ]
+  },
+  {
+    "keys": [
+      "accessibility",
+      "zoom",
+      "dark mode",
+      "grayscale",
+      "wcag",
+      "inclusive"
+    ],
+    "title": "\u267f Accessibility & Inclusive Design Module",
+    "ans": "Built to ensure software is universally usable by all individuals:\n\n\u2022 **Features**:\n  - Dynamic in-page Zoom In / Zoom Out controls without breaking grid layouts\n  - High-contrast Dark Mode & Clean Light Mode toggling\n  - Grayscale desaturation mode for visual sensitivities\n  - Screen reader friendly ARIA labels and keyboard navigation\n\u2022 Tested across multiple browser viewports and deployed in live enterprise software.",
+    "chips": [
+      "German Government Project",
+      "Digital Sign Board",
+      "Core Tech Stack",
+      "All Projects"
+    ]
+  },
+  {
+    "keys": [
+      "certif",
+      "certificate",
+      "credential",
+      "openai cert",
+      "anthropic cert",
+      "zapier"
+    ],
+    "title": "\ud83d\udcdc Professional Certifications",
+    "ans": "I hold **11+ industry certifications** demonstrating verified technical proficiency:\n\n\u2022 **OpenAI**: Advanced Prompt Engineering & GPT Integration\n\u2022 **Anthropic**: Claude Architecture & Constitutional AI Systems\n\u2022 **Zapier**: Model Context Protocol (MCP) & Workflow Automation\n\u2022 **Full Stack & Modern Web**: React State Management, Node.js REST API Security, Modern JavaScript Architecture\n\u2022 **Continuous Learning**: Actively exploring cutting-edge AI breakthroughs every single day!",
+    "chips": [
+      "Prompt Engineering",
+      "AI Models & Agents",
+      "Work Experience",
+      "Education"
+    ]
+  },
+  {
+    "keys": [
+      "education",
+      "degree",
+      "bca",
+      "university",
+      "bhavnagar",
+      "college",
+      "grade"
+    ],
+    "title": "\ud83c\udf93 Education Background",
+    "ans": "**Bachelor of Computer Applications (BCA)**\n\u2022 **Institution**: Maharaja Krishnakumarsinhji Bhavnagar University\n\u2022 **Location**: Bhavnagar, Gujarat, India\n\u2022 **Grade**: **Grade A+** (Class of 2021)\n\nWhile formal academic training gave me strong computer science fundamentals, self-directed research and building production software every day is my greatest strength!",
+    "chips": [
+      "Work Experience",
+      "Certifications",
+      "Core Tech Stack",
+      "Contact & Hire"
+    ]
+  },
+  {
+    "keys": [
+      "multispecialist",
+      "what is multispecialist",
+      "why multispecialist",
+      "fullstack"
+    ],
+    "title": "\ud83d\udc8e What Does 'Multispecialist' Mean?",
+    "ans": "A **Multispecialist** breaks down the silos between disciplines:\n\n\u2022 **Design to Production**: Translates high-fidelity Figma concepts into robust, accessible frontend architectures (React/Next.js).\n\u2022 **Systems & Databases**: Engineers bulletproof backends (Node, Python, PHP), optimizes complex SQL queries, and containerizes services (Docker).\n\u2022 **Applied AI Layer**: Does not just integrate third-party APIs \u2014 builds custom PyTorch transformers, computer vision pipelines (InsightFace/YOLO), and RAG architectures.\n\u2022 **Team Leadership**: Directs developer teams, orchestrates sprints, reviews code, and interfaces directly with international clients.",
+    "chips": [
+      "Why Hire Dhruvi",
+      "Featured Projects",
+      "Work Experience",
+      "Core Tech Stack"
+    ]
+  },
+  {
+    "keys": [
+      "hire",
+      "why hire",
+      "choose",
+      "why you",
+      "value",
+      "stand out",
+      "benefit"
+    ],
+    "title": "\ud83d\ude80 Why Hire Dhruvi Jetani?",
+    "ans": "Here is why hiring me brings unmatched value to your engineering team:\n\n1. **Unrivaled Breadth + Depth**: A true multispecialist who bridges frontend UX, scalable backend microservices, and cutting-edge AI engineering.\n2. **Proven Leadership**: Currently serving as Team Leader, guiding engineers and delivering complex international solutions (including German public-sector work).\n3. **Builder Mindset**: I don't just use tools \u2014 I build them from scratch (from custom PyTorch LLMs to cloud storage SaaS and real-time messaging).\n4. **End-to-End Ownership**: From requirement gathering to architecture, database design, API security, and CI/CD deployment.\n5. **Passion & Velocity**: *\"Driven by curiosity, defined by clean code and smart user experiences.\"*",
+    "chips": [
+      "Work Experience",
+      "Contact & Hire",
+      "All Projects",
+      "Core Tech Stack"
+    ]
+  },
+  {
+    "keys": [
+      "contact",
+      "email",
+      "phone",
+      "hire",
+      "call",
+      "reach",
+      "message",
+      "touch",
+      "connect"
+    ],
+    "title": "\ud83d\udcec Connect & Get In Touch",
+    "ans": "I'd love to discuss engineering roles, AI consulting, or enterprise architecture!\n\n\u2022 \ud83d\udce7 **Email**: [dhruvijetani.dev@gmail.com](mailto:dhruvijetani.dev@gmail.com)\n\u2022 \ud83d\udcde **Phone / WhatsApp**: [+91 9726317823](tel:+919726317823)\n\u2022 \ud83d\udccd **Location**: Bhavnagar, Gujarat, India\n\u2022 \ud83c\udf10 **Interactive Portfolio**: [dhruvijetani217.github.io/portfolio](https://dhruvijetani217.github.io/portfolio/)\n\u2022 \ud83d\udcc1 **Projects Directory**: [dhruvijetani217.github.io/projects](https://dhruvijetani217.github.io/projects/)\n\u2022 \ud83d\udc19 **GitHub Profile**: [github.com/dhruvijetani217](https://github.com/dhruvijetani217)\n\u2022 \u26a1 **Live API**: [dhruvi-api.onrender.com](https://dhruvi-api.onrender.com/)",
+    "chips": [
+      "Download Resume",
+      "All Projects",
+      "Core Tech Stack",
+      "Why Hire Dhruvi"
+    ]
+  },
+  {
+    "keys": [
+      "resume",
+      "cv",
+      "download resume",
+      "pdf link"
+    ],
+    "title": "\ud83d\udcc4 Dhruvi Jetani's Resume",
+    "ans": "You can download and review my full updated resume directly:\n\n\u2022 **Title**: Software Engineer & AI Engineer \u00b7 Team Leader\n\u2022 **Role Focus**: Multispecialist (AI Integration, Enterprise ERPs, Cloud Architecture)\n\u2022 **Key Links Included**:\n  - \ud83c\udf10 [Interactive Portfolio](https://dhruvijetani217.github.io/portfolio/)\n  - \ud83d\udcc1 [Projects Directory](https://dhruvijetani217.github.io/projects/)\n  - \ud83d\udc19 [GitHub Projects Repository](https://github.com/dhruvijetani217/projects)\n  - \u26a1 [Live REST API on Render](https://dhruvi-api.onrender.com/)\n  - \ud83e\udd16 [This AI Chatbot Assistant](https://dhruvijetani217.github.io/chatbot/)",
+    "chips": [
+      "Contact & Hire",
+      "Work Experience",
+      "Featured Projects",
+      "Core Tech Stack"
+    ]
+  },
+  {
+    "keys": [
+      "hello",
+      "hi",
+      "hey",
+      "kem cho",
+      "kem chho",
+      "namaste",
+      "good morning",
+      "good evening",
+      "who are you"
+    ],
+    "title": "\ud83d\udc4b Hello & Welcome!",
+    "ans": "Hello! I am **Dhruvi Jetani's AI Assistant**.\n\nI am here to give you instant, comprehensive insights into Dhruvi's engineering career, production systems, and AI models:\n\u2022 **Featured Projects**: CloudVault SaaS, D Chat (88+ features), Mini Coder LLM, and VisionAI.\n\u2022 **Enterprise Architecture**: School ERPs (automated fees & WhatsApp), German government platform & TYPO3.\n\u2022 **AI Engineering**: PyTorch transformers, InsightFace CCTV vision, RAG pipelines, and tool-calling agents.\n\u2022 **Leadership**: Team Leader at RemoteDevs Infotech.\n\nWhat would you like to explore today?",
+    "chips": [
+      "All Featured Projects",
+      "Core Tech Stack",
+      "Work Experience",
+      "Contact & Hire"
+    ]
+  }
+];
+
+const DEFAULT_ANSWER = {
+  title: "🤖 Dhruvi Jetani AI Assistant",
+  ans: `Thank you for your question! Here is what I can tell you:
+
+Dhruvi Jetani is a **Software Engineer & AI Engineer** and **Team Leader** at RemoteDevs Infotech. She is a **Multispecialist** who architects complete software ecosystems from UI design to scalable databases, secure RESTful APIs, and custom AI/Computer Vision models.
+
+• 🌐 **Interactive Portfolio**: [dhruvijetani217.github.io/portfolio](https://dhruvijetani217.github.io/portfolio/)
+• 📁 **Projects Showcase**: [dhruvijetani217.github.io/projects](https://dhruvijetani217.github.io/projects/)
+• 📧 **Email**: [dhruvijetani.dev@gmail.com](mailto:dhruvijetani.dev@gmail.com)
+• 📞 **Phone**: [+91 9726317823](tel:+919726317823)
+
+Feel free to tap any of the suggested topics below to explore!`,
+  chips: ["All Featured Projects", "Core Skills & Tech", "School ERP Systems", "Work Experience", "Contact & Hire"]
+};
+
+// Formatting Helper
+function formatMarkdown(text) {
+  if (!text) return "";
+  let html = text;
+
+  // Escape HTML
+  html = html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  // Bold **text**
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  // Inline code `code`
+  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+  // Markdown links [label](url)
+  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+  // Raw URLs
+  html = html.replace(/(^|[^"'])(https?:\/\/[^\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+
+  // Convert bullet points lines
+  const lines = html.split('\n');
+  let inList = false;
+  let outLines = [];
+
+  for (let line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('• ') || trimmed.startsWith('- ')) {
+      if (!inList) {
+        outLines.push('<ul>');
+        inList = true;
+      }
+      outLines.push('<li>' + trimmed.substring(2) + '</li>');
+    } else {
+      if (inList) {
+        outLines.push('</ul>');
+        inList = false;
+      }
+      if (trimmed.length > 0) {
+        outLines.push('<p>' + line + '</p>');
+      }
+    }
+  }
+  if (inList) outLines.push('</ul>');
+
+  return outLines.join('');
+}
+
+// Smart Search / Match Engine
+function findMatch(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) return null;
+
+  let bestMatch = null;
+  let highestScore = 0;
+
+  for (const item of QA) {
+    let score = 0;
+    for (const key of item.keys) {
+      const k = key.toLowerCase();
+      if (q === k) {
+        score += 50;
+      } else if (q.includes(k)) {
+        score += 20 + k.length;
+      } else {
+        // Word level overlap
+        const words = k.split(' ');
+        for (const w of words) {
+          if (w.length > 2 && q.includes(w)) {
+            score += 8;
+          }
+        }
+      }
+    }
+
+    if (score > highestScore) {
+      highestScore = score;
+      bestMatch = item;
+    }
+  }
+
+  if (highestScore >= 8) {
+    return bestMatch;
+  }
+  return DEFAULT_ANSWER;
+}
+
+// UI Append Message
+function appendMessage(role, data) {
+  const history = document.getElementById('chat-history');
+  const row = document.createElement('div');
+  row.className = 'msg-row ' + role;
+
+  if (role === 'bot') {
+    const av = document.createElement('div');
+    av.className = 'bot-avatar';
+    av.textContent = 'DJ';
+    row.appendChild(av);
+
+    const body = document.createElement('div');
+    body.className = 'msg-body';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+
+    if (data.title) {
+      const titleEl = document.createElement('div');
+      titleEl.className = 'msg-title';
+      titleEl.textContent = data.title;
+      bubble.appendChild(titleEl);
+    }
+
+    const contentDiv = document.createElement('div');
+    contentDiv.innerHTML = formatMarkdown(data.ans || data);
+    bubble.appendChild(contentDiv);
+    body.appendChild(bubble);
+
+    // Append chips if available
+    if (data.chips && data.chips.length > 0) {
+      const chipsWrap = document.createElement('div');
+      chipsWrap.className = 'msg-chips';
+      for (const chip of data.chips) {
+        const btn = document.createElement('button');
+        btn.className = 'chip-btn';
+        btn.textContent = chip;
+        btn.onclick = () => sendQuick(chip);
+        chipsWrap.appendChild(btn);
+      }
+      body.appendChild(chipsWrap);
+    }
+
+    row.appendChild(body);
+  } else {
+    const body = document.createElement('div');
+    body.className = 'msg-body';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+    bubble.textContent = data;
+    body.appendChild(bubble);
+    row.appendChild(body);
+  }
+
+  history.appendChild(row);
+  history.scrollTop = history.scrollHeight;
+}
+
+// Typing Indicator
+function showTyping() {
+  const history = document.getElementById('chat-history');
+  const row = document.createElement('div');
+  row.className = 'msg-row bot';
+  row.id = 'typing-indicator-row';
+
+  const av = document.createElement('div');
+  av.className = 'bot-avatar';
+  av.textContent = 'DJ';
+  row.appendChild(av);
+
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  row.appendChild(bubble);
+
+  history.appendChild(row);
+  history.scrollTop = history.scrollHeight;
+}
+
+function hideTyping() {
+  const el = document.getElementById('typing-indicator-row');
+  if (el) el.remove();
+}
+
+// Handle Send
+function handleSend() {
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+
+  appendMessage('user', text);
+  showTyping();
+
+  // Natural delay
+  setTimeout(() => {
+    hideTyping();
+    const result = findMatch(text);
+    appendMessage('bot', result);
+  }, 500);
+}
+
+function sendQuick(promptText) {
+  const input = document.getElementById('userInput');
+  input.value = promptText;
+  handleSend();
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    handleSend();
+  }
+}
+
+// Textarea auto-resize
+const tx = document.getElementById('userInput');
+tx.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+});
+
+function resetChat() {
+  if (confirm("Reset conversation history?")) {
+    location.reload();
+  }
+}
+
+// Background Canvas Animation (Matching Portfolio Theme)
+(function initCanvas() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let particles = [];
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  for (let i = 0; i < 45; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      size: Math.random() * 2 + 1,
+      alpha: Math.random() * 0.5 + 0.2
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    ctx.strokeStyle = 'rgba(114, 207, 109, 0.05)';
+    ctx.lineWidth = 0.8;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      ctx.fillStyle = 'rgba(114, 207, 109, ' + p.alpha + ')';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dx = p.x - p2.x;
+        const dy = p.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 110) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// Cursor Interaction
+(function initCursor() {
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+
+  let mouseX = -100, mouseY = -100;
+  let ringX = -100, ringY = -100;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+  });
+
+  function renderRing() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+    requestAnimationFrame(renderRing);
+  }
+  renderRing();
+})();
+</script>
+
+</body>
+</html>
