@@ -8,7 +8,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+</noscript>
 
 <style>
 /* ========================================================
@@ -175,13 +179,20 @@ h1, h2, h3, h4 {
 }
 
 /* ========================================================
+   CONTENT VISIBILITY FOR INSTANT INITIAL PAINT
+   ======================================================== */
+#about, #experience, #featured, #work, #certifications, #ai, #skills, #education, .contact {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
+/* ========================================================
    REVEAL ON SCROLL (LIGHTWEIGHT INTERSECTION OBSERVER)
    ======================================================== */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(18px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.in,
 .hero .reveal,
@@ -1619,6 +1630,13 @@ footer a:hover { color: var(--accent); }
    RESPONSIVE DESIGN
    ======================================================== */
 @media (max-width: 992px) {
+  /* Mobile GPU performance optimization: eliminate costly multi-pass blur compositing */
+  .spotlight-card, .facts, .trust-strip {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--surface) !important;
+  }
+  .spotlight-card::before { display: none !important; }
   .hero { grid-template-columns: 1fr; padding-block: 54px 40px; }
   .daily, .contact { grid-template-columns: 1fr; }
   .feat { grid-template-columns: 1fr; }
@@ -2047,7 +2065,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Agents and Workflows">
             <picture>
               <source srcset="badges/openai-agents-workflows.webp" type="image/webp">
-              <img src="badges/openai-agents-workflows.png" alt="Agents and Workflows credential badge" loading="lazy">
+              <img src="badges/openai-agents-workflows.webp" alt="Agents and Workflows credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2074,7 +2092,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Claude 101">
             <picture>
               <source srcset="badges/anthropic-claude-101.webp" type="image/webp">
-              <img src="badges/anthropic-claude-101.png" alt="Claude 101 credential badge" loading="lazy">
+              <img src="badges/anthropic-claude-101.webp" alt="Claude 101 credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2101,7 +2119,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building AI Agents">
             <picture>
               <source srcset="badges/zapier-building-ai-agents.webp" type="image/webp">
-              <img src="badges/zapier-building-ai-agents.png" alt="Building AI Agents credential badge" loading="lazy">
+              <img src="badges/zapier-building-ai-agents.webp" alt="Building AI Agents credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2128,7 +2146,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Governing Zapier MCP">
             <picture>
               <source srcset="badges/zapier-governing-zapier-mcp.webp" type="image/webp">
-              <img src="badges/zapier-governing-zapier-mcp.png" alt="Governing Zapier MCP credential badge" loading="lazy">
+              <img src="badges/zapier-governing-zapier-mcp.webp" alt="Governing Zapier MCP credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2155,7 +2173,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: What is Zapier MCP?">
             <picture>
               <source srcset="badges/zapier-what-is-zapier-mcp.webp" type="image/webp">
-              <img src="badges/zapier-what-is-zapier-mcp.png" alt="What is Zapier MCP? credential badge" loading="lazy">
+              <img src="badges/zapier-what-is-zapier-mcp.webp" alt="What is Zapier MCP? credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2182,7 +2200,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Security and Governance">
             <picture>
               <source srcset="badges/zapier-security-and-governance.webp" type="image/webp">
-              <img src="badges/zapier-security-and-governance.png" alt="Security and Governance credential badge" loading="lazy">
+              <img src="badges/zapier-security-and-governance.webp" alt="Security and Governance credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2209,7 +2227,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Monitoring and Operations">
             <picture>
               <source srcset="badges/zapier-monitoring-and-operations.webp" type="image/webp">
-              <img src="badges/zapier-monitoring-and-operations.png" alt="Monitoring and Operations credential badge" loading="lazy">
+              <img src="badges/zapier-monitoring-and-operations.webp" alt="Monitoring and Operations credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2236,7 +2254,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building Intermediate Zaps">
             <picture>
               <source srcset="badges/zapier-building-intermediate-zaps.webp" type="image/webp">
-              <img src="badges/zapier-building-intermediate-zaps.png" alt="Building Intermediate Zaps credential badge" loading="lazy">
+              <img src="badges/zapier-building-intermediate-zaps.webp" alt="Building Intermediate Zaps credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2263,7 +2281,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Building Basic Zaps">
             <picture>
               <source srcset="badges/zapier-building-basic-zaps.webp" type="image/webp">
-              <img src="badges/zapier-building-basic-zaps.png" alt="Building Basic Zaps credential badge" loading="lazy">
+              <img src="badges/zapier-building-basic-zaps.webp" alt="Building Basic Zaps credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2290,7 +2308,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Jumpstart">
             <picture>
               <source srcset="badges/zapier-jumpstart.webp" type="image/webp">
-              <img src="badges/zapier-jumpstart.png" alt="Jumpstart credential badge" loading="lazy">
+              <img src="badges/zapier-jumpstart.webp" alt="Jumpstart credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2317,7 +2335,7 @@ footer a:hover { color: var(--accent); }
           <div class="cert-media" data-open-cert tabindex="0" role="button" aria-label="View credential: Account Setup">
             <picture>
               <source srcset="badges/zapier-account-setup.webp" type="image/webp">
-              <img src="badges/zapier-account-setup.png" alt="Account Setup credential badge" loading="lazy">
+              <img src="badges/zapier-account-setup.webp" alt="Account Setup credential badge" loading="lazy" decoding="async" width="720" height="440">
             </picture>
             <div class="cert-overlay"><span>View Credential</span></div>
           </div>
@@ -2463,33 +2481,35 @@ footer a:hover { color: var(--accent); }
      ======================================================== -->
 <script>
 // ========================================================
-// 1. EXACT  3D GATHER & BLAST NODE CANVAS (DESKTOP + MOBILE HIGH-PERFORMANCE)
+// 1. EXACT 3D GATHER & BLAST NODE CANVAS (BATTER-SAVING ZERO-LAG BATCHED)
 //    - 3D glowing node constellation field with vortex Gather & explosive Blast
-//    -  exact saturated lime green: rgb(57, 255, 20)
-//    - Tailored for mobile devices: high node density, visible glow, calibrated boundaries, and touch tracking
-//    - Recycles Gather & Blast every 3 seconds seamlessly
+//    - Signature electric lime green: rgb(57, 255, 20)
+//    - Optimized draw batching (from 400+ draw calls down to 4 calls per frame)
+//    - Background tab sleep & scroll throttling for 60/120 FPS silky smoothness
+// ========================================================
 (function() {
   const canvas = document.getElementById('spiral-canvas');
   if (!canvas) return;
 
-  const ctx = canvas.getContext('2d', { alpha: false });
+  const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
   let W = window.innerWidth;
   let H = window.innerHeight;
+  let isMobile = window.innerWidth <= 992;
   let nodes = [];
-  let N = window.innerWidth <= 992 ? 85 : 160;
-  
-  // Animation state (Gather & Blast: Immediate on load & repeats every 3 seconds)
-  const GATHER_FRAMES = 48; // ~0.8s rapid spiral vortex gather
+  let N = isMobile ? 38 : 85;
+
+  // Animation timing
+  const GATHER_FRAMES = 48; // ~0.8s rapid vortex gather
   const CYCLE_FRAMES = 180; // Exactly 3.0 seconds full cycle
-  let introTimer = 0; // Starts gathering & blasting immediately on page load
-  
-  // Blinking / Energy Surge state
+  let introTimer = 0;
+
+  // Blinking / Energy Surge
   let isBlinking = false;
   let blinksRemaining = 0;
   let blinkPhase = 0;
   let globalFlash = 1.0;
-  
-  //  signature electric lime green RGB constants (never shadowed)
+
+  // Signature electric lime green RGB constants
   const CR = 57, CG = 255, CB = 20;
 
   // Mouse & Touch tracking
@@ -2501,23 +2521,16 @@ footer a:hover { color: var(--accent); }
     mouse.active = true;
   }, { passive: true });
 
-  window.addEventListener('mouseout', () => { 
-    mouse.active = false; 
+  window.addEventListener('mouseout', () => {
+    mouse.active = false;
   }, { passive: true });
 
-  // Touch support for mobile devices
+  // Passive touch tracking on mobile (does not disrupt native scroll)
   window.addEventListener('touchstart', e => {
     if (e.touches && e.touches[0]) {
       mouse.x = e.touches[0].clientX;
       mouse.y = e.touches[0].clientY;
       mouse.active = true;
-      globalFlash = 1.4;
-      for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
-        n.bx = (Math.random() - 0.5) * 22;
-        n.by = (Math.random() - 0.5) * 22;
-        n.bz = (Math.random() - 0.5) * 22;
-      }
     }
   }, { passive: true });
 
@@ -2530,41 +2543,48 @@ footer a:hover { color: var(--accent); }
   }, { passive: true });
 
   window.addEventListener('touchend', () => {
-    setTimeout(() => { mouse.active = false; }, 800);
+    setTimeout(() => { mouse.active = false; }, 600);
   }, { passive: true });
 
-  // On click: trigger instant energy shockwave
+  // On deliberate click/tap: trigger instant shockwave
   window.addEventListener('click', () => {
-    globalFlash = 1.5;
+    globalFlash = 1.4;
     for (let i = 0; i < nodes.length; i++) {
       const n = nodes[i];
-      n.bx = (Math.random() - 0.5) * 28;
-      n.by = (Math.random() - 0.5) * 28;
-      n.bz = (Math.random() - 0.5) * 28;
+      n.bx = (Math.random() - 0.5) * 22;
+      n.by = (Math.random() - 0.5) * 22;
+      n.bz = (Math.random() - 0.5) * 22;
     }
+  }, { passive: true });
+
+  // Active scroll throttling for buttery-smooth native mobile scroll
+  let isScrolling = false;
+  let scrollTimer;
+  window.addEventListener('scroll', () => {
+    isScrolling = true;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => { isScrolling = false; }, 120);
   }, { passive: true });
 
   function resize() {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
-    N = window.innerWidth <= 992 ? 85 : 160;
+    isMobile = window.innerWidth <= 992;
+    N = isMobile ? 38 : 85;
   }
 
   function init() {
     nodes = [];
-    introTimer = 0; // Start gather & blast immediately on page load
+    introTimer = 0;
     isBlinking = false;
-    
-    const isMobile = window.innerWidth <= 992;
     const fov = W * 0.8;
-    
+
     for (let i = 0; i < N; i++) {
       if (isMobile) {
-        let zVal = Math.random() * 750 + 200;
+        let zVal = Math.random() * 700 + 200;
         let scale = fov / zVal;
         let screenX = (Math.random() - 0.5) * W * 1.35;
         let screenY = (Math.random() - 0.5) * H * 1.35;
-        
         nodes.push({
           x: screenX / scale,
           y: screenY / scale,
@@ -2582,27 +2602,40 @@ footer a:hover { color: var(--accent); }
           vx: (Math.random() - 0.5) * 0.8,
           vy: (Math.random() - 0.5) * 0.8,
           vz: (Math.random() - 0.5) * 1.6 - 0.3,
-          bx: 0, by: 0, bz: 0 
+          bx: 0, by: 0, bz: 0
         });
       }
     }
   }
 
-  function loop() {
-    // Schedule next frame right away so loop can never freeze
+  let lastFrameTime = 0;
+  let isHidden = document.hidden;
+  document.addEventListener('visibilitychange', () => {
+    isHidden = document.hidden;
+    if (!isHidden) {
+      lastFrameTime = performance.now();
+      requestAnimationFrame(loop);
+    }
+  });
+
+  function loop(now) {
+    if (isHidden) return; // Zero CPU usage when tab is hidden
     requestAnimationFrame(loop);
+
+    // Frame-rate throttle: 60 FPS cap (or 30 FPS during active mobile scroll)
+    const elapsed = now - lastFrameTime;
+    const minInterval = (isMobile && isScrolling) ? 32 : 16;
+    if (elapsed < minInterval) return;
+    lastFrameTime = now - (elapsed % minInterval);
 
     ctx.fillStyle = '#08090d';
     ctx.fillRect(0, 0, W, H);
-    
-    introTimer++;
 
-    // Cyclic Gather & Blast reset
+    introTimer++;
     if (introTimer > CYCLE_FRAMES) {
       introTimer = 0;
     }
 
-    const isMobile = window.innerWidth <= 992;
     const CENTER = { x: 0, y: isMobile ? -30 : 150, z: isMobile ? 650 : 1000 };
 
     // Energy Surge Blinks
@@ -2612,11 +2645,9 @@ footer a:hover { color: var(--accent); }
         blinksRemaining = Math.random() > 0.5 ? 2 : 3;
         blinkPhase = 0;
       }
-      
       if (isBlinking) {
         blinkPhase += 0.25;
-        globalFlash = 1.0 + Math.sin(blinkPhase) * 1.4; 
-        
+        globalFlash = 1.0 + Math.sin(blinkPhase) * 1.4;
         if (blinkPhase >= Math.PI) {
           blinkPhase = 0;
           blinksRemaining--;
@@ -2628,34 +2659,28 @@ footer a:hover { color: var(--accent); }
       }
     }
 
-    // 1. Gather & Blast Physics
+    // 1. Physics update
     for (let i = 0; i < nodes.length; i++) {
       let n = nodes[i];
-
       if (introTimer < GATHER_FRAMES) {
-        // Vortex pull into center with spiral rotation
-        let ease = Math.pow(introTimer / GATHER_FRAMES, 2.0); 
-        let pull = 0.05 + ease * 0.12; 
+        let ease = Math.pow(introTimer / GATHER_FRAMES, 2.0);
+        let pull = 0.05 + ease * 0.12;
         n.x += (CENTER.x - n.x) * pull;
         n.y += (CENTER.y - n.y) * pull;
         n.z += (CENTER.z - n.z) * pull;
 
-        // Dynamic vortex spiral swirl while gathering
         let spin = 0.045 * (1 + ease * 2.2);
         let rx = n.x - CENTER.x;
         let ry = n.y - CENTER.y;
         n.x = CENTER.x + rx * Math.cos(spin) - ry * Math.sin(spin);
         n.y = CENTER.y + rx * Math.sin(spin) + ry * Math.cos(spin);
-      } 
-      else if (introTimer === GATHER_FRAMES) {
-        // BLAST OUTWARD EXPLOSION!
+      } else if (introTimer === GATHER_FRAMES) {
         globalFlash = 1.45;
         let dx = (Math.random() - 0.5) * 2;
         let dy = (Math.random() - 0.5) * 2;
         let dz = (Math.random() - 0.5) * 2;
         let len = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1;
-        let force = isMobile ? (Math.random() * 26 + 14) : (Math.random() * 34 + 18); 
-        
+        let force = isMobile ? (Math.random() * 26 + 14) : (Math.random() * 34 + 18);
         n.bx = (dx / len) * force;
         n.by = (dy / len) * force;
         n.bz = (dz / len) * force;
@@ -2664,7 +2689,6 @@ footer a:hover { color: var(--accent); }
       n.x += n.bx;
       n.y += n.by;
       n.z += n.bz;
-      
       n.bx *= 0.93;
       n.by *= 0.93;
       n.bz *= 0.93;
@@ -2687,99 +2711,114 @@ footer a:hover { color: var(--accent); }
       }
     }
 
-    nodes.sort((a, b) => b.z - a.z);
-
     const fov = W * 0.8;
-    const maxLineDist = isMobile ? 240 : 360;
+    const maxLineDist = isMobile ? 220 : 340;
+    const W2 = W / 2;
+    const H2 = H / 2;
 
-    // 2. Draw 3D connecting laser lines
+    // 2. Draw 3D connecting laser lines (BATCHED SINGLE-STROKE CALL)
+    ctx.beginPath();
+    let hasLines = false;
     for (let i = 0; i < nodes.length; i++) {
-      let a = nodes[i];
-      let scaleA = fov / Math.max(a.z, 1);
-      let pxA = (a.x * scaleA) + W / 2;
-      let pyA = (a.y * scaleA) + H / 2;
+      const a = nodes[i];
+      const scaleA = fov / Math.max(a.z, 1);
+      const pxA = (a.x * scaleA) + W2;
+      const pyA = (a.y * scaleA) + H2;
 
-      if (pxA < -120 || pxA > W + 120 || pyA < -120 || pyA > H + 120) continue;
+      if (pxA < -100 || pxA > W + 100 || pyA < -100 || pyA > H + 100) continue;
 
-      for (let j = i + 1; j < Math.min(nodes.length, i + 22); j++) {
-        let nodeB = nodes[j];
-        let dx = a.x - nodeB.x;
-        let dy = a.y - nodeB.y;
-        let dz = a.z - nodeB.z;
-        let dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+      const neighborLimit = Math.min(nodes.length, i + (isMobile ? 10 : 18));
+      for (let j = i + 1; j < neighborLimit; j++) {
+        const nodeB = nodes[j];
+        const dx = a.x - nodeB.x;
+        const dy = a.y - nodeB.y;
+        const dz = a.z - nodeB.z;
+        const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
 
         if (dist < maxLineDist) {
-          let scaleB = fov / Math.max(nodeB.z, 1);
-          let pxB = (nodeB.x * scaleB) + W / 2;
-          let pyB = (nodeB.y * scaleB) + H / 2;
+          const scaleB = fov / Math.max(nodeB.z, 1);
+          const pxB = (nodeB.x * scaleB) + W2;
+          const pyB = (nodeB.y * scaleB) + H2;
 
-          let baseAlpha = (1 - dist / maxLineDist) * Math.min(1, 1000 / a.z);
-          let alpha = isMobile
-            ? Math.min(0.35, baseAlpha * 0.32 * Math.min(globalFlash, 1.4))
-            : Math.min(0.24, baseAlpha * 0.22 * Math.min(globalFlash, 1.4));
-          
-          ctx.beginPath();
           ctx.moveTo(pxA, pyA);
           ctx.lineTo(pxB, pyB);
-          ctx.strokeStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha})`;
-          ctx.lineWidth = isMobile ? Math.max(0.6, scaleA * 0.45) : Math.max(0.4, scaleA * 0.3); 
-          ctx.stroke();
-        }
-      }
-
-      // Live laser connection beams to mouse / touch position
-      let maxMouseDist = isMobile ? 180 : 250;
-      if (mouse.active) {
-        let dxMouse = pxA - mouse.x;
-        let dyMouse = pyA - mouse.y;
-        let distMouse = Math.sqrt(dxMouse*dxMouse + dyMouse*dyMouse);
-        
-        if (distMouse < maxMouseDist && a.z < 1200) { 
-           let alphaMouse = isMobile
-             ? Math.min(0.5, (1 - distMouse / maxMouseDist) * 0.48 * Math.min(globalFlash, 1.4))
-             : Math.min(0.4, (1 - distMouse / maxMouseDist) * 0.38 * Math.min(globalFlash, 1.4));
-           ctx.beginPath();
-           ctx.moveTo(pxA, pyA);
-           ctx.lineTo(mouse.x, mouse.y);
-           ctx.strokeStyle = `rgba(180, 255, 150, ${alphaMouse})`;
-           ctx.lineWidth = Math.max(0.6, scaleA * 0.7); 
-           ctx.stroke();
+          hasLines = true;
         }
       }
     }
+    if (hasLines) {
+      const lineAlpha = (isMobile ? 0.22 : 0.18) * Math.min(globalFlash, 1.3);
+      ctx.strokeStyle = `rgba(${CR}, ${CG}, ${CB}, ${lineAlpha})`;
+      ctx.lineWidth = isMobile ? 0.7 : 0.5;
+      ctx.stroke();
+    }
 
-    // 3. Draw glowing 3D nodes ( signature)
+    // Live laser beams to cursor / touch (BATCHED CALL)
+    if (mouse.active) {
+      ctx.beginPath();
+      let hasMouseLines = false;
+      const maxMouseDist = isMobile ? 180 : 250;
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        if (a.z >= 1200) continue;
+        const scaleA = fov / Math.max(a.z, 1);
+        const pxA = (a.x * scaleA) + W2;
+        const pyA = (a.y * scaleA) + H2;
+        const dxM = pxA - mouse.x;
+        const dyM = pyA - mouse.y;
+        const distM = Math.sqrt(dxM*dxM + dyM*dyM);
+        if (distM < maxMouseDist) {
+          ctx.moveTo(pxA, pyA);
+          ctx.lineTo(mouse.x, mouse.y);
+          hasMouseLines = true;
+        }
+      }
+      if (hasMouseLines) {
+        ctx.strokeStyle = `rgba(180, 255, 150, ${isMobile ? 0.42 : 0.35})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+
+    // 3. Draw glowing 3D nodes (BATCHED HALO & CORE IN 2 CALLS)
+    // Pass A: Outer luminous halo
+    ctx.beginPath();
     for (let i = 0; i < nodes.length; i++) {
-      let n = nodes[i];
-      let scale = fov / Math.max(n.z, 1);
-      let px = (n.x * scale) + W / 2;
-      let py = (n.y * scale) + H / 2;
-
-      if (px < -60 || px > W + 60 || py < -60 || py > H + 60) continue;
-
-      let radius = isMobile ? Math.max(2.4, 3.4 * scale) : Math.max(1.3, 2.0 * scale); 
-      let alpha = isMobile
-        ? Math.min(0.55, (750 / n.z) * 0.55 * Math.min(globalFlash, 1.4))
-        : Math.min(0.38, (900 / n.z) * 0.38 * Math.min(globalFlash, 1.4));
-
-      // Outer luminous halo
-      ctx.beginPath();
-      ctx.arc(px, py, radius * 2.4, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha * (isMobile ? 0.26 : 0.18)})`;
-      ctx.fill();
-
-      // Sharp glowing node core
-      ctx.beginPath();
-      ctx.arc(px, py, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${CR}, ${CG}, ${CB}, ${alpha})`;
-      ctx.fill();
+      const n = nodes[i];
+      const scale = fov / Math.max(n.z, 1);
+      const px = (n.x * scale) + W2;
+      const py = (n.y * scale) + H2;
+      if (px < -50 || px > W + 50 || py < -50 || py > H + 50) continue;
+      const radius = isMobile ? Math.max(2.4, 3.4 * scale) : Math.max(1.3, 2.0 * scale);
+      ctx.moveTo(px + radius * 2.2, py);
+      ctx.arc(px, py, radius * 2.2, 0, Math.PI * 2);
     }
+    const haloAlpha = (isMobile ? 0.12 : 0.08) * Math.min(globalFlash, 1.4);
+    ctx.fillStyle = `rgba(${CR}, ${CG}, ${CB}, ${haloAlpha})`;
+    ctx.fill();
+
+    // Pass B: Sharp glowing node core
+    ctx.beginPath();
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      const scale = fov / Math.max(n.z, 1);
+      const px = (n.x * scale) + W2;
+      const py = (n.y * scale) + H2;
+      if (px < -50 || px > W + 50 || py < -50 || py > H + 50) continue;
+      const radius = isMobile ? Math.max(2.4, 3.4 * scale) : Math.max(1.3, 2.0 * scale);
+      ctx.moveTo(px + radius, py);
+      ctx.arc(px, py, radius, 0, Math.PI * 2);
+    }
+    const coreAlpha = (isMobile ? 0.65 : 0.55) * Math.min(globalFlash, 1.4);
+    ctx.fillStyle = `rgba(${CR}, ${CG}, ${CB}, ${coreAlpha})`;
+    ctx.fill();
   }
 
   window.addEventListener('resize', () => { resize(); init(); }, { passive: true });
   resize();
   init();
-  loop();
+  lastFrameTime = performance.now();
+  requestAnimationFrame(loop);
 })();
 
 // 2. ULTRA-SMOOTH GPU-ACCELERATED CURSOR (ZERO LAG)
@@ -2826,6 +2865,7 @@ footer a:hover { color: var(--accent); }
 // 3. EVENT-DELEGATED CARD SPOTLIGHT (ZERO FORCED REFLOWS)
 // ========================================================
 (function() {
+  if (window.innerWidth <= 992) return;
   let activeCard = null;
 
   document.addEventListener('mousemove', (e) => {
@@ -3022,7 +3062,7 @@ footer a:hover { color: var(--accent); }
     mRecipient.textContent = card.dataset.recipient;
     mId.textContent = card.dataset.credId;
     mDesc.textContent = card.dataset.desc;
-    mImg.src = card.dataset.png || card.dataset.img;
+    mImg.src = card.dataset.img || card.dataset.png;
     mImg.alt = card.dataset.title + ' credential badge';
 
     mTags.innerHTML = '';

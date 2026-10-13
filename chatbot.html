@@ -8,7 +8,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+</noscript>
 
 <style>
 /* ========================================================
@@ -117,6 +121,11 @@ html, body {
 
 @media (max-width: 992px) {
   .cursor-dot, .cursor-ring { display: none !important; }
+  .app-container {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #08090d !important;
+  }
 }
 
 /* ========================================================
@@ -1474,77 +1483,111 @@ function resetChat() {
   }
 }
 
-// Background Canvas Animation (Matching Portfolio Theme)
+// Background Canvas Animation (Matching Portfolio Theme - High Performance Batched)
 (function initCanvas() {
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
   let width, height;
+  let isMobile = window.innerWidth <= 992;
   let particles = [];
+  const COUNT = isMobile ? 22 : 45;
 
   function resize() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
+    isMobile = window.innerWidth <= 992;
   }
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', resize, { passive: true });
   resize();
 
-  for (let i = 0; i < 45; i++) {
+  for (let i = 0; i < COUNT; i++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * 0.4,
       vy: (Math.random() - 0.5) * 0.4,
       size: Math.random() * 2 + 1,
-      alpha: Math.random() * 0.5 + 0.2
+      alpha: Math.random() * 0.45 + 0.2
     });
   }
 
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
+  let lastTime = 0;
+  let isHidden = document.hidden;
+  document.addEventListener('visibilitychange', () => {
+    isHidden = document.hidden;
+    if (!isHidden) {
+      lastTime = performance.now();
+      requestAnimationFrame(animate);
+    }
+  });
 
-    ctx.strokeStyle = 'rgba(114, 207, 109, 0.05)';
-    ctx.lineWidth = 0.8;
+  function animate(now) {
+    if (isHidden) return;
+    requestAnimationFrame(animate);
 
+    const elapsed = now - lastTime;
+    if (elapsed < 16) return;
+    lastTime = now - (elapsed % 16);
+
+    ctx.fillStyle = '#08090d';
+    ctx.fillRect(0, 0, width, height);
+
+    // Update positions
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       p.x += p.vx;
       p.y += p.vy;
-
       if (p.x < 0) p.x = width;
       if (p.x > width) p.x = 0;
       if (p.y < 0) p.y = height;
       if (p.y > height) p.y = 0;
+    }
 
-      ctx.fillStyle = 'rgba(114, 207, 109, ' + p.alpha + ')';
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
-
+    // Batched line draw (1 draw call)
+    ctx.beginPath();
+    let hasLines = false;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
       for (let j = i + 1; j < particles.length; j++) {
         const p2 = particles[j];
         const dx = p.x - p2.x;
         const dy = p.y - p2.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 110) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
+        if (Math.abs(dx) < 110 && Math.abs(dy) < 110) {
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 110) {
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            hasLines = true;
+          }
         }
       }
     }
+    if (hasLines) {
+      ctx.strokeStyle = 'rgba(114, 207, 109, 0.08)';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
 
-    requestAnimationFrame(animate);
+    // Batched particle dots draw (1 draw call)
+    ctx.beginPath();
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      ctx.moveTo(p.x + p.size, p.y);
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    }
+    ctx.fillStyle = 'rgba(114, 207, 109, 0.4)';
+    ctx.fill();
   }
-  animate();
+  lastTime = performance.now();
+  requestAnimationFrame(animate);
 })();
 
-// Cursor Interaction
+// Cursor Interaction (Desktop Only)
 (function initCursor() {
   const dot = document.getElementById('cursor-dot');
   const ring = document.getElementById('cursor-ring');
-  if (!dot || !ring) return;
+  if (!dot || !ring || window.innerWidth <= 992) return;
 
   let mouseX = -100, mouseY = -100;
   let ringX = -100, ringY = -100;
@@ -1553,7 +1596,7 @@ function resetChat() {
     mouseX = e.clientX;
     mouseY = e.clientY;
     dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-  });
+  }, { passive: true });
 
   function renderRing() {
     ringX += (mouseX - ringX) * 0.18;
